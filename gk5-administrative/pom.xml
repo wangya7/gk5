@@ -1,0 +1,25 @@
+<project
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>wang.bannong</groupId>
+        <artifactId>gk5-parent</artifactId>
+        <version>${project.version}</version>
+        <relativePath>../gk5-parent/pom.xml</relativePath>
+    </parent>
+
+    <groupId>wang.bannong</groupId>
+    <artifactId>gk5-administrative</artifactId>
+    <version>0.1.0-beta</version>
+    <name>gk5-administrative</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+    </properties>
+
+    <dependencies>
+    </dependencies>
+</project>

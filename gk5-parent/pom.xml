@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>wang.bannong</groupId>
+        <artifactId>gk5</artifactId>
+        <version>${project.version}</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+    
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>wang.bannong</groupId>
+    <artifactId>gk5-parent</artifactId>
+    <version>${project.version}</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <maven.compiler.compilerVersion>${java.version}</maven.compiler.compilerVersion>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jackson-dataformat.version>2.9.9</jackson-dataformat.version>
+        <jackson-databind.version>2.9.9</jackson-databind.version>
+        <spring-boot.version>2.1.6.RELEASE</spring-boot.version>
+        <!-- gk5 -->
+        <gk5.version>0.1.0-beta</gk5.version>
+
+        <!-- third party start -->
+        <guava.version>28.0-jre</guava.version>
+        <beanutils.version>1.9.1</beanutils.version>
+        <fastjson.version>1.2.37</fastjson.version>
+        <okhttp.version>3.8.0</okhttp.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- spring boot -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring-boot.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-test</artifactId>
+                <version>${spring-boot.version}</version>
+                <scope>test</scope>
+            </dependency>
+
+            <!-- gk5 -->
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-administrative</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-excel</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-log</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-parent</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-rmdb</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-util</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+
+            <!-- third party start -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${beanutils.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp.version}</version>
+            </dependency>
+            <!-- third party end -->
+
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- spring boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-yaml</artifactId>
+            <version>${jackson-dataformat.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-databind.version}</version>
+        </dependency>
+
+        <!-- third party start -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+    </dependencies>
+</project>
