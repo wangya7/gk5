@@ -31,7 +31,7 @@
         <module>gk5-rmdb</module>
         <module>gk5-gate</module>
         <module>gk5-sparrow</module>
-        <!--<module>gk5-sparrow-demo</module>-->
+        <module>gk5-sparrow-demo</module>
     </modules>
 
     <developers>

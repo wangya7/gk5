@@ -16,22 +16,19 @@ import io.undertow.websockets.jsr.WebSocketDeploymentInfo;
 
 /**
  * 设置Undertow服务器 XnioWorker Buffers
- *
- * @author Caratacus
  * @see <a>https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#boot-features-programmatic-embedded-container-customization</a>
  */
 public class UndertowServerFactoryCustomizer implements WebServerFactoryCustomizer<UndertowServletWebServerFactory> {
 
     @Override
     public void customize(UndertowServletWebServerFactory factory) {
-        UndertowDeploymentInfoCustomizer undertowDeploymentInfoCustomizer = deploymentInfo -> {
-            WebSocketDeploymentInfo info = (WebSocketDeploymentInfo) deploymentInfo.getServletContextAttributes().get(WebSocketDeploymentInfo.ATTRIBUTE_NAME);
-            XnioWorker worker = getXnioWorker();
-            ByteBufferPool buffers = new DefaultByteBufferPool(Boolean.getBoolean("io.undertow.websockets.direct-buffers"), 1024, 100, 12);
-            info.setWorker(worker);
-            info.setBuffers(buffers);
-        };
-        factory.addDeploymentInfoCustomizers(undertowDeploymentInfoCustomizer);
+        factory.addDeploymentInfoCustomizers(deploymentInfo -> {
+            WebSocketDeploymentInfo info = (WebSocketDeploymentInfo) deploymentInfo.getServletContextAttributes()
+                    .get(WebSocketDeploymentInfo.ATTRIBUTE_NAME);
+            info.setWorker(getXnioWorker());
+            info.setBuffers(new DefaultByteBufferPool(Boolean.getBoolean("io.undertow.websockets.direct-buffers"),
+                    1024, 100, 12));
+        });
     }
 
     /**
