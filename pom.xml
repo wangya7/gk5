@@ -12,7 +12,7 @@
 
     <groupId>wang.bannong</groupId>
     <artifactId>gk5</artifactId>
-    <version>${project.version}</version>
+    <version>0.1.0-beta</version>
     <packaging>pom</packaging>
     <name>gk5</name>
     <url>http://maven.apache.org</url>
@@ -24,11 +24,14 @@
 
     <modules>
         <module>gk5-parent</module>
+        <module>gk5-log</module>
+        <module>gk5-util</module>
+        <module>gk5-excel</module>
         <module>gk5-administrative</module>
         <module>gk5-rmdb</module>
-        <module>gk5-log</module>
-        <module>gk5-excel</module>
-        <module>gk5-util</module>
+        <module>gk5-gate</module>
+        <module>gk5-sparrow</module>
+        <!--<module>gk5-sparrow-demo</module>-->
     </modules>
 
     <developers>
@@ -73,4 +76,23 @@
             </plugin>
         </plugins>
     </reporting>
+    <repositories>
+        <repository>
+            <id>maven-ali</id>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+                <checksumPolicy>fail</checksumPolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>sonatype</id>
+            <name>sonatype</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </repository>
+    </repositories>
 </project>

@@ -1,5 +1,7 @@
 package wang.bannong.gk5.util;
 
+import java.io.File;
+
 /**
  * Created by bn. on 2018/8/4 下午1:19
  */
@@ -26,4 +28,6 @@ public interface Constant {
 
 
     String SMILE_MARK            = "\\^_\\^";
+    String UTF8                  = "UTF-8";
+    String SEPARATOR             = File.separator;
 }

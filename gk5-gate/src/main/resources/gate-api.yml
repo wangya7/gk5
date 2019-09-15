@@ -1,0 +1,9 @@
+gate:
+  apiMap:
+    admin:
+      # 测试接口
+      gate.admin.user.queryById_1.0: adminUserApiService,1,get
+
+    app:
+      # 测试接口
+      gate.user.queryById_1.0: queryByIdApiService,0,get

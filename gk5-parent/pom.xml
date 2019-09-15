@@ -5,14 +5,13 @@
     <parent>
         <groupId>wang.bannong</groupId>
         <artifactId>gk5</artifactId>
-        <version>${project.version}</version>
-        <relativePath>../pom.xml</relativePath>
+        <version>0.1.0-beta</version>
     </parent>
     
     <modelVersion>4.0.0</modelVersion>
     <groupId>wang.bannong</groupId>
     <artifactId>gk5-parent</artifactId>
-    <version>${project.version}</version>
+    <version>0.1.0-beta</version>
     <packaging>pom</packaging>
 
     <properties>
@@ -30,6 +29,7 @@
         <beanutils.version>1.9.1</beanutils.version>
         <fastjson.version>1.2.37</fastjson.version>
         <okhttp.version>3.8.0</okhttp.version>
+        <lombok.version>1.18.8</lombok.version>
     </properties>
 
     <dependencyManagement>
@@ -56,6 +56,21 @@
             <!-- gk5 -->
             <dependency>
                 <groupId>wang.bannong</groupId>
+                <artifactId>gk5-parent</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-log</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-util</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
                 <artifactId>gk5-administrative</artifactId>
                 <version>${gk5.version}</version>
             </dependency>
@@ -66,22 +81,17 @@
             </dependency>
             <dependency>
                 <groupId>wang.bannong</groupId>
-                <artifactId>gk5-log</artifactId>
-                <version>${gk5.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>wang.bannong</groupId>
-                <artifactId>gk5-parent</artifactId>
-                <version>${gk5.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>wang.bannong</groupId>
                 <artifactId>gk5-rmdb</artifactId>
                 <version>${gk5.version}</version>
             </dependency>
             <dependency>
                 <groupId>wang.bannong</groupId>
-                <artifactId>gk5-util</artifactId>
+                <artifactId>gk5-gate</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-sparrow</artifactId>
                 <version>${gk5.version}</version>
             </dependency>
 
@@ -105,6 +115,11 @@
                 <groupId>com.squareup.okhttp3</groupId>
                 <artifactId>okhttp</artifactId>
                 <version>${okhttp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
             </dependency>
             <!-- third party end -->
 

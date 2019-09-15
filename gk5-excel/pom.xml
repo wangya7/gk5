@@ -6,14 +6,13 @@
     <parent>
         <groupId>wang.bannong</groupId>
         <artifactId>gk5-parent</artifactId>
-        <version>${project.version}</version>
-        <relativePath>../gk5-parent/pom.xml</relativePath>
+        <version>0.1.0-beta</version>
     </parent>
 
     <groupId>wang.bannong</groupId>
     <artifactId>gk5-excel</artifactId>
     <version>0.1.0-beta</version>
-    <name>gk5-office</name>
+    <name>gk5-excel</name>
     <url>http://maven.apache.org</url>
 
     <properties>
