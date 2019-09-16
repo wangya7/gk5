@@ -13,12 +13,12 @@ import wang.bannong.gk5.sparrow.framework.model.BaseModel;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@TableName("sys_user_role")
-public class UserRole extends BaseModel {
+@TableName("sys_admin_role")
+public class AdminRole extends BaseModel {
 
     private static final long serialVersionUID = 1L;
 
-    public UserRole(Integer uid, Integer roleId) {
+    public AdminRole(Integer uid, Integer roleId) {
         this.uid = uid;
         this.roleId = roleId;
     }

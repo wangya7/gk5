@@ -19,7 +19,7 @@ import wang.bannong.gk5.sparrow.common.utils.TypeUtils;
 import wang.bannong.gk5.sparrow.framework.enums.ErrorCodeEnum;
 import wang.bannong.gk5.sparrow.framework.utils.ApiAssert;
 import wang.bannong.gk5.sparrow.service.IResourceService;
-import wang.bannong.gk5.sparrow.service.IUserService;
+import wang.bannong.gk5.sparrow.service.IAdminService;
 
 /**
  * JWT Realm 适用于shiro
@@ -28,7 +28,7 @@ import wang.bannong.gk5.sparrow.service.IUserService;
 public class JWTRealm extends AuthorizingRealm {
 
     @Autowired
-    private IUserService userService;
+    private IAdminService userService;
 
     @Autowired
     private IResourceService resourceService;

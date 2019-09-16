@@ -18,7 +18,7 @@ import wang.bannong.gk5.sparrow.framework.model.convert.Convert;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class UserDTO extends Convert {
+public class AdminDTO extends Convert {
 
     private static final long serialVersionUID = 1L;
 

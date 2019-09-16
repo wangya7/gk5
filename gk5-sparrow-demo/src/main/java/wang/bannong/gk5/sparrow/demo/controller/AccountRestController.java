@@ -29,10 +29,10 @@ import wang.bannong.gk5.sparrow.framework.controller.SuperController;
 import wang.bannong.gk5.sparrow.framework.responses.ApiResponses;
 import wang.bannong.gk5.sparrow.model.dto.MenuTreeDTO;
 import wang.bannong.gk5.sparrow.model.dto.TokenDTO;
-import wang.bannong.gk5.sparrow.model.dto.UserDetailsDTO;
-import wang.bannong.gk5.sparrow.model.entity.User;
+import wang.bannong.gk5.sparrow.model.dto.AdminDetailsDTO;
+import wang.bannong.gk5.sparrow.model.entity.Admin;
 import wang.bannong.gk5.sparrow.service.IMenuService;
-import wang.bannong.gk5.sparrow.service.IUserService;
+import wang.bannong.gk5.sparrow.service.IAdminService;
 
 /**
  * 账户 前端控制器
@@ -44,7 +44,7 @@ import wang.bannong.gk5.sparrow.service.IUserService;
 public class AccountRestController extends SuperController {
 
     @Autowired
-    private IUserService userService;
+    private IAdminService adminService;
 
     @Autowired
     private IMenuService menuService;
@@ -53,8 +53,8 @@ public class AccountRestController extends SuperController {
     @ApiOperation("获取Token")
     @PostMapping("/token")
     public ApiResponses<TokenDTO> getToken(@RequestBody @Validated LoginPARM loginPARM) {
-        User user = userService.login(loginPARM.getLoginName(), loginPARM.getPassword(), IpUtils.getIpAddr(request));
-        TokenDTO tokenDTO = userService.getToken(user);
+        Admin admin = adminService.login(loginPARM.getLoginName(), loginPARM.getPassword(), IpUtils.getIpAddr(request));
+        TokenDTO tokenDTO = adminService.getToken(admin);
         return success(tokenDTO);
     }
 
@@ -73,16 +73,16 @@ public class AccountRestController extends SuperController {
     })
     @PutMapping("/password")
     public ApiResponses<Void> updatePassword(@RequestBody @Validated PasswordPARM passwordPARM) {
-        userService.updatePassword(currentUid(), passwordPARM.getOldPassword(), passwordPARM.getNewPassword());
+        adminService.updatePassword(currentUid(), passwordPARM.getOldPassword(), passwordPARM.getNewPassword());
         return success();
     }
 
     @Resources(auth = AuthTypeEnum.LOGIN)
     @ApiOperation("获取账户详情")
     @GetMapping("/info")
-    public ApiResponses<UserDetailsDTO> accountInfo() {
+    public ApiResponses<AdminDetailsDTO> accountInfo() {
         Integer uid = currentUid();
-        UserDetailsDTO userDetails = userService.getUserDetails(uid);
+        AdminDetailsDTO userDetails = adminService.getUserDetails(uid);
         return success(userDetails);
     }
 
@@ -91,9 +91,9 @@ public class AccountRestController extends SuperController {
     @PutMapping("/info")
     public ApiResponses<Void> accountInfo(@RequestBody @Validated AccountInfoPARM accountInfoPARM) {
         Integer uid = currentUid();
-        User user = accountInfoPARM.convert(User.class);
-        user.setId(uid);
-        userService.updateById(user);
+        Admin admin = accountInfoPARM.convert(Admin.class);
+        admin.setId(uid);
+        adminService.updateById(admin);
         return success();
     }
 

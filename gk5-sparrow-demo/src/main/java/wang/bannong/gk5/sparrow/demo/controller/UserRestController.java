@@ -25,16 +25,16 @@ import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import wang.bannong.gk5.sparrow.common.annotations.Resources;
-import wang.bannong.gk5.sparrow.demo.model.parm.UserPARM;
+import wang.bannong.gk5.sparrow.demo.model.parm.AdminPARM;
 import wang.bannong.gk5.sparrow.enums.AuthTypeEnum;
 import wang.bannong.gk5.sparrow.enums.StatusEnum;
 import wang.bannong.gk5.sparrow.framework.controller.SuperController;
 import wang.bannong.gk5.sparrow.framework.enums.ErrorCodeEnum;
 import wang.bannong.gk5.sparrow.framework.responses.ApiResponses;
 import wang.bannong.gk5.sparrow.framework.utils.ApiAssert;
-import wang.bannong.gk5.sparrow.model.dto.UserDTO;
-import wang.bannong.gk5.sparrow.model.entity.User;
-import wang.bannong.gk5.sparrow.service.IUserService;
+import wang.bannong.gk5.sparrow.model.dto.AdminDTO;
+import wang.bannong.gk5.sparrow.model.entity.Admin;
+import wang.bannong.gk5.sparrow.service.IAdminService;
 
 /**
  * 系统用户表 前端控制器
@@ -46,7 +46,7 @@ import wang.bannong.gk5.sparrow.service.IUserService;
 public class UserRestController extends SuperController {
 
     @Autowired
-    private IUserService userService;
+    private IAdminService adminService;
 
     @Resources(auth = AuthTypeEnum.AUTH)
     @ApiOperation("查询所有用户")
@@ -56,16 +56,16 @@ public class UserRestController extends SuperController {
             @ApiImplicitParam(name = "status", value = "需要检查的账号", paramType = "query")
     })
     @GetMapping
-    public ApiResponses<IPage<UserDTO>> page(@RequestParam(value = "loginName", required = false) String loginName,
-                                             @RequestParam(value = "nickname", required = false) String nickname,
-                                             @RequestParam(value = "status", required = false) StatusEnum status) {
+    public ApiResponses<IPage<AdminDTO>> page(@RequestParam(value = "loginName", required = false) String loginName,
+                                              @RequestParam(value = "nickname", required = false) String nickname,
+                                              @RequestParam(value = "status", required = false) StatusEnum status) {
         ;
         return success(
-                userService.query().likeRight(StringUtils.isNotEmpty(loginName), User::getLoginName, loginName)
-                        .likeRight(StringUtils.isNotEmpty(nickname), User::getNickname, nickname)
-                        .eq(Objects.nonNull(status), User::getStatus, status)
-                        .page(this.<User>getPage())
-                        .convert(e -> e.convert(UserDTO.class))
+                adminService.query().likeRight(StringUtils.isNotEmpty(loginName), Admin::getLoginName, loginName)
+                        .likeRight(StringUtils.isNotEmpty(nickname), Admin::getNickname, nickname)
+                        .eq(Objects.nonNull(status), Admin::getStatus, status)
+                        .page(this.<Admin>getPage())
+                        .convert(e -> e.convert(AdminDTO.class))
         );
     }
 
@@ -75,13 +75,13 @@ public class UserRestController extends SuperController {
             @ApiImplicitParam(name = "id", value = "用户ID", required = true, paramType = "path")
     })
     @GetMapping("/{id}")
-    public ApiResponses<UserDTO> get(@PathVariable("id") Integer id) {
-        User user = userService.getById(id);
-        ApiAssert.notNull(ErrorCodeEnum.USER_NOT_FOUND, user);
-        UserDTO userDTO = user.convert(UserDTO.class);
-        List<Integer> roleIds = userService.getRoleIds(user.getId());
-        userDTO.setRoleIds(roleIds);
-        return success(userDTO);
+    public ApiResponses<AdminDTO> get(@PathVariable("id") Integer id) {
+        Admin admin = adminService.getById(id);
+        ApiAssert.notNull(ErrorCodeEnum.USER_NOT_FOUND, admin);
+        AdminDTO adminDTO = admin.convert(AdminDTO.class);
+        List<Integer> roleIds = adminService.getRoleIds(admin.getId());
+        adminDTO.setRoleIds(roleIds);
+        return success(adminDTO);
     }
 
     @Resources(auth = AuthTypeEnum.AUTH)
@@ -91,7 +91,7 @@ public class UserRestController extends SuperController {
     })
     @PutMapping("/{id}/password")
     public ApiResponses<Void> resetPwd(@PathVariable("id") Integer id) {
-        userService.resetPwd(id);
+        adminService.resetPwd(id);
         return success();
     }
 
@@ -101,26 +101,26 @@ public class UserRestController extends SuperController {
             @ApiImplicitParam(name = "id", value = "用户ID", required = true, paramType = "path")
     })
     @PutMapping("/{id}/status")
-    public ApiResponses<Void> updateStatus(@PathVariable("id") Integer id, @RequestBody @Validated(UserPARM.Status.class) UserPARM userPARM) {
-        userService.updateStatus(id, userPARM.getStatus());
+    public ApiResponses<Void> updateStatus(@PathVariable("id") Integer id, @RequestBody @Validated(AdminPARM.Status.class) AdminPARM adminPARM) {
+        adminService.updateStatus(id, adminPARM.getStatus());
         return success();
     }
 
     @Resources(auth = AuthTypeEnum.AUTH)
     @ApiOperation("创建用户")
     @PostMapping
-    public ApiResponses<Void> create(@RequestBody @Validated(UserPARM.Create.class) UserPARM userPARM) {
-        int count = userService.query().eq(User::getLoginName, userPARM.getLoginName()).count();
+    public ApiResponses<Void> create(@RequestBody @Validated(AdminPARM.Create.class) AdminPARM adminPARM) {
+        int count = adminService.query().eq(Admin::getLoginName, adminPARM.getLoginName()).count();
         ApiAssert.isTrue(ErrorCodeEnum.USERNAME_ALREADY_EXISTS, count == 0);
-        User user = userPARM.convert(User.class);
+        Admin admin = adminPARM.convert(Admin.class);
         //没设置密码 设置默认密码
-        if (StringUtils.isEmpty(user.getPassword())) {
-            user.setPassword(Md5Crypt.apr1Crypt(user.getLoginName(), user.getLoginName()));
+        if (StringUtils.isEmpty(admin.getPassword())) {
+            admin.setPassword(Md5Crypt.apr1Crypt(admin.getLoginName(), admin.getLoginName()));
         }
         //默认禁用
-        user.setStatus(StatusEnum.DISABLE);
-        userService.save(user);
-        userService.saveUserRoles(user.getId(), userPARM.getRoleIds());
+        admin.setStatus(StatusEnum.DISABLE);
+        adminService.save(admin);
+        adminService.saveUserRoles(admin.getId(), adminPARM.getRoleIds());
         return success(HttpStatus.CREATED);
     }
 
@@ -130,11 +130,11 @@ public class UserRestController extends SuperController {
             @ApiImplicitParam(name = "id", value = "用户ID", required = true, paramType = "path")
     })
     @PutMapping("/{id}")
-    public ApiResponses<Void> update(@PathVariable("id") Integer id, @RequestBody @Validated(UserPARM.Update.class) UserPARM userPARM) {
-        User user = userPARM.convert(User.class);
-        user.setId(id);
-        userService.updateById(user);
-        userService.saveUserRoles(id, userPARM.getRoleIds());
+    public ApiResponses<Void> update(@PathVariable("id") Integer id, @RequestBody @Validated(AdminPARM.Update.class) AdminPARM adminPARM) {
+        Admin admin = adminPARM.convert(Admin.class);
+        admin.setId(id);
+        adminService.updateById(admin);
+        adminService.saveUserRoles(id, adminPARM.getRoleIds());
         return success();
     }
 

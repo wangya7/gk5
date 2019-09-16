@@ -20,8 +20,8 @@ import wang.bannong.gk5.sparrow.framework.model.convert.Convert;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@TableName("sys_user")
-public class User extends Convert {
+@TableName("sys_admin")
+public class Admin extends Convert {
 
     private static final long serialVersionUID = 1L;
 
