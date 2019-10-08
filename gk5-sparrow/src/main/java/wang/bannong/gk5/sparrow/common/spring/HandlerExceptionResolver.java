@@ -61,14 +61,14 @@ import wang.bannong.gk5.sparrow.framework.utils.ResponseUtils;
  * @see org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver
  */
 @Slf4j
-public class CrownHandlerExceptionResolver extends AbstractHandlerExceptionResolver {
+public class HandlerExceptionResolver extends AbstractHandlerExceptionResolver {
 
     private static final ModelAndView MODEL_VIEW_INSTANCE = new ModelAndView();
 
     /**
      * Sets the {@linkplain #setOrder(int) order} to {@link #LOWEST_PRECEDENCE}.
      */
-    public CrownHandlerExceptionResolver() {
+    public HandlerExceptionResolver() {
         setOrder(Ordered.LOWEST_PRECEDENCE);
     }
 

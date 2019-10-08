@@ -9,13 +9,12 @@ import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.validation.Validator;
 import org.springframework.validation.beanvalidation.SpringValidatorAdapter;
 import org.springframework.web.context.request.RequestContextListener;
-import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import java.util.List;
 
 import io.undertow.Undertow;
-import wang.bannong.gk5.sparrow.common.spring.CrownHandlerExceptionResolver;
+import wang.bannong.gk5.sparrow.common.spring.HandlerExceptionResolver;
 import wang.bannong.gk5.sparrow.common.spring.IEnumConverterFactory;
 import wang.bannong.gk5.sparrow.common.spring.validator.ValidatorCollectionImpl;
 import wang.bannong.gk5.sparrow.common.undertow.UndertowServerFactoryCustomizer;
@@ -61,8 +60,8 @@ public class WebMvcAutoConfiguration implements WebMvcConfigurer {
     }
 
     @Override
-    public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
-        exceptionResolvers.add(new CrownHandlerExceptionResolver());
+    public void configureHandlerExceptionResolvers(List<org.springframework.web.servlet.HandlerExceptionResolver> exceptionResolvers) {
+        exceptionResolvers.add(new HandlerExceptionResolver());
     }
 
 }
