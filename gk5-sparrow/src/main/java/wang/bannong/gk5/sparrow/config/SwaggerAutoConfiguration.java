@@ -30,6 +30,7 @@ public class SwaggerAutoConfiguration {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
+                .host("https://bn.zdautoservice.com")
                 .globalOperationParameters(getParameters())
                 .apiInfo(apiInfo())
                 .select()
@@ -48,7 +49,7 @@ public class SwaggerAutoConfiguration {
                 .description("Sparrow Swagger API 文档")
                 .termsOfServiceUrl("https://github.com/wangya7/gk5")
                 .version("1.0")
-                .contact(new Contact("Sparrow", "https://github.com/wangya7", "bannongvipp@163.cn"))
+                .contact(new Contact("bn", "https://github.com/wangya7", "bannongvipp@163.com"))
                 .build();
     }
 

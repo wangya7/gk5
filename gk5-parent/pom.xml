@@ -94,6 +94,11 @@
                 <artifactId>gk5-sparrow</artifactId>
                 <version>${gk5.version}</version>
             </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-wechat</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
 
             <!-- third party start -->
             <dependency>
