@@ -34,8 +34,8 @@
     </properties>
 
     <modules>
-        <module>gk5-mini1</module>
-        <module>gk5-mini1-sample</module>
+        <module>gk5-mini-sparrow</module>
+        <module>gk5-mini-sparrow-sample</module>
     </modules>
 
     <!--
