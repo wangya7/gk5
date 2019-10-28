@@ -1,5 +1,4 @@
-<project
-        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
         xmlns="http://maven.apache.org/POM/4.0.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <modelVersion>4.0.0</modelVersion>
@@ -7,19 +6,24 @@
     <parent>
         <groupId>wang.bannong</groupId>
         <artifactId>gk5-parent</artifactId>
-        <version>0.1.0-beta</version>
+        <version>1.0.0-beta</version>
     </parent>
 
     <groupId>wang.bannong</groupId>
     <artifactId>gk5-util</artifactId>
-    <version>0.1.0-beta</version>
+    <version>1.0.0-beta</version>
     <name>gk5-util</name>
     <url>http://maven.apache.org</url>
 
     <properties>
-        <cloning.version>1.9.0</cloning.version>
+        <uk.com.robust-it.version>1.9.0</uk.com.robust-it.version>
     </properties>
+
     <dependencies>
+        <dependency>
+            <groupId>wang.bannong</groupId>
+            <artifactId>gk5-log</artifactId>
+        </dependency>
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
@@ -27,26 +31,22 @@
         <dependency>
             <groupId>uk.com.robust-it</groupId>
             <artifactId>cloning</artifactId>
-            <version>${cloning.version}</version>
+            <version>${uk.com.robust-it.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>objenesis</artifactId>
+                    <groupId>*</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
         </dependency>
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <attach>true</attach>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+
 </project>

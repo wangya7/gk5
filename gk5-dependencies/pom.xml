@@ -1,0 +1,198 @@
+<project
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>wang.bannong</groupId>
+    <artifactId>gk5-dependencies</artifactId>
+    <version>1.0.0-beta</version>
+    <packaging>pom</packaging>
+    <name>gk5-dependencies</name>
+    <description>gk5-dependencies</description>
+    <url>https://bannong.wang/#</url>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <id>11003307</id>
+            <name>wang.bannong</name>
+            <email>bannongvipp@163.com</email>
+            <url>https://banong.wang</url>
+            <organization>bannong</organization>
+            <organizationUrl>https://banong.wang</organizationUrl>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
+
+    <scm>
+        <url>https://github.com/gk5</url>
+    </scm>
+
+    <!-- 此处的properties仅仅提供给本pom使用 -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.8</java.version>
+        <maven.compiler.compilerVersion>${java.version}</maven.compiler.compilerVersion>
+        <!-- gk5 start -->
+        <gk5.version>1.0.0-beta</gk5.version>
+        <!-- spring start -->
+        <spring.boot.version>2.1.6.RELEASE</spring.boot.version>
+
+        <!-- third party start -->
+        <commons-lang3.version>3.5</commons-lang3.version>
+        <commons-collections.version>4.4</commons-collections.version>
+        <log4j.version>1.7.21</log4j.version>
+        <guava.version>28.0-jre</guava.version>
+        <lombok.version>1.16.20</lombok.version>
+        <fastjson.version>1.2.37</fastjson.version>
+        <okhttp.version>3.8.0</okhttp.version>
+        <junit.version>4.12</junit.version>
+        <beanutils.version>1.9.3</beanutils.version>
+        <jackson-dataformat.version>2.9.9</jackson-dataformat.version>
+        <jackson-databind.version>2.9.9</jackson-databind.version>
+    </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- gk5 module start -->
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-administrative</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-cache</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-excel</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-gate</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-kafka</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-log</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-mini</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-normdb</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-rmdb</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-test</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-ttm</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-util</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+
+            <!-- spring all start -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>${spring.boot.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.boot</groupId>
+                        <artifactId>spring-boot-starter-logging</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <!-- third party start -->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${commons-collections.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-yaml</artifactId>
+                <version>${jackson-dataformat.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>${jackson-databind.version}</version>
+            </dependency>
+            <!-- third party end -->
+
+        </dependencies>
+    </dependencyManagement>
+
+    <!--
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>Nexus Releases Repository</name>
+            <url>http://192.168.31.158:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <url>http://192.168.31.158:8081/repository/maven-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+    -->
+</project>

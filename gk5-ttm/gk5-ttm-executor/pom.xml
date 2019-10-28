@@ -1,0 +1,96 @@
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>wang.bannong</groupId>
+        <artifactId>gk5-ttm</artifactId>
+        <version>1.0.0-beta</version>
+    </parent>
+
+    <groupId>wang.bannong</groupId>
+    <artifactId>gk5-ttm-executor</artifactId>
+    <version>1.0.0-beta</version>
+    <name>gk5-ttm-executor</name>
+    <url>http://maven.apache.org</url>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <!-- Import dependency management from Spring Boot (依赖管理：继承一些默认的依赖，工程需要依赖的jar包的管理，申明其他dependency的时候就不需要version) -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-parent</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <!-- spring-boot-starter-web (spring-webmvc + tomcat) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>wang.bannong</groupId>
+            <artifactId>gk5-ttm-core</artifactId>
+            <version>1.0.0-beta</version>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <!-- 为jar包取名 -->
+        <finalName>gk5-ttm-executor</finalName>
+        <plugins>
+            <plugin>
+                <!-- The plugin rewrites your manifest -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!-- 指定该Main Class为全局的唯一入口 -->
+                    <mainClass>wang.bannong.gk5.ttm.executor.TtmExecutorApplication</mainClass>
+                    <layout>ZIP</layout>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!--可以把依赖的包都打包到生成的Jar包中 -->
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>3.0.1</version>
+                <configuration>
+                    <threshold>High</threshold>
+                    <effort>Default</effort>
+                    <findbugsXmlOutput>true</findbugsXmlOutput>
+                    <findbugsXmlOutputDirectory>target/site</findbugsXmlOutputDirectory>
+                    <xmlOutput>true</xmlOutput>
+                    <xmlOutput>true</xmlOutput>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

@@ -3,97 +3,32 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.6.RELEASE</version>
-    </parent>
-
     <groupId>wang.bannong</groupId>
     <artifactId>gk5</artifactId>
-    <version>0.1.0-beta</version>
+    <version>1.0.0-beta</version>
     <packaging>pom</packaging>
     <name>gk5</name>
     <url>http://maven.apache.org</url>
 
-    <properties>
-        <project.version>0.1.0-beta</project.version>
-    </properties>
-
-
     <modules>
-        <module>gk5-parent</module>
-        <module>gk5-log</module>
-        <module>gk5-util</module>
-        <module>gk5-excel</module>
         <module>gk5-administrative</module>
-        <module>gk5-rmdb</module>
+        <module>gk5-autohub</module>
+        <module>gk5-cache</module>
+        <module>gk5-dependencies</module>
+        <module>gk5-devops</module>
+        <module>gk5-excel</module>
         <module>gk5-gate</module>
-        <module>gk5-sparrow</module>
-        <module>gk5-sparrow-demo</module>
+        <module>gk5-kafka</module>
+        <module>gk5-log</module>
+        <module>gk5-mini</module>
+        <module>gk5-normdb</module>
+        <module>gk5-offer</module>
+        <module>gk5-parent</module>
+        <module>gk5-rmdb</module>
+        <module>gk5-starter</module>
+        <module>gk5-test</module>
+        <module>gk5-ttm</module>
+        <module>gk5-util</module>
         <module>gk5-wechat</module>
     </modules>
-
-    <developers>
-        <developer>
-            <id>11003307</id>
-            <name>wang.bannong</name>
-            <email>bannongvipp@163.com</email>
-            <url>https://banong.wang</url>
-            <organization>bannong</organization>
-            <organizationUrl>https://banong.wang</organizationUrl>
-            <roles>
-                <role>developer</role>
-            </roles>
-            <timezone>+8</timezone>
-        </developer>
-    </developers>
-
-    <profiles>
-        <profile>
-            <id>jdk-1.8</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-                <jdk>${java.version}</jdk>
-            </activation>
-            <properties>
-                <maven.compiler.source>${java.version}</maven.compiler.source>
-                <maven.compiler.target>${java.version}</maven.compiler.target>
-                <maven.compiler.compilerVersion>${java.version}</maven.compiler.compilerVersion>
-            </properties>
-        </profile>
-    </profiles>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>findbugs-maven-plugin</artifactId>
-                <version>3.0.1</version>
-                <configuration>
-                    <xmlOutput>true</xmlOutput>
-                    <findbugsXmlOutput>true</findbugsXmlOutput>
-                </configuration>
-            </plugin>
-        </plugins>
-    </reporting>
-    <repositories>
-        <repository>
-            <id>maven-ali</id>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>fail</checksumPolicy>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>sonatype</id>
-            <name>sonatype</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-        </repository>
-    </repositories>
 </project>

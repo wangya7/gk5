@@ -5,12 +5,12 @@
     <parent>
         <groupId>wang.bannong</groupId>
         <artifactId>gk5-parent</artifactId>
-        <version>0.1.0-beta</version>
+        <version>1.0.0-beta</version>
     </parent>
 
     <groupId>wang.bannong</groupId>
     <artifactId>gk5-rmdb</artifactId>
-    <version>0.1.0-beta</version>
+    <version>1.0.0-beta</version>
     <name>gk5-rmdb</name>
     <url>http://maven.apache.org</url>
 
@@ -22,6 +22,12 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>hz.qxbn</groupId>
+            <artifactId>taoism-starter</artifactId>
+            <version>1.0.0-beta</version>
+        </dependency>
+
         <!-- mybatis configuration setting -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -57,10 +63,6 @@
             <groupId>p6spy</groupId>
             <artifactId>p6spy</artifactId>
             <version>3.8.0</version>
-        </dependency>
-        <dependency>
-            <groupId>wang.bannong</groupId>
-            <artifactId>gk5-util</artifactId>
         </dependency>
     </dependencies>
 </project>
