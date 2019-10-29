@@ -196,7 +196,7 @@ public abstract class JacksonUtils {
     public static <T> T readValue(String json, TypeReference valueTypeRef) {
         T t = null;
         try {
-            t = getObjectMapper().readValue(json, valueTypeRef);
+            t = (T) getObjectMapper().readValue(json, valueTypeRef);
         } catch (Exception ignored) {
         }
         return t;

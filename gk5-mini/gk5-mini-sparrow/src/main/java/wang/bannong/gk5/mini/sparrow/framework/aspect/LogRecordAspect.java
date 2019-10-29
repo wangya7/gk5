@@ -12,7 +12,7 @@ import wang.bannong.gk5.mini.sparrow.framework.utils.LogUtils;
 @Aspect
 public class LogRecordAspect {
 
-    @Pointcut("execution(public * org.crown.controller.*RestController.*(..))")
+    @Pointcut("execution(public * wang.bannong.gk5.mini.sparrow.sample.controller.*RestController.*(..))")
     @SuppressWarnings("EmptyMethod")
     public void pointCut() {
     }
