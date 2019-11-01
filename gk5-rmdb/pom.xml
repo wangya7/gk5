@@ -23,8 +23,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>hz.qxbn</groupId>
-            <artifactId>taoism-starter</artifactId>
+            <groupId>wang.bannong</groupId>
+            <artifactId>gk5-starter</artifactId>
             <version>1.0.0-beta</version>
         </dependency>
 
