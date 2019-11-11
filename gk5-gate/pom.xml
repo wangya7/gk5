@@ -17,16 +17,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-        </dependency>
-        <dependency>
             <groupId>wang.bannong</groupId>
-            <artifactId>gk5-util</artifactId>
+            <artifactId>gk5-starter</artifactId>
+            <version>1.0.0-beta</version>
         </dependency>
     </dependencies>
 </project>

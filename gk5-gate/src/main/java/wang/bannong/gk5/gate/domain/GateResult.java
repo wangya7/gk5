@@ -10,11 +10,7 @@ import java.io.Serializable;
 public class GateResult implements Serializable {
     private static final long serialVersionUID = 2478592325643534588L;
 
-    /**
-     * for return
-     */
-    public static final GateResult SUCCESS      = GateResult.success();
-    public static final GateResult SUCCESS_STOP = GateResult.stop();
+    public static final GateResult SUCCESS = GateResult.success();
 
     private boolean success;
     private String  msg;
@@ -69,8 +65,8 @@ public class GateResult implements Serializable {
         return success;
     }
 
-    @JSONField(serialize=false)
-    public boolean isStop(){
+    @JSONField(serialize = false)
+    public boolean isStop() {
         return isSuccess() && "stop".equals(this.getCode());
     }
 
@@ -96,10 +92,10 @@ public class GateResult implements Serializable {
 
     @SuppressWarnings("unchecked")
     public <T> T getData() {
-        return (T)data;
+        return (T) data;
     }
 
-    public void  setData(Object data) {
+    public void setData(Object data) {
         this.data = data;
     }
 

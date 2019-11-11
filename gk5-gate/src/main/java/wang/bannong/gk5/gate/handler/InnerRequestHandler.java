@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import wang.bannong.gk5.gate.config.ApiYmlUtil;
+import wang.bannong.gk5.gate.config.GateConfig;
 import wang.bannong.gk5.gate.domain.*;
 
 /**
@@ -38,7 +39,7 @@ public class InnerRequestHandler {
         innerRequest.setApiInfo(gateApiInfo);
 
         String mat = request.getMat();
-        if(StringUtils.isNotBlank(mat) && GateConfigSetting.mat4Dev.equals(mat)){
+        if(StringUtils.isNotBlank(mat) && GateConfig.mat4Dev.equals(mat)){
             return GateResult.SUCCESS;
         }
 

@@ -1,12 +1,12 @@
 package wang.bannong.gk5.gate.ctrl;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.extern.slf4j.Slf4j;
+import wang.bannong.gk5.gate.config.GateConfig;
 import wang.bannong.gk5.gate.handler.IOperatorLog;
 import wang.bannong.gk5.gate.api.BaseApiService;
 import wang.bannong.gk5.gate.domain.*;
@@ -25,50 +25,47 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Created by wang.bannong on 2018/5/13 下午8:05
  */
+@Slf4j
 @RestController
 public class BaseGateApiCtrl {
 
-    private final static Logger LOG = LoggerFactory.getLogger(BaseGateApiCtrl.class);
-
     @Autowired
-    protected InnerRequestHandler innerRequestHandler;
-
-    private static IAuthorityAccess authorityAccess;
-    private static IOperatorLog operatorLog;
+    protected      InnerRequestHandler innerRequestHandler;
+    private static IAuthorityAccess    authorityAccess;
+    private static IOperatorLog        operatorLog;
 
     @RequestMapping(value = "/fx", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public GateResponse api(HttpServletRequest req, HttpServletResponse res) {
         // 1. 获取request对象
         GateRequest request = RequestHandler.convert2GateRequest(req);
-        LOG.info(">>>>> gate request = {}", request);
+        log.info("[GATE] 入参：{}", request);
 
-        // 5. 跨域访问提前设置
+        // 2. 跨域访问提前设置
         GateCORSApiHandler.setCORSSettingIfNeed(request, req, res);
 
-        // 2. 基础API参数校验
+        // 3. 基础API参数校验
         GateResult domain = RequestHandler.checkReuqest(request);
         if (null == domain || !domain.isSuccess()) {
-            LOG.warn(">>> check fail,gate result data={}", domain);
+            log.warn("[GATE] 入参异常：{}", domain);
             return ResponceHandler.fillResponse(request, domain);
         }
 
-        // 3. 内部接口处理【authToken、用户、业务接口】
+        // 4. 内部接口处理【authToken、用户、业务接口】
         GateInnerRequest innerRequest = GateInnerRequest.of(request);
         domain = innerRequestHandler.checkAndBuild(request, innerRequest);
         if (null == domain || !domain.isSuccess()) {
-            LOG.warn(">>> check fail,gate result data={}", domain);
+            log.warn("[GATE] 入参异常：{}", domain);
             return ResponceHandler.fillResponse(request, domain);
         }
 
-        // 4. 处理响应结果
+        // 5. 处理响应结果
         GateResponse response = ResponceHandler.fillResponse(request, innerApi(innerRequest));
-        if (GateConfigSetting.logResponse) {
-            LOG.info(">>>>> gate response = {}", response);
+        if (GateConfig.logResponse) {
+            log.info("[GATE] 出参：{}", response);
         }
 
         // 6. 设置cookie
         CookieHandler.setCookieSettingIfNeed(innerRequest, request, response, res);
-
         return response;
     }
 

@@ -11,6 +11,7 @@ public enum ErrorMsgEnum {
     api_param_illegal(104, "接口参数[%s]不合法"),
     api_timeout(111, "接口请求超时"),
     api_not_exist(118, "接口不存在"),
+    sign_error(119, "签名错误"),
 
     api_config_missing_method(120, "接口配置缺少GET/POST"),
     api_request_method_mismatch(121, "接口请求方法与配置不匹配"),

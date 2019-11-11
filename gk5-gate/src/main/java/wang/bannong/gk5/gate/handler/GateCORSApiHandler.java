@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import wang.bannong.gk5.gate.domain.GateConfigSetting;
+import wang.bannong.gk5.gate.config.GateConfig;
 import wang.bannong.gk5.gate.domain.GateRequest;
 import wang.bannong.gk5.gate.util.URLUtils;
 
@@ -19,7 +19,7 @@ public class GateCORSApiHandler {
     private static final Logger log = LoggerFactory.getLogger(GateCORSApiHandler.class);
 
     public static void setCORSSettingIfNeed(GateRequest mtopRequest, HttpServletRequest request, HttpServletResponse response) {
-        if (GateConfigSetting.corsOriginDefaultSetting) {
+        if (GateConfig.corsOriginDefaultSetting) {
             response.setHeader("Access-Control-Allow-Origin", "*");
             response.setHeader("Access-Control-Allow-Credentials", "true");
             response.setHeader("Access-Control-Allow-Methods", "GET, POST");
@@ -48,7 +48,7 @@ public class GateCORSApiHandler {
 
     public static boolean contains(String accessOriginUrl) {
         if (StringUtils.isBlank(accessOriginUrl)) return false;
-        String cro = GateConfigSetting.corsOriginHosts;
+        String cro = GateConfig.corsOriginHosts;
         if (cro.indexOf(accessOriginUrl) != -1) {
             return true;
         }
@@ -56,7 +56,7 @@ public class GateCORSApiHandler {
     }
 
     private static String getDefaultOriginHost() {
-        return GateConfigSetting.corsOriginHostsDef;
+        return GateConfig.corsOriginHostsDef;
     }
 
 }

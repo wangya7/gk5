@@ -4,13 +4,14 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import lombok.extern.slf4j.Slf4j;
+import wang.bannong.gk5.gate.config.GateConfig;
 import wang.bannong.gk5.gate.domain.Cookier;
-import wang.bannong.gk5.gate.domain.GateConfigSetting;
 import wang.bannong.gk5.gate.domain.ErrorMsgEnum;
 import wang.bannong.gk5.gate.domain.GateResult;
 import wang.bannong.gk5.gate.domain.GateRequest;
 import wang.bannong.gk5.util.Constant;
-import wang.bannong.gk5.util.MD5Util;
+import wang.bannong.gk5.util.RSAUtils;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,26 +20,25 @@ import java.lang.reflect.Field;
 /**
  * Created by wang.bannong on 2018/5/13 下午8:47
  */
+@Slf4j
 public class RequestHandler {
-
-    private final static Logger LOG = LoggerFactory.getLogger(RequestHandler.class);
 
     public static GateRequest convert2GateRequest(HttpServletRequest request) {
         Cookier cookier = Cookier.of(request);
-        String api = format(request.getParameter("api"));
-        String v = format(request.getParameter("v"));
-        String ttid = format(request.getParameter("ttid"));
-        String did = format(request.getParameter("channel"));
-        String ts = format(request.getParameter("ts"));
-        String sign = format(request.getParameter("sign"));
-        String data = format(request.getParameter("data"));
-        String authToken = format(request.getParameter("mat"));
+        String api = format(request.getParameter(GateConfig.api));
+        String v = format(request.getParameter(GateConfig.v));
+        String ttid = format(request.getParameter(GateConfig.ttid));
+        String did = format(request.getParameter(GateConfig.did));
+        String ts = format(request.getParameter(GateConfig.ts));
+        String sign = format(request.getParameter(GateConfig.sign));
+        String data = format(request.getParameter(GateConfig.data));
+        String authToken = format(request.getParameter(GateConfig.mat));
         if (StringUtils.isBlank(authToken)) {
             // 从cookie中获取token
-            authToken = StringUtils.trim(StringUtils.defaultIfBlank(cookier.getCookieValueByName("mat"), ""));
-            LOG.info(">>>mat(in cookie)={}, api={}, ttid={} ", authToken, api, ttid);
+            authToken = StringUtils.trim(StringUtils.defaultIfBlank(cookier.getCookieValueByName(GateConfig.mat), ""));
+            log.info("[GATE] mat(in cookie)={}, api={}, ttid={} ", authToken, api, ttid);
         } else {
-            LOG.info(">>>mat(in param)={}, api={}, ttid={}", authToken, api, ttid);
+            log.info("[GATE] mat(in param)={}, api={}, ttid={}", authToken, api, ttid);
         }
 
         GateRequest mtopRequest = GateRequest.of(request.getMethod().toLowerCase(), api, v, ttid, authToken, did, ts, sign, data);
@@ -88,14 +88,11 @@ public class RequestHandler {
     }
 
 
-    final static String PARAMS_CANNOT_NULL = "api,v,ttid,did,ts,sign,method";
-    final static long DIS_TS_THRESHOLD = 300;
-
     /**
      * request参数校验 不能返回null
      */
     public static GateResult checkReuqest(GateRequest request) {
-        String[] arr = PARAMS_CANNOT_NULL.split(Constant.COMMA);
+        String[] arr = GateConfig.API_PARAMS_CANNOT_NULL.split(Constant.COMMA);
         try {
             for (String a : arr) {
                 Field field = request.getClass().getDeclaredField(a);
@@ -106,19 +103,33 @@ public class RequestHandler {
                 }
             }
         } catch (NoSuchFieldException e) {
-            LOG.error("exception detail", e);
+            log.error("exception detail", e);
             return GateResult.of(ErrorMsgEnum.api_param_missing);
         } catch (IllegalAccessException e) {
-            LOG.error("exception detail", e);
+            log.error("exception detail", e);
             return GateResult.of(ErrorMsgEnum.api_param_missing);
         }
 
+        // sign check
+        String sign = request.getSign();
+        if (GateConfig.sign4Dev.equalsIgnoreCase(sign)) {
+            return GateResult.SUCCESS;
+        }
+        String signArgs = String.format(GateConfig.SIGN_FORMAT, request.getApi(), request.getData(),
+                request.getDid(), request.getMat(), request.getTs(), request.getTtid(), request.getV());
+        log.info("[GATE] sign 加密的text={}", signArgs);
+        String text = RSAUtils.decrypt(RSAUtils.base64Decode(sign), RSAUtils.getPrivateKey(GateConfig.privateKey));
+        log.info("[GATE] sign 解密的text={}", text);
+        if (!text.equals(signArgs)) {
+            return GateResult.of(ErrorMsgEnum.sign_error);
+        }
 
         // ts check
         long ts = Long.parseLong(request.getTs());
         long now = System.currentTimeMillis();
-        if (ts > now || now - ts >= DIS_TS_THRESHOLD) {
-            return GateResult.of(ErrorMsgEnum.api_param_missing);
+        log.info("[GATE] 校验时间戳，当前时间【{}】，客户端时间【{}】", now, ts);
+        if (now - ts > GateConfig.DIS_TS_THRESHOLD) {
+            return GateResult.of(ErrorMsgEnum.api_timeout);
         }
 
         return GateResult.SUCCESS;

@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import javax.servlet.http.HttpServletResponse;
 
 import wang.bannong.gk5.gate.domain.Cookier;
-import wang.bannong.gk5.gate.domain.GateConfigSetting;
+import wang.bannong.gk5.gate.config.GateConfig;
 import wang.bannong.gk5.gate.domain.GateInnerRequest;
 import wang.bannong.gk5.gate.domain.GateRequest;
 import wang.bannong.gk5.gate.domain.GateResponse;
@@ -26,20 +26,20 @@ public final class CookieHandler {
         int timeSeconds = getCookieExpireTime(innerRequest);
 
         String updateMat = gateResponse.getMeta().getMat();
-        String domain = GateConfigSetting.domains;
+        String domain = GateConfig.domains;
 
         if (isLogoutApi(gateRequest.getApi())) {
             // 退出登录时删除cookie值
-            cookier.delCookie(response, GateConfigSetting.mat);
+            cookier.delCookie(response, GateConfig.mat);
         } else {
-            boolean isWriteCookieAlways = GateConfigSetting.isWriteCookieAlways;
+            boolean isWriteCookieAlways = GateConfig.isWriteCookieAlways;
             if (StringUtils.isNotBlank(updateMat)) {
-                cookier.setCookie(response, GateConfigSetting.mat, updateMat, timeSeconds, domain);
+                cookier.setCookie(response, GateConfig.mat, updateMat, timeSeconds, domain);
                 LOGGER.info(">>>setcookie,updateMat=" + updateMat + ",domain=" + domain + ",api=" + gateRequest.getApi());
             } else if (isWriteCookieAlways) {
                 String oldMat = gateRequest.getOldValidMat();
                 if (StringUtils.isNotBlank(oldMat)) {
-                    cookier.setCookie(response, GateConfigSetting.mat, oldMat, timeSeconds, domain);
+                    cookier.setCookie(response, GateConfig.mat, oldMat, timeSeconds, domain);
                     LOGGER.info(">>>setcookie, oldMat=" + oldMat + ",domain=" + domain + ",api=" + gateRequest.getApi());
                 }
             }
@@ -48,25 +48,25 @@ public final class CookieHandler {
 
     private static int getCookieExpireTime(GateInnerRequest innerRequest) {
         if (innerRequest == null || innerRequest.getUserAuthToken() == null) {
-            return TokenHandler.EXPIRE_HOUR_SECONDS;
+            return GateConfig.EXPIRE_HOUR_SECONDS;
         }
 
         int expireMs = 0;
         switch (innerRequest.getUserAuthToken().getRole()) {
             case user:
-                expireMs = TokenHandler.EXPIRE_HOUR_SECONDS;
+                expireMs = GateConfig.EXPIRE_HOUR_SECONDS;
                 break;
             case admin:
-                expireMs = TokenHandler.EXPIRE_HOUR_SECONDS;
+                expireMs = GateConfig.EXPIRE_HOUR_SECONDS;
                 break;
             default:
-                expireMs = TokenHandler.EXPIRE_HOUR_SECONDS;
+                expireMs = GateConfig.EXPIRE_HOUR_SECONDS;
         }
         return expireMs;
     }
 
     private static boolean isLogoutApi(String api) {
-        String logoutApiList = GateConfigSetting.logoutApis;
+        String logoutApiList = GateConfig.logoutApis;
         if (StringUtils.isNotBlank(api) && logoutApiList.indexOf(api) != -1) {
             return true;
         }

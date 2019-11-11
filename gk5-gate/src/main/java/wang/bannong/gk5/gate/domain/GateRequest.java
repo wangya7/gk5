@@ -28,7 +28,7 @@ public class GateRequest implements Serializable {
     private String api;
     private String v;
     private String ttid;
-    private String channel;
+    private String did;
     private String ts;
     private String mat;
     private String data;
@@ -37,7 +37,7 @@ public class GateRequest implements Serializable {
 
     private transient Cookier cookier;
 
-    public static GateRequest of(String method, String api, String v, String ttid, String mat, String channel,
+    public static GateRequest of(String method, String api, String v, String ttid, String mat, String did,
                                  String ts, String sign, String data) {
         GateRequest mtopRequest = new GateRequest();
         mtopRequest.method = method;
@@ -45,7 +45,7 @@ public class GateRequest implements Serializable {
         mtopRequest.v = v;
         mtopRequest.ttid = ttid;
         mtopRequest.mat = mat;
-        mtopRequest.channel = channel;
+        mtopRequest.did = did;
         mtopRequest.ts = ts;
         mtopRequest.sign = sign;
         mtopRequest.data = data;
