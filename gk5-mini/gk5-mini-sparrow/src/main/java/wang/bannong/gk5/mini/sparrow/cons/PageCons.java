@@ -26,6 +26,6 @@ public interface PageCons {
      * 默认每页条目20,最大条目数100
      */
     int DEFAULT_LIMIT = 20;
-    int MAX_LIMIT = 100;
+    int MAX_LIMIT     = 100;
 
 }
