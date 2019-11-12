@@ -4,10 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
+
+import lombok.Getter;
 import wang.bannong.gk5.gate.domain.GateApiChannel;
 import wang.bannong.gk5.gate.domain.GateApiInfo;
 
 import javax.annotation.PostConstruct;
+
 import java.util.*;
 
 /**
@@ -18,13 +21,13 @@ import java.util.*;
 public class ApiYmlUtil {
 
     @Autowired
-    private ApiYmlConfig apiYmlConfig;
-
-    private static Map<String, GateApiInfo> allApiInfo = new HashMap<>();
-
-    private static Set<String> allApiInfoSet = new HashSet<>();
-
-    private static Map<GateApiChannel, Set<GateApiInfo>> apiSetsMap = new HashMap<>();
+    private        ApiYmlConfig                          apiYmlConfig;
+    @Getter
+    private static Map<String, GateApiInfo>              allApiInfo    = new HashMap<>();
+    @Getter
+    private static Set<String>                           allApiInfoSet = new HashSet<>();
+    @Getter
+    private static Map<GateApiChannel, Set<GateApiInfo>> apiSetsMap    = new HashMap<>();
 
     @PostConstruct
     public void init() {
