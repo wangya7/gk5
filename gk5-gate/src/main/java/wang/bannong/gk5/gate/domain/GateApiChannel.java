@@ -4,9 +4,10 @@ package wang.bannong.gk5.gate.domain;
  * Created by wang.bannong on 2018/5/14 下午7:07
  */
 public enum GateApiChannel {
-    app("app"),
-    admin("admin"),
-    p3rd("p3rd")
+    app("app"),     // app-c端业务
+    appb("appb"),   // app-b端业务
+    admin("admin"), // 后台业务
+    p3rd("p3rd")    // 外部接口
     ;
 
     private String desc;
