@@ -21,12 +21,12 @@ public class PaginationResult<T> implements Serializable {
     private Map<String, Object> data = null;
 
     public static PaginationResult empty(long pageNum, long pageSize) {
-        return new PaginationResult(pageNum, 0, 0, pageSize, Collections.emptyList());
+        return new PaginationResult(1, pageNum, 0, pageSize, Collections.emptyList());
     }
 
     public static PaginationResult empty(long pageNum, long pageSize, Map<String, Object> data) {
         return new PaginationResult().builder()
-                                     .page(new Page(pageNum, 0, pageSize, 0))
+                                     .page(new Page(pageNum, 1, pageSize, 0))
                                      .data(data)
                                      .build();
     }
