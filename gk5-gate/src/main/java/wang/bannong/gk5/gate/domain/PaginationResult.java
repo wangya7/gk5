@@ -16,8 +16,8 @@ import lombok.NoArgsConstructor;
 public class PaginationResult<T> implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private Page page;
-    private T list;
+    private Page                page;
+    private T                   list;
     private Map<String, Object> data = null;
 
     public static PaginationResult empty(long pageNum, long pageSize) {
@@ -26,17 +26,17 @@ public class PaginationResult<T> implements Serializable {
 
     public static PaginationResult empty(long pageNum, long pageSize, Map<String, Object> data) {
         return new PaginationResult().builder()
-                .page(new Page(pageNum, 0, pageSize, 0))
-                .data(data)
-                .build();
+                                     .page(new Page(pageNum, 0, pageSize, 0))
+                                     .data(data)
+                                     .build();
     }
 
-    public PaginationResult(long pageNum, long pages, long pageSize, long total, T list) {
+    public PaginationResult(long pages, long pageNum, long total, long pageSize, T list) {
         this.setPage(new Page(pageNum, pages, pageSize, total));
         this.list = list;
     }
 
-    public PaginationResult(long pageNum, long pages, long pageSize, long total, T list, Map<String, Object> data) {
+    public PaginationResult(long pages, long pageNum, long total, long pageSize, T list, Map<String, Object> data) {
         this.setPage(new Page(pageNum, pages, pageSize, total));
         this.list = list;
         this.data = data;
