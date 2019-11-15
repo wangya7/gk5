@@ -9,7 +9,7 @@ public class Page implements Serializable {
     private static final long serialVersionUID = 8845377365289895486L;
 
     private long currentPage;
-    private long pages;
+    private long totalPage;
     private long totalCount;
     private long pageSize;
 
@@ -18,7 +18,7 @@ public class Page implements Serializable {
 
     public Page(long pageNum, long pages, long pageSize, long total) {
         this.currentPage = pageNum;
-        this.pages = pages;
+        this.totalPage = pages;
         this.totalCount = total;
         this.pageSize = pageSize;
     }
