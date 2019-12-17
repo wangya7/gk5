@@ -8,18 +8,18 @@ import lombok.Data;
 public class Page implements Serializable {
     private static final long serialVersionUID = 8845377365289895486L;
 
-    private long currentPage;
-    private long totalPage;
-    private long totalCount;
+    private long pageNum;
+    private long pages;
+    private long total;
     private long pageSize;
 
     public Page() {
     }
 
     public Page(long pageNum, long pages, long pageSize, long total) {
-        this.currentPage = pageNum;
-        this.totalPage = pages;
-        this.totalCount = total;
+        this.pageNum = pageNum;
+        this.pages = pages;
+        this.total = total;
         this.pageSize = pageSize;
     }
 

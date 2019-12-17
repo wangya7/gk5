@@ -4,7 +4,7 @@ Configuration:
   Properties:
     Property:
     - name: LOG_HOME
-      value: D:\logs
+      value: /Users/wangya/Downloads/logs
     - name: ERROR_LOG_FILE_NAME
       value: sunyoung-error
     - name: INFO_LOG_FILE_NAME

@@ -25,6 +25,7 @@
         <module>gk5-offer</module>
         <module>gk5-parent</module>
         <module>gk5-rmdb</module>
+        <module>gk5-small</module>
         <module>gk5-starter</module>
         <module>gk5-test</module>
         <module>gk5-ttm</module>
