@@ -1,5 +1,7 @@
 package wang.bannong.gk5.test.dao.mapper;
 
+import java.util.List;
+
 import wang.bannong.gk5.test.common.ShiroUser;
 
 public interface ShiroUserMapper {
@@ -16,4 +18,6 @@ public interface ShiroUserMapper {
     int updateByPrimaryKey(ShiroUser record);
 
     ShiroUser queryByName(String name);
+
+    List<ShiroUser> selectByBo(ShiroUser bo);
 }

@@ -37,4 +37,8 @@ public class ShiroRoleDao {
     public int updateByPrimaryKey(ShiroRole record)  {
         return masterShiroRoleMapper.updateByPrimaryKey(record);
     }
+
+    public ShiroRole selectByName(String role) {
+        return slaveShiroRoleMapper.selectByName(role);
+    }
 }

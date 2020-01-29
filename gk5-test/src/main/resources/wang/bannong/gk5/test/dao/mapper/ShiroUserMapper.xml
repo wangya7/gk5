@@ -6,9 +6,10 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="role" jdbcType="VARCHAR" property="role" />
     <result column="passwd" jdbcType="VARCHAR" property="passwd" />
+    <result column="permission" jdbcType="VARCHAR" property="permission" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, name, role, passwd
+    id, name, role, passwd, permission
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -22,9 +23,9 @@
   </delete>
   <insert id="insert" parameterType="wang.bannong.gk5.test.common.ShiroUser">
     insert into shiro_user (id, name, role, 
-      passwd)
+      passwd, permission)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{role,jdbcType=VARCHAR}, 
-      #{passwd,jdbcType=VARCHAR})
+      #{passwd,jdbcType=VARCHAR}, #{permission,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="wang.bannong.gk5.test.common.ShiroUser">
     insert into shiro_user
@@ -41,6 +42,9 @@
       <if test="passwd != null">
         passwd,
       </if>
+      <if test="permission != null">
+        permission,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -54,6 +58,9 @@
       </if>
       <if test="passwd != null">
         #{passwd,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -69,6 +76,9 @@
       <if test="passwd != null">
         passwd = #{passwd,jdbcType=VARCHAR},
       </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -76,7 +86,8 @@
     update shiro_user
     set name = #{name,jdbcType=VARCHAR},
       role = #{role,jdbcType=VARCHAR},
-      passwd = #{passwd,jdbcType=VARCHAR}
+      passwd = #{passwd,jdbcType=VARCHAR},
+      permission = #{permission,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 
@@ -85,5 +96,24 @@
     <include refid="Base_Column_List" />
     from shiro_user
     where name = #{name,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByBo" parameterType="wang.bannong.gk5.test.common.ShiroUser" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from shiro_user
+    where 1=1
+    <if test="name != null">
+      and name = #{name,jdbcType=VARCHAR}
+    </if>
+    <if test="role != null">
+      and role = #{role,jdbcType=VARCHAR}
+    </if>
+    <if test="passwd != null">
+      and passwd = #{passwd,jdbcType=VARCHAR}
+    </if>
+    <if test="permission != null">
+      and permission = #{permission,jdbcType=VARCHAR}
+    </if>
   </select>
 </mapper>

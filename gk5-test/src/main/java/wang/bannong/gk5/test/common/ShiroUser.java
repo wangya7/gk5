@@ -12,4 +12,5 @@ public class ShiroUser implements Serializable {
     private String  name;
     private String  role;
     private String  passwd;
+    private String  permission;
 }

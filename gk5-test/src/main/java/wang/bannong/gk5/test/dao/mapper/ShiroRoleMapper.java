@@ -14,4 +14,6 @@ public interface ShiroRoleMapper {
     int updateByPrimaryKeySelective(ShiroRole record);
 
     int updateByPrimaryKey(ShiroRole record);
+
+    ShiroRole selectByName(String role);
 }

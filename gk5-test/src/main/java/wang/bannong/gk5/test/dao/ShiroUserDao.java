@@ -1,7 +1,11 @@
 package wang.bannong.gk5.test.dao;
 
+import com.github.pagehelper.PageHelper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 import wang.bannong.gk5.test.common.ShiroUser;
 import wang.bannong.gk5.test.dao.mapper.ShiroUserMapper;
@@ -40,5 +44,10 @@ public class ShiroUserDao {
 
     public ShiroUser queryByName(String username) {
         return slaveShiroUserMapper.queryByName(username);
+    }
+
+    public List<ShiroUser> selectByBo(ShiroUser bo, int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
+        return slaveShiroUserMapper.selectByBo(bo);
     }
 }
