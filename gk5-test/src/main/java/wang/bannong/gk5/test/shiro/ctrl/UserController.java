@@ -12,6 +12,6 @@ public class UserController{
 
     @RequestMapping(value = "/getMessage", method = RequestMethod.GET)
     public ResultMap getMessage() {
-        return ResultMap.success().message("您拥有用户权限，可以获得该接口的信息！");
+        return ResultMap.success("您拥有用户权限，可以获得该接口的信息！");
     }
 }

@@ -19,12 +19,12 @@ public class LoginController {
 
     @RequestMapping(value = "/notLogin", method = RequestMethod.GET)
     public ResultMap notLogin() {
-        return ResultMap.success().message("您尚未登陆！");
+        return ResultMap.success("您尚未登陆！");
     }
 
     @RequestMapping(value = "/notRole", method = RequestMethod.GET)
     public ResultMap notRole() {
-        return ResultMap.success().message("您没有权限！");
+        return ResultMap.success("您没有权限！");
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
@@ -32,7 +32,7 @@ public class LoginController {
         Subject subject = SecurityUtils.getSubject();
         // 注销
         subject.logout();
-        return ResultMap.success().message("成功注销！");
+        return ResultMap.success("成功注销！");
     }
 
     /**
@@ -52,11 +52,11 @@ public class LoginController {
         //根据权限，指定返回数据
         String role = shiroUserDao.queryByName(username).getRole();
         if ("user".equals(role)) {
-            return ResultMap.success().message("欢迎登陆");
+            return ResultMap.success("欢迎登陆");
         }
         if ("admin".equals(role)) {
-            return ResultMap.success().message("欢迎来到管理员页面");
+            return ResultMap.success("欢迎来到管理员页面");
         }
-        return ResultMap.fail().message("权限错误！");
+        return ResultMap.fail("权限错误！");
     }
 }

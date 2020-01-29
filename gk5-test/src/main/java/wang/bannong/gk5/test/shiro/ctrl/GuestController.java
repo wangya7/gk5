@@ -12,11 +12,11 @@ public class GuestController{
 
     @RequestMapping(value = "/enter", method = RequestMethod.GET)
     public ResultMap login() {
-        return ResultMap.success().message("欢迎进入，您的身份是游客");
+        return ResultMap.success("欢迎进入，您的身份是游客");
     }
 
     @RequestMapping(value = "/getMessage", method = RequestMethod.GET)
     public ResultMap submitLogin() {
-        return ResultMap.success().message("您拥有获得该接口的信息的权限！");
+        return ResultMap.success("您拥有获得该接口的信息的权限！");
     }
 }

@@ -9,10 +9,10 @@ import wang.bannong.gk5.test.shiro.ResultMap;
 @RestControllerAdvice
 public class ExceptionController {
 
-    // 捕捉 CustomRealm 抛出的异常
+    // 捕捉 ProfileRealm 抛出的异常
     @ExceptionHandler(AccountException.class)
     public ResultMap handleShiroException(Exception ex) {
-        return ResultMap.fail().message(ex.getMessage());
+        return ResultMap.fail(ex.getMessage());
     }
 
 }

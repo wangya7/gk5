@@ -19,20 +19,18 @@ public class ResultMap implements Serializable {
         this.message = message;
     }
 
-    public static ResultMap success() {
+    public static ResultMap success(String message) {
         ResultMap resultMap = new ResultMap();
         resultMap.setCode(0);
+        resultMap.setMessage(message);
         return resultMap;
     }
 
-    public static ResultMap fail() {
+    public static ResultMap fail(String message) {
         ResultMap resultMap = new ResultMap();
         resultMap.setCode(1);
+        resultMap.setMessage(message);
         return resultMap;
     }
 
-    public ResultMap message(String message) {
-        this.setMessage(message);
-        return this;
-    }
 }

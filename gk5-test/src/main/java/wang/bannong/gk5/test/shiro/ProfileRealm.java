@@ -20,7 +20,7 @@ import wang.bannong.gk5.test.dao.ShiroUserDao;
 import wang.bannong.gk5.util.SpringBeanUtils;
 
 @Slf4j
-public class CustomRealm extends AuthorizingRealm {
+public class ProfileRealm extends AuthorizingRealm {
 
     private ShiroUserDao shiroUserDao;
 
