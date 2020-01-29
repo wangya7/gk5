@@ -7,7 +7,7 @@ spring:
     name: gk5-test
 
 datasource:
-  mappersPath: mapper
+  mappersPath: wang.bannong.gk5.test.dao.mapper
   master:
     host: 127.0.0.1
     port: 3306
