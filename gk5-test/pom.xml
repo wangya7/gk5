@@ -27,17 +27,15 @@
         </dependency>
         <dependency>
             <groupId>wang.bannong</groupId>
+            <artifactId>gk5-rmdb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>wang.bannong</groupId>
             <artifactId>gk5-cache</artifactId>
         </dependency>
         <dependency>
             <groupId>wang.bannong</groupId>
             <artifactId>gk5-kafka</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>wang.bannong</groupId>
-            <artifactId>gk5-ttm-core</artifactId>
-            <version>1.0.0-beta</version>
         </dependency>
     </dependencies>
 

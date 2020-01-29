@@ -1,0 +1,40 @@
+server:
+  port: 8085
+logging:
+  config: classpath:log4j2.yml
+spring:
+  application:
+    name: gk5-test
+
+datasource:
+  mappersPath: mapper
+  master:
+    host: 127.0.0.1
+    port: 3306
+    db: gk5
+    username: root
+    password: '@iam3307'
+    maxIdle: 10
+    minIdle: 10
+    connectionTimeout: 30000
+  slave:
+    host: 127.0.0.1
+    port: 3306
+    db: gk5
+    username: root
+    password: '@iam3307'
+    maxIdle: 10
+    minIdle: 10
+    connectionTimeout: 30000
+
+cache:
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 50
+    poolMaxTotal: 500
+    poolMaxWaitMillis: -1
+    poolMaxIdle: 150
+    poolMinIdle: 100
+    poolTestOnBorrow: true
