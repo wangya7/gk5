@@ -12,10 +12,6 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-/**
- *
- * @gitee https://gitee.com/fuyang_lipengjun/platform
- */
 @Configuration
 @EnableWebMvc
 @EnableSwagger2
@@ -27,7 +23,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(this.apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.platform.api"))
+                .apis(RequestHandlerSelectors.basePackage("wang.bannong.gk5.small.service.api"))
                 .paths(PathSelectors.any())
                 .build();
     }

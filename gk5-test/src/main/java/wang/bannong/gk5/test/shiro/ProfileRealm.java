@@ -1,5 +1,7 @@
 package wang.bannong.gk5.test.shiro;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -14,22 +16,23 @@ import java.util.HashSet;
 import java.util.Set;
 
 import lombok.extern.slf4j.Slf4j;
+import wang.bannong.gk5.test.common.ShiroRole;
 import wang.bannong.gk5.test.common.ShiroUser;
-import wang.bannong.gk5.test.dao.ShiroRoleDao;
-import wang.bannong.gk5.test.dao.ShiroUserDao;
+import wang.bannong.gk5.test.mapper.ShiroRoleMapper;
+import wang.bannong.gk5.test.mapper.ShiroUserMapper;
 import wang.bannong.gk5.util.SpringBeanUtils;
 
 @Slf4j
 @Component
 public class ProfileRealm extends AuthorizingRealm {
 
-    private ShiroUserDao shiroUserDao;
-    private ShiroRoleDao shiroRoleDao;
+    private ShiroUserMapper shiroUserMapper;
+    private ShiroRoleMapper shiroRoleMapper;
 
     private void setShiroUserDao() {
-        if (shiroUserDao == null) {
-            shiroUserDao = SpringBeanUtils.getBean("shiroUserDao", ShiroUserDao.class);
-            shiroRoleDao = SpringBeanUtils.getBean("shiroRoleDao", ShiroRoleDao.class);
+        if (shiroUserMapper == null) {
+            shiroUserMapper = SpringBeanUtils.getBean("shiroUserMapper", ShiroUserMapper.class);
+            shiroRoleMapper = SpringBeanUtils.getBean("shiroRoleMapper", ShiroRoleMapper.class);
         }
     }
 
@@ -60,7 +63,11 @@ public class ProfileRealm extends AuthorizingRealm {
             throw new AuthenticationException("token认证失败！");
         }
         setShiroUserDao();
-        ShiroUser user = shiroUserDao.queryByName(userName);
+
+        QueryWrapper<ShiroUser> queryWrapper = new QueryWrapper();
+        queryWrapper.eq("name", userName);
+        ShiroUser user = shiroUserMapper.selectOne(queryWrapper);
+
         String password = user.getPasswd();
         if (password == null) {
             throw new AuthenticationException("该用户不存在！");
@@ -78,10 +85,17 @@ public class ProfileRealm extends AuthorizingRealm {
         log.info("用户名【{}】", username);
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         //获得该用户角色
-        ShiroUser user = shiroUserDao.queryByName(username);
+        QueryWrapper<ShiroUser> queryWrapper = new QueryWrapper();
+        queryWrapper.eq("name", username);
+        ShiroUser user = shiroUserMapper.selectOne(queryWrapper);
         String role = user.getRole();
         //每个角色拥有默认的权限
-        String rolePermission = shiroRoleDao.selectByName(role).getPermission();
+
+        QueryWrapper<ShiroRole> roleQueryWrapper = new QueryWrapper();
+        roleQueryWrapper.eq("role", role);
+        ShiroRole shiroRole = shiroRoleMapper.selectOne(roleQueryWrapper);
+
+        String rolePermission = shiroRole.getPermission();
         //每个用户可以设置新的权限
         String permission = user.getPermission();
         Set<String> roleSet = new HashSet<>();

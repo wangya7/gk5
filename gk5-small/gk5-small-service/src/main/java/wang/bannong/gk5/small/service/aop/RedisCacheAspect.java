@@ -17,12 +17,6 @@ import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
 
-/**
- * @author 李鹏军
- * @email 939961241@qq.com
- * @gitee https://gitee.com/fuyang_lipengjun/platform
- * @date 2019年2月18日 下午15:54:23
- */
 @Aspect
 @Component
 public class RedisCacheAspect {

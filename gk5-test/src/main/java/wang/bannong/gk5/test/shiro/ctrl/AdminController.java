@@ -1,5 +1,7 @@
 package wang.bannong.gk5.test.shiro.ctrl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +24,8 @@ public class AdminController {
     @GetMapping("/getUser")
     @RequiresRoles("admin")
     public ResultMap getUser() {
-        return null;
+        QueryWrapper<ShiroUser> wrapper = new QueryWrapper<>();
+        List<ShiroUser> list = shiroUserMapper.selectList(wrapper);
+        return ResultMap.success(list);
     }
 }

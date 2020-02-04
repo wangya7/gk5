@@ -25,11 +25,6 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * 系统日志，切面处理类
- *
- * @author lipengjun
- * @email 939961241@qq.com
- * @gitee https://gitee.com/fuyang_lipengjun/platform
- * @date 2017年3月8日 上午11:07:35
  */
 @Aspect
 @Component

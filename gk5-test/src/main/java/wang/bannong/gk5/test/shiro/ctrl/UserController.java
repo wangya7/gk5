@@ -1,5 +1,7 @@
 package wang.bannong.gk5.test.shiro.ctrl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
@@ -32,16 +34,17 @@ public class UserController{
     @PostMapping("/updatePassword")
     @RequiresRoles(logical = Logical.OR, value = {"user", "admin"})
     public ResultMap updatePassword(String username, String oldPassword, String newPassword) {
-//        ShiroUser user = shiroUserDao.queryByName(username);
-//        String dataBasePassword = user.getPasswd();
-//        if (dataBasePassword.equals(oldPassword)) {
-//            user.setPasswd(newPassword);
-//            shiroUserDao.updateByPrimaryKey(user);
-//        } else {
-//            return ResultMap.fail("密码错误！");
-//        }
-//        return ResultMap.success("成功获得信息！");
-        return null;
+        QueryWrapper<ShiroUser> wrapper = new QueryWrapper<>();
+        wrapper.eq("name", username);
+        ShiroUser user = shiroUserMapper.selectOne(wrapper);
+        String dataBasePassword = user.getPasswd();
+        if (dataBasePassword.equals(oldPassword)) {
+            user.setPasswd(newPassword);
+            shiroUserMapper.updateById(user);
+        } else {
+            return ResultMap.fail("密码错误！");
+        }
+        return ResultMap.success("成功获得信息！");
     }
 
     /**

@@ -1,14 +1,5 @@
 package wang.bannong.gk5.small.biz.shiro;
 
-import lombok.extern.slf4j.Slf4j;
-import wang.bannong.gk5.small.biz.cache.J2CacheUtils;
-import wang.bannong.gk5.small.common.entity.SysMenuEntity;
-import wang.bannong.gk5.small.common.entity.SysUserEntity;
-import wang.bannong.gk5.small.common.utils.Constant;
-import wang.bannong.gk5.small.dao.SysMenuDao;
-import wang.bannong.gk5.small.dao.SysUserDao;
-import wang.bannong.gk5.util.SpringBeanUtils;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -25,7 +16,6 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,6 +23,15 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import lombok.extern.slf4j.Slf4j;
+import wang.bannong.gk5.small.biz.cache.J2CacheUtils;
+import wang.bannong.gk5.small.common.entity.SysMenuEntity;
+import wang.bannong.gk5.small.common.entity.SysUserEntity;
+import wang.bannong.gk5.small.common.utils.Constant;
+import wang.bannong.gk5.small.dao.SysMenuDao;
+import wang.bannong.gk5.small.dao.SysUserDao;
+import wang.bannong.gk5.util.SpringBeanUtils;
 
 /**
  * 自定义的Realm

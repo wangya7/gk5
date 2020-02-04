@@ -1,5 +1,7 @@
 package wang.bannong.gk5.test.shiro.ctrl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.UnsupportedEncodingException;
 
+import wang.bannong.gk5.test.common.ShiroUser;
 import wang.bannong.gk5.test.mapper.ShiroUserMapper;
 import wang.bannong.gk5.test.shiro.JWTUtil;
 import wang.bannong.gk5.test.shiro.ResultMap;
@@ -22,15 +25,17 @@ public class LoginController {
     @PostMapping("/login")
     public ResultMap login(@RequestParam("username") String username,
                            @RequestParam("password") String password) {
-//        String realPassword = shiroUserMapper.queryByName(username).getPasswd();
-//        if (realPassword == null) {
-//            return ResultMap.fail("用户名错误");
-//        } else if (!realPassword.equals(password)) {
-//            return ResultMap.fail("密码错误");
-//        } else {
-//            return ResultMap.success(JWTUtil.createToken(username));
-//        }
-        return null;
+
+        QueryWrapper<ShiroUser> wrapper = new QueryWrapper<>();
+        wrapper.eq("name", username);
+        String realPassword = shiroUserMapper.selectOne(wrapper).getPasswd();
+        if (realPassword == null) {
+            return ResultMap.fail("用户名错误");
+        } else if (!realPassword.equals(password)) {
+            return ResultMap.fail("密码错误");
+        } else {
+            return ResultMap.success(JWTUtil.createToken(username));
+        }
     }
 
     @RequestMapping(path = "/unauthorized/{message}")

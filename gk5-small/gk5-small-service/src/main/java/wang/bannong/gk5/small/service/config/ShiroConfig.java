@@ -24,10 +24,7 @@ import wang.bannong.gk5.small.biz.shiro.UserRealm;
 public class ShiroConfig {
 
     @Autowired
-    private UserRealm             userRealm;
-    @Autowired
     private CluterShiroSessionDao cluterShiroSessionDao;
-
 
     @Bean
     public UserRealm userRealm() {
