@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.UnsupportedEncodingException;
 
-import wang.bannong.gk5.test.dao.ShiroUserDao;
+import wang.bannong.gk5.test.mapper.ShiroUserMapper;
 import wang.bannong.gk5.test.shiro.JWTUtil;
 import wang.bannong.gk5.test.shiro.ResultMap;
 
@@ -17,19 +17,20 @@ import wang.bannong.gk5.test.shiro.ResultMap;
 public class LoginController {
 
     @Autowired
-    private ShiroUserDao shiroUserDao;
+    private ShiroUserMapper shiroUserMapper;
 
     @PostMapping("/login")
     public ResultMap login(@RequestParam("username") String username,
                            @RequestParam("password") String password) {
-        String realPassword = shiroUserDao.queryByName(username).getPasswd();
-        if (realPassword == null) {
-            return ResultMap.fail("用户名错误");
-        } else if (!realPassword.equals(password)) {
-            return ResultMap.fail("密码错误");
-        } else {
-            return ResultMap.success(JWTUtil.createToken(username));
-        }
+//        String realPassword = shiroUserMapper.queryByName(username).getPasswd();
+//        if (realPassword == null) {
+//            return ResultMap.fail("用户名错误");
+//        } else if (!realPassword.equals(password)) {
+//            return ResultMap.fail("密码错误");
+//        } else {
+//            return ResultMap.success(JWTUtil.createToken(username));
+//        }
+        return null;
     }
 
     @RequestMapping(path = "/unauthorized/{message}")

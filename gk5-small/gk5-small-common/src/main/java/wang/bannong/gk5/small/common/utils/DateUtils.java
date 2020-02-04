@@ -1,12 +1,12 @@
 package wang.bannong.gk5.small.common.utils;
 
-import org.apache.log4j.Logger;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.springframework.util.StringUtils;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 日期处理
@@ -15,9 +15,8 @@ import org.springframework.util.StringUtils;
  * @email 939961241@qq.com
  * @date 2016年12月21日 下午12:53:33
  */
+@Slf4j
 public class DateUtils {
-    // 日志
-    private static final Logger logger = Logger.getLogger(DateUtils.class);
 
     /**
      * 时间格式(yyyy-MM-dd)
@@ -109,8 +108,8 @@ public class DateUtils {
             }
         }
         if (StringUtils.isEmpty(style)) {
-            logger.info("date_str:" + date_str);
-            logger.info("日期格式获取出错，未识别的日期格式");
+            log.info("date_str:" + date_str);
+            log.info("日期格式获取出错，未识别的日期格式");
         }
         return style;
     }

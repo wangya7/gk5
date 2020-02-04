@@ -23,11 +23,6 @@ import java.util.Map;
 
 /**
  * 地址管理Controller
- *
- * @author lipengjun
- * @email 939961241@qq.com
- * @gitee https://gitee.com/fuyang_lipengjun/platform
- * @date 2017-11-04 11:19:31
  */
 @RestController
 @RequestMapping("sys/region")
@@ -166,7 +161,7 @@ public class SysRegionController {
      */
     @RequestMapping("/getAreaTree")
     public R getAreaTree() {
-        List<SysRegionEntity> list = RegionCacheUtil.sysRegionEntityList;
+        List<SysRegionEntity> list = RegionCacheUtil.getSysRegionEntityList();
         for (SysRegionEntity sysRegionEntity : list) {
             sysRegionEntity.setValue(sysRegionEntity.getId() + "");
             sysRegionEntity.setLabel(sysRegionEntity.getName());

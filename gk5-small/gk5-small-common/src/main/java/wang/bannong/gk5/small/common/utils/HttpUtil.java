@@ -9,7 +9,6 @@ import org.apache.commons.httpclient.cookie.CookiePolicy;
 import org.apache.commons.httpclient.cookie.CookieSpec;
 import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -19,15 +18,16 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 作者: @author Harmon <br>
  * 时间: 2016-09-01 09:18<br>
  * 描述: Http请求通用工具 <br>
  */
+@Slf4j
 public class HttpUtil {
-
-    // 日志
-    private static final Logger logger = Logger.getLogger(HttpUtil.class);
+    
     /**
      * 定义编码格式 UTF-8
      */
@@ -97,13 +97,13 @@ public class HttpUtil {
             if (statusCode == HttpStatus.SC_OK) {
                 response = postMethod.getResponseBodyAsString();
             } else {
-                logger.error("响应状态码 = " + postMethod.getStatusCode());
+                log.error("响应状态码 = " + postMethod.getStatusCode());
             }
         } catch (HttpException e) {
-            logger.error("发生致命的异常，可能是协议不对或者返回的内容有问题", e);
+            log.error("发生致命的异常，可能是协议不对或者返回的内容有问题", e);
             e.printStackTrace();
         } catch (IOException e) {
-            logger.error("发生网络异常", e);
+            log.error("发生网络异常", e);
             e.printStackTrace();
         } finally {
             if (postMethod != null) {
@@ -135,7 +135,7 @@ public class HttpUtil {
         } else {
             strtTotalURL.append(url).append("&").append(getUrl(params, enc));
         }
-        logger.debug("GET请求URL = \n" + strtTotalURL.toString());
+        log.debug("GET请求URL = \n" + strtTotalURL.toString());
 
         try {
             getMethod = new GetMethod(strtTotalURL.toString());
@@ -145,13 +145,13 @@ public class HttpUtil {
             if (statusCode == HttpStatus.SC_OK) {
                 response = getMethod.getResponseBodyAsString();
             } else {
-                logger.debug("响应状态码 = " + getMethod.getStatusCode());
+                log.debug("响应状态码 = " + getMethod.getStatusCode());
             }
         } catch (HttpException e) {
-            logger.error("发生致命的异常，可能是协议不对或者返回的内容有问题", e);
+            log.error("发生致命的异常，可能是协议不对或者返回的内容有问题", e);
             e.printStackTrace();
         } catch (IOException e) {
-            logger.error("发生网络异常", e);
+            log.error("发生网络异常", e);
             e.printStackTrace();
         } finally {
             if (getMethod != null) {
@@ -236,13 +236,13 @@ public class HttpUtil {
             if (statusCode == HttpStatus.SC_OK) {
                 response = postMethod.getResponseBodyAsString();
             } else {
-                logger.error("响应状态码 = " + postMethod.getStatusCode());
+                log.error("响应状态码 = " + postMethod.getStatusCode());
             }
         } catch (HttpException e) {
-            logger.error("发生致命的异常，可能是协议不对或者返回的内容有问题", e);
+            log.error("发生致命的异常，可能是协议不对或者返回的内容有问题", e);
             e.printStackTrace();
         } catch (IOException e) {
-            logger.error("发生网络异常", e);
+            log.error("发生网络异常", e);
             e.printStackTrace();
         } finally {
             if (postMethod != null) {
@@ -279,12 +279,12 @@ public class HttpUtil {
             // 查看 cookie 信息
             CookieSpec cookiespec = CookiePolicy.getDefaultSpec();
             cookies = cookiespec.match(ip, port, "/", false, client.getState().getCookies());
-            logger.error("响应状态码 = " + postMethod.getStatusCode());
+            log.error("响应状态码 = " + postMethod.getStatusCode());
         } catch (HttpException e) {
-            logger.error("发生致命的异常，可能是协议不对或者返回的内容有问题", e);
+            log.error("发生致命的异常，可能是协议不对或者返回的内容有问题", e);
             e.printStackTrace();
         } catch (IOException e) {
-            logger.error("发生网络异常", e);
+            log.error("发生网络异常", e);
             e.printStackTrace();
         } finally {
             if (postMethod != null) {

@@ -25,10 +25,7 @@
             <artifactId>gk5-starter</artifactId>
             <version>1.0.0-beta</version>
         </dependency>
-        <dependency>
-            <groupId>wang.bannong</groupId>
-            <artifactId>gk5-rmdb</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>wang.bannong</groupId>
             <artifactId>gk5-cache</artifactId>
@@ -48,6 +45,24 @@
             <groupId>com.auth0</groupId>
             <artifactId>java-jwt</artifactId>
             <version>3.9.0</version>
+        </dependency>
+
+        <!-- mybatis-plus -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+            <version>3.8.0</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.16</version>
+            <scope>compile</scope>
         </dependency>
 
     </dependencies>

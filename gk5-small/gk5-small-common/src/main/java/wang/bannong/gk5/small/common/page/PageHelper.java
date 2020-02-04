@@ -13,7 +13,6 @@ import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.SystemMetaObject;
 import org.apache.ibatis.scripting.defaults.DefaultParameterHandler;
-import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,6 +22,8 @@ import java.sql.Statement;
 import java.util.List;
 import java.util.Properties;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Mybatis - 通用分页拦截器
  *
@@ -30,10 +31,10 @@ import java.util.Properties;
  * @email 939961241@qq.com
  * @date 2017年11月16日 下午10:43:36
  */
+@Slf4j
 @Intercepts({@Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class, Integer.class}),
         @Signature(type = ResultSetHandler.class, method = "handleResultSets", args = {Statement.class})})
 public class PageHelper implements Interceptor {
-    private static final Logger logger = Logger.getLogger(PageHelper.class);
 
     public static final ThreadLocal<Page> localPage = new ThreadLocal<Page>();
 
@@ -183,19 +184,19 @@ public class PageHelper implements Interceptor {
             int totalPage = totalCount / page.getPageSize() + ((totalCount % page.getPageSize() == 0) ? 0 : 1);
             page.setPages(totalPage);
         } catch (SQLException e) {
-            logger.error("Ignore this exception", e);
+            log.error("Ignore this exception", e);
         } finally {
             try {
                 if (rs != null) {
                     rs.close();
                 }
             } catch (SQLException e) {
-                logger.error("Ignore this exception", e);
+                log.error("Ignore this exception", e);
             }
             try {
                 countStmt.close();
             } catch (SQLException e) {
-                logger.error("Ignore this exception", e);
+                log.error("Ignore this exception", e);
             }
         }
     }

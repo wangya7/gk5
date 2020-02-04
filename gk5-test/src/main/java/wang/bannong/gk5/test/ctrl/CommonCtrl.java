@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSONObject;
 import wang.bannong.gk5.cache.CacheManager;
 import wang.bannong.gk5.cache.CacheResult;
 import wang.bannong.gk5.test.common.Car;
+import wang.bannong.gk5.test.mapper.ShiroUserMapper;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,18 @@ public class CommonCtrl {
 
     @Autowired
     private CacheManager cacheManager;
+
+    @Autowired
+    private ShiroUserMapper shiroUserMapper;
+
+    @GetMapping(value = "/queryUser", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public JSONObject queryUser() {
+        JSONObject obj = new JSONObject();
+        obj.put("user", shiroUserMapper.selectById(3L));
+        return obj;
+    }
+
+
 
     @GetMapping(value = "/put", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public JSONObject put() {

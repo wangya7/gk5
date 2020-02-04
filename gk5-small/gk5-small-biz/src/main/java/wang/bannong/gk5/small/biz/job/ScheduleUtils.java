@@ -23,6 +23,7 @@ import org.quartz.TriggerKey;
  * @date 2016年11月30日 下午12:44:59
  */
 public class ScheduleUtils {
+
     private final static String JOB_NAME = "TASK_";
 
     /**

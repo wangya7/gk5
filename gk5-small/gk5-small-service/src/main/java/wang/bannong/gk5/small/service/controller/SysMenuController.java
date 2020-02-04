@@ -33,6 +33,7 @@ import wang.bannong.gk5.small.common.utils.RRException;
 @RestController
 @RequestMapping("/sys/menu")
 public class SysMenuController extends AbstractController {
+
     @Autowired
     private SysMenuService sysMenuService;
 

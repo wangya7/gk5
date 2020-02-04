@@ -2,20 +2,16 @@ package wang.bannong.gk5.small.biz.oss;
 
 import wang.bannong.gk5.small.biz.service.SysConfigService;
 import wang.bannong.gk5.small.common.utils.Constant;
-import wang.bannong.gk5.small.common.utils.SpringContextUtils;
+import wang.bannong.gk5.util.SpringBeanUtils;
 
 /**
  * 文件上传Factory
- *
- * @author lipengjun
- * @email 939961241@qq.com
- * @date 2017-03-26 10:18
  */
 public final class OSSFactory {
     private static SysConfigService sysConfigService;
 
     static {
-        OSSFactory.sysConfigService = (SysConfigService) SpringContextUtils.getBean("sysConfigService");
+        OSSFactory.sysConfigService = (SysConfigService) SpringBeanUtils.getBean("sysConfigService");
     }
 
     public static CloudStorageService build() {

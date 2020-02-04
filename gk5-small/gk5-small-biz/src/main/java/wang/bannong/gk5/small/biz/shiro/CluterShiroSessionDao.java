@@ -5,15 +5,14 @@ import wang.bannong.gk5.small.common.utils.Constant;
 
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 
 /**
  * 分布式session管理
- *
- * @author lipengjun
- * @date 2018年07月31日 上午14:50
  */
+@Component
 public class CluterShiroSessionDao extends EnterpriseCacheSessionDAO {
 
     @Override

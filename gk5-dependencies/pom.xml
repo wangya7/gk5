@@ -99,6 +99,11 @@
             </dependency>
             <dependency>
                 <groupId>wang.bannong</groupId>
+                <artifactId>gk5-mybatis-plus-x</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
                 <artifactId>gk5-normdb</artifactId>
                 <version>${gk5.version}</version>
             </dependency>

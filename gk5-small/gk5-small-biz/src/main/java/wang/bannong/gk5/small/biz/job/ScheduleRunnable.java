@@ -6,7 +6,7 @@ import org.springframework.util.ReflectionUtils;
 import java.lang.reflect.Method;
 
 import wang.bannong.gk5.small.common.utils.RRException;
-import wang.bannong.gk5.small.common.utils.SpringContextUtils;
+import wang.bannong.gk5.util.SpringBeanUtils;
 
 /**
  * 执行定时任务
@@ -21,7 +21,7 @@ public class ScheduleRunnable implements Runnable {
     private String params;
 
     public ScheduleRunnable(String beanName, String methodName, String params) throws NoSuchMethodException, SecurityException {
-        this.target = SpringContextUtils.getBean(beanName);
+        this.target = SpringBeanUtils.getBean(beanName);
         this.params = params;
 
         if (StringUtils.isNotBlank(params)) {

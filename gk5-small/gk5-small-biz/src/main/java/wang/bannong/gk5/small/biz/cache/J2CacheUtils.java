@@ -2,11 +2,14 @@ package wang.bannong.gk5.small.biz.cache;
 
 import wang.bannong.gk5.small.common.utils.Constant;
 import wang.bannong.gk5.small.common.utils.StringUtils;
+import wang.bannong.gk5.util.SpringBeanUtils;
 
 import net.oschina.j2cache.CacheChannel;
 import net.oschina.j2cache.J2Cache;
 
 import java.util.Collection;
+
+import javax.annotation.PostConstruct;
 
 /**
  * 作者: @author 李鹏军 <br>
@@ -14,6 +17,7 @@ import java.util.Collection;
  * 描述: J2CacheUtils <br>
  */
 public class J2CacheUtils {
+
     /**
      * 商城业务缓存
      */

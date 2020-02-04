@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import wang.bannong.gk5.test.common.ShiroUser;
-import wang.bannong.gk5.test.dao.ShiroUserDao;
+import wang.bannong.gk5.test.mapper.ShiroUserMapper;
 import wang.bannong.gk5.test.shiro.ResultMap;
 
 @RestController
@@ -18,7 +18,7 @@ import wang.bannong.gk5.test.shiro.ResultMap;
 public class UserController{
 
     @Autowired
-    private ShiroUserDao shiroUserDao;
+    private ShiroUserMapper shiroUserMapper;
 
     /**
      * 拥有 user, admin 角色的用户可以访问下面的页面
@@ -32,15 +32,16 @@ public class UserController{
     @PostMapping("/updatePassword")
     @RequiresRoles(logical = Logical.OR, value = {"user", "admin"})
     public ResultMap updatePassword(String username, String oldPassword, String newPassword) {
-        ShiroUser user = shiroUserDao.queryByName(username);
-        String dataBasePassword = user.getPasswd();
-        if (dataBasePassword.equals(oldPassword)) {
-            user.setPasswd(newPassword);
-            shiroUserDao.updateByPrimaryKey(user);
-        } else {
-            return ResultMap.fail("密码错误！");
-        }
-        return ResultMap.success("成功获得信息！");
+//        ShiroUser user = shiroUserDao.queryByName(username);
+//        String dataBasePassword = user.getPasswd();
+//        if (dataBasePassword.equals(oldPassword)) {
+//            user.setPasswd(newPassword);
+//            shiroUserDao.updateByPrimaryKey(user);
+//        } else {
+//            return ResultMap.fail("密码错误！");
+//        }
+//        return ResultMap.success("成功获得信息！");
+        return null;
     }
 
     /**

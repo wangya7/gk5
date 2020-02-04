@@ -3,7 +3,7 @@ package wang.bannong.gk5.small.biz.job;
 import wang.bannong.gk5.small.biz.service.ScheduleJobLogService;
 import wang.bannong.gk5.small.common.entity.ScheduleJobEntity;
 import wang.bannong.gk5.small.common.entity.ScheduleJobLogEntity;
-import wang.bannong.gk5.small.common.utils.SpringContextUtils;
+import wang.bannong.gk5.util.SpringBeanUtils;
 
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
@@ -36,7 +36,7 @@ public class ScheduleJob extends QuartzJobBean {
                 .get(ScheduleJobEntity.JOB_PARAM_KEY);
 
         //获取spring bean
-        ScheduleJobLogService scheduleJobLogService = (ScheduleJobLogService) SpringContextUtils.getBean("scheduleJobLogService");
+        ScheduleJobLogService scheduleJobLogService = (ScheduleJobLogService) SpringBeanUtils.getBean("scheduleJobLogService");
 
         //数据库保存执行记录
         ScheduleJobLogEntity log = new ScheduleJobLogEntity();

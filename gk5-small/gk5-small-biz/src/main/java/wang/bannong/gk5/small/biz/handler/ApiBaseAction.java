@@ -2,11 +2,11 @@ package wang.bannong.gk5.small.biz.handler;
 
 import com.alibaba.fastjson.JSONObject;
 
+import lombok.extern.slf4j.Slf4j;
 import wang.bannong.gk5.small.biz.interceptor.AuthorizationInterceptor;
 import wang.bannong.gk5.small.biz.service.TokenService;
 import wang.bannong.gk5.small.common.entity.TokenEntity;
 
-import org.apache.log4j.Logger;
 import org.apache.shiro.authz.UnauthorizedException;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +35,14 @@ import javax.servlet.http.HttpServletResponse;
  * @Description: 基础控制类
  * @date 2016年9月2日
  */
+@Slf4j
 public class ApiBaseAction {
-    protected Logger logger = Logger.getLogger(getClass());
+
     /**
      * 得到request对象
      */
     @Autowired
-    protected HttpServletRequest request;
+    protected HttpServletRequest  request;
     /**
      * 得到response对象
      */
@@ -86,7 +87,7 @@ public class ApiBaseAction {
 
     public Map<String, Object> toResponsSuccess(Object data) {
         Map<String, Object> rp = toResponsObject(0, "执行成功", data);
-        logger.info("response:" + rp);
+        log.info("response:" + rp);
         return rp;
     }
 

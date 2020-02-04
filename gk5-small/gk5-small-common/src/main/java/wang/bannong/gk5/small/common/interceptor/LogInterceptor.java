@@ -1,12 +1,12 @@
 package wang.bannong.gk5.small.common.interceptor;
 
+import lombok.extern.slf4j.Slf4j;
 import wang.bannong.gk5.small.common.entity.SysUserEntity;
 import wang.bannong.gk5.small.common.utils.Constant;
 import wang.bannong.gk5.small.common.utils.RequestUtil;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.SecurityUtils;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.util.UrlPathHelper;
@@ -19,14 +19,10 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * 名称：LogInterceptor <br>
  * 描述：日志拦截器<br>
- *
- * @author 李鹏军
- * @version 1.0
- * @since 1.0.0
  */
+@Slf4j
+@Component
 public class LogInterceptor extends HandlerInterceptorAdapter {
-
-    private static final Log log = LogFactory.getLog(LogInterceptor.class);
 
     /*
      * (non-Javadoc)
@@ -37,7 +33,6 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         request.setAttribute("REQUEST_START_TIME", new Date());
-
         return true;
 
     }
@@ -65,11 +60,8 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
                                 HttpServletResponse response, Object handler,
                                 Exception ex)
             throws Exception {
-
         Date start = (Date) request.getAttribute("REQUEST_START_TIME");
-        Date end = new Date();
-
-        log.info("本次请求耗时：" + (end.getTime() - start.getTime()) + "毫秒；" + getRequestInfo(request).toString());
+        log.info("本次请求耗时：{}毫秒；{}", new Date().getTime() - start.getTime(), getRequestInfo(request).toString());
 
     }
 
@@ -94,7 +86,6 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
         String urlPath = urlPathHelper.getLookupPathForRequest(request);
         reqInfo.append(" 请求路径=" + urlPath);
         reqInfo.append(" 来源IP=" + RequestUtil.getIpAddrByRequest(request));
-
 
         String userName = "";
         try {

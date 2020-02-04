@@ -1,11 +1,10 @@
 package wang.bannong.gk5.small.biz.service.impl;
 
 import wang.bannong.gk5.small.biz.service.SysMenuService;
-import wang.bannong.gk5.small.biz.service.SysRoleMenuService;
-import wang.bannong.gk5.small.biz.service.SysUserService;
 import wang.bannong.gk5.small.common.entity.SysMenuEntity;
 import wang.bannong.gk5.small.common.utils.Constant.MenuType;
 import wang.bannong.gk5.small.dao.SysMenuDao;
+import wang.bannong.gk5.small.dao.SysUserDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,13 +17,12 @@ import java.util.Map;
 
 @Service("sysMenuService")
 public class SysMenuServiceImpl implements SysMenuService {
+
 	@Autowired
-	private SysMenuDao         sysMenuDao;
+	private SysMenuDao     sysMenuDao;
 	@Autowired
-	private SysUserService     sysUserService;
-	@Autowired
-	private SysRoleMenuService sysRoleMenuService;
-	
+	private SysUserDao     sysUserDao;
+
 	@Override
 	public List<SysMenuEntity> queryListParentId(Long parentId, List<Long> menuIdList) {
 		List<SysMenuEntity> menuList = sysMenuDao.queryListParentId(parentId);
@@ -54,7 +52,7 @@ public class SysMenuServiceImpl implements SysMenuService {
 		}
 		
 		//用户菜单列表
-		List<Long> menuIdList = sysUserService.queryAllMenuId(userId);
+		List<Long> menuIdList = sysUserDao.queryAllMenuId(userId);
 		return getAllMenuList(menuIdList);
 	}
 	

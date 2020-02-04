@@ -9,6 +9,7 @@ import com.alipay.api.request.AlipayUserInfoShareRequest;
 import com.alipay.api.response.AlipaySystemOauthTokenResponse;
 import com.alipay.api.response.AlipayUserInfoShareResponse;
 
+import lombok.extern.slf4j.Slf4j;
 import wang.bannong.gk5.small.biz.handler.ApiBaseAction;
 import wang.bannong.gk5.small.biz.service.ApiUserService;
 import wang.bannong.gk5.small.biz.service.TokenService;
@@ -25,7 +26,6 @@ import wang.bannong.gk5.small.common.validator.Assert;
 import com.qiniu.util.StringUtils;
 
 import org.apache.commons.collections.MapUtils;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,11 +46,12 @@ import io.swagger.annotations.ApiOperation;
  * @gitee https://gitee.com/fuyang_lipengjun/platform
  * @date 2017-03-23 15:31
  */
+@Slf4j
 @Api(tags = "API登录授权接口")
 @RestController
 @RequestMapping("/api/auth")
 public class ApiAuthController extends ApiBaseAction {
-    private Logger         logger = Logger.getLogger(getClass());
+
     @Autowired
     private ApiUserService userService;
     @Autowired
@@ -101,7 +102,7 @@ public class ApiAuthController extends ApiBaseAction {
 
         //获取openid
         String requestUrl = ApiUserUtils.getWebAccess(code);//通过自定义工具类组合出小程序需要的登录凭证 code
-        logger.info("》》》组合token为：" + requestUrl);
+        log.info("》》》组合token为：" + requestUrl);
         JSONObject sessionData = CommonUtil.httpsRequest(requestUrl, "GET", null);
 
         if (null == sessionData || StringUtils.isNullOrEmpty(sessionData.getString("openid"))) {

@@ -1,7 +1,6 @@
 package wang.bannong.gk5.small.common.utils.wechat;
 
-import com.alibaba.druid.support.logging.Log;
-import com.alibaba.druid.support.logging.LogFactory;
+import lombok.extern.slf4j.Slf4j;
 import wang.bannong.gk5.small.common.utils.CharUtil;
 import wang.bannong.gk5.small.common.utils.MapUtils;
 import wang.bannong.gk5.small.common.utils.ResourceUtil;
@@ -43,8 +42,9 @@ import java.util.Set;
  * @author xubo
  * @date 2017年6月6日  下午5:05:03
  */
+@Slf4j
 public class WechatUtil {
-    private static Log logger = LogFactory.getLog(WechatUtil.class);
+
     /**
      * 充值客户端类型--微信公众号
      */
@@ -111,7 +111,7 @@ public class WechatUtil {
      * 请求微信https
      **/
     public static String sendSSLPostToWx(String mapToXml, SSLConnectionSocketFactory sslcsf) {
-        logger.info("*******退款（WX Request：" + mapToXml);
+        log.info("*******退款（WX Request：" + mapToXml);
         HttpPost httPost = new HttpPost(ResourceUtil.getConfigByName("wx.refundUrl"));
         httPost.addHeader("Connection", "keep-alive");
         httPost.addHeader("Accept", "*/*");
@@ -127,10 +127,10 @@ public class WechatUtil {
             response = httpClient.execute(httPost);
             HttpEntity entity = response.getEntity();
             String xmlStr = EntityUtils.toString(entity, "UTF-8");
-            logger.info("*******退款（WX Response：" + xmlStr);
+            log.info("*******退款（WX Response：" + xmlStr);
             return xmlStr;
         } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
             return null;
         } finally {
             try {
@@ -138,7 +138,7 @@ public class WechatUtil {
                     response.close();
                 }
             } catch (IOException e) {
-                logger.error(e.getMessage(), e);
+                log.error(e.getMessage(), e);
             }
         }
     }
@@ -185,7 +185,7 @@ public class WechatUtil {
             return result;
             //将信息保存到数据库
         } catch (Exception e) {
-            logger.error(e.getMessage(), e);
+            log.error(e.getMessage(), e);
             return null;
         } finally {
             try {
@@ -193,7 +193,7 @@ public class WechatUtil {
                     response.close();
                 }
             } catch (IOException e) {
-                logger.error(e.getMessage(), e);
+                log.error(e.getMessage(), e);
             }
         }
     }
@@ -294,7 +294,7 @@ public class WechatUtil {
         HttpResponse httpResponse = httpClient.execute(httpPost);
         HttpEntity httpEntity = httpResponse.getEntity();
         String reusltObj = EntityUtils.toString(httpEntity, "UTF-8");
-        logger.info("请求结果:" + reusltObj);
+        log.info("请求结果:" + reusltObj);
         return reusltObj;
 
     }

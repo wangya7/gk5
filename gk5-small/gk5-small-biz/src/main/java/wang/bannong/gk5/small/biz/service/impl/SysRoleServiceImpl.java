@@ -3,7 +3,6 @@ package wang.bannong.gk5.small.biz.service.impl;
 import wang.bannong.gk5.small.biz.service.SysRoleDeptService;
 import wang.bannong.gk5.small.biz.service.SysRoleMenuService;
 import wang.bannong.gk5.small.biz.service.SysRoleService;
-import wang.bannong.gk5.small.biz.service.SysUserService;
 import wang.bannong.gk5.small.common.entity.SysRoleEntity;
 import wang.bannong.gk5.small.common.entity.UserWindowDto;
 import wang.bannong.gk5.small.common.page.Page;
@@ -11,6 +10,7 @@ import wang.bannong.gk5.small.common.page.PageHelper;
 import wang.bannong.gk5.small.common.utils.Constant;
 import wang.bannong.gk5.small.common.utils.RRException;
 import wang.bannong.gk5.small.dao.SysRoleDao;
+import wang.bannong.gk5.small.dao.SysUserDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,10 +23,6 @@ import java.util.Map;
 
 /**
  * 角色
- *
- * @author lipengjun
- * @email 939961241@qq.com
- * @date 2016年9月18日 上午9:45:12
  */
 @Service("sysRoleService")
 public class SysRoleServiceImpl implements SysRoleService {
@@ -35,7 +31,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     @Autowired
     private SysRoleMenuService sysRoleMenuService;
     @Autowired
-    private SysUserService     sysUserService;
+    private SysUserDao         sysUserDao;
     @Autowired
     private SysRoleDeptService sysRoleDeptService;
 
@@ -105,7 +101,7 @@ public class SysRoleServiceImpl implements SysRoleService {
         }
 
         //查询用户所拥有的菜单列表
-        List<Long> menuIdList = sysUserService.queryAllMenuId(role.getCreateUserId());
+        List<Long> menuIdList = sysUserDao.queryAllMenuId(role.getCreateUserId());
 
         //判断是否越权
         if (!menuIdList.containsAll(role.getMenuIdList())) {

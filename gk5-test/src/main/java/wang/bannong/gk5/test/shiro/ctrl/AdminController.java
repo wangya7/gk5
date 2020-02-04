@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import wang.bannong.gk5.test.common.ShiroUser;
-import wang.bannong.gk5.test.dao.ShiroUserDao;
+import wang.bannong.gk5.test.mapper.ShiroUserMapper;
 import wang.bannong.gk5.test.shiro.ResultMap;
 
 @RestController
@@ -17,13 +17,11 @@ import wang.bannong.gk5.test.shiro.ResultMap;
 public class AdminController {
 
     @Autowired
-    private ShiroUserDao shiroUserDao;
+    private ShiroUserMapper shiroUserMapper;
 
     @GetMapping("/getUser")
     @RequiresRoles("admin")
     public ResultMap getUser() {
-        ShiroUser bo = new ShiroUser();
-        List<ShiroUser> list = shiroUserDao.selectByBo(bo, 1, Integer.MAX_VALUE);
-        return ResultMap.success(list);
+        return null;
     }
 }

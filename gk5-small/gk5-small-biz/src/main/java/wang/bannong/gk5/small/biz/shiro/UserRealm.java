@@ -1,11 +1,13 @@
 package wang.bannong.gk5.small.biz.shiro;
 
+import lombok.extern.slf4j.Slf4j;
 import wang.bannong.gk5.small.biz.cache.J2CacheUtils;
 import wang.bannong.gk5.small.common.entity.SysMenuEntity;
 import wang.bannong.gk5.small.common.entity.SysUserEntity;
 import wang.bannong.gk5.small.common.utils.Constant;
 import wang.bannong.gk5.small.dao.SysMenuDao;
 import wang.bannong.gk5.small.dao.SysUserDao;
+import wang.bannong.gk5.util.SpringBeanUtils;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -23,6 +25,7 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,16 +35,22 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * 认证
- *
- * @author lipengjun
- * @date 2017年11月19日 上午9:49:19
- */
+ * 自定义的Realm
+ **/
+@Slf4j
 public class UserRealm extends AuthorizingRealm {
+
     @Autowired
     private SysUserDao sysUserDao;
     @Autowired
     private SysMenuDao sysMenuDao;
+
+    public void initDao() {
+        if (sysUserDao == null) {
+            sysUserDao = SpringBeanUtils.getBean("sysUserDao", SysUserDao.class);
+            sysMenuDao = SpringBeanUtils.getBean("sysMenuDao", SysMenuDao.class);
+        }
+    }
 
     /**
      * 授权(验证权限时调用)
@@ -54,6 +63,7 @@ public class UserRealm extends AuthorizingRealm {
         List<String> permsList;
 
         //系统管理员，拥有最高权限
+        initDao();
         if (userId == Constant.SUPER_ADMIN) {
             List<SysMenuEntity> menuList = sysMenuDao.queryList(new HashMap<>());
             permsList = new ArrayList<>(menuList.size());
@@ -64,13 +74,13 @@ public class UserRealm extends AuthorizingRealm {
             permsList = sysUserDao.queryAllPerms(userId);
         }
         //用户权限列表
-        Set<String> permsSet = new HashSet<String>();
+        Set<String> permsSet = new HashSet<>();
         if (permsList != null && permsList.size() != 0) {
             for (String perms : permsList) {
                 if (StringUtils.isBlank(perms)) {
                     continue;
                 }
-                permsSet.addAll(Arrays.asList(perms.trim().split(",")));
+                permsSet.addAll(Arrays.asList(perms.trim().split(wang.bannong.gk5.util.Constant.COMMA)));
             }
         }
 
@@ -89,6 +99,7 @@ public class UserRealm extends AuthorizingRealm {
         String password = new String((char[]) token.getCredentials());
 
         //查询用户信息
+        initDao();
         SysUserEntity user = sysUserDao.queryByUserName(username);
 
         //账号不存在

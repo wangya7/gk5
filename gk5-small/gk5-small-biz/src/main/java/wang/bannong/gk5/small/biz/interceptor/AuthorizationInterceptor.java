@@ -24,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @Component
 public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
+
     @Autowired
     private TokenService tokenService;
 
