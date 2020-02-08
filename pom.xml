@@ -21,7 +21,7 @@
         <module>gk5-kafka</module>
         <module>gk5-log</module>
         <module>gk5-mini</module>
-        <module>gk5-mybatis-plus-x</module>
+        <module>gk5-mybatis-x</module>
         <module>gk5-normdb</module>
         <module>gk5-offer</module>
         <module>gk5-parent</module>

@@ -1,6 +1,8 @@
 package wang.bannong.gk5.test.ctrl;
 
 import com.alibaba.fastjson.JSONObject;
+
+import lombok.extern.slf4j.Slf4j;
 import wang.bannong.gk5.cache.CacheManager;
 import wang.bannong.gk5.cache.CacheResult;
 import wang.bannong.gk5.test.common.Car;
@@ -11,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@Slf4j
 @RestController
 public class CommonCtrl {
 
@@ -48,6 +51,22 @@ public class CommonCtrl {
             System.out.println(obj);
             return obj;
         }
+        return new JSONObject();
+    }
+
+    @Autowired
+    private WillRegisterBeanBO personManager1;
+    @Autowired
+    private WillRegisterBeanBO personManager2;
+    @Autowired
+    private WillRegisterBeanBO personManager3;
+
+    @GetMapping(value = "/rb", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public JSONObject getRb() {
+        log.info("personManager1 is not null ? {}", personManager1 != null);
+        log.info("personManager2 is not null ? {}", personManager2 != null);
+        log.info("personManager3 is not null ? {}", personManager3 != null);
+
         return new JSONObject();
     }
 }
