@@ -21,12 +21,13 @@ public class CommonCtrl {
     private CacheManager cacheManager;
 
     @Autowired
-    private ShiroUserMapper shiroUserMapper;
+    private ShiroUserMapper masterShiroUserMapper;
+
 
     @GetMapping(value = "/queryUser", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public JSONObject queryUser() {
         JSONObject obj = new JSONObject();
-        obj.put("user", shiroUserMapper.selectById(3L));
+        obj.put("user", masterShiroUserMapper.selectById(3L));
         return obj;
     }
 

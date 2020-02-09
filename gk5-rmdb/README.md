@@ -13,7 +13,7 @@ datasource:
   master:
     host: 139.196.225.76
     port: 3306
-    db: marktonight
+    dbProperties: marktonight
     username: root
     password: wetoec11
     maxIdle: 10
@@ -22,7 +22,7 @@ datasource:
   slave:
     host: 139.196.225.76
     port: 3306
-    db: marktonight
+    dbProperties: marktonight
     username: root
     password: wetoec11
     maxIdle: 10

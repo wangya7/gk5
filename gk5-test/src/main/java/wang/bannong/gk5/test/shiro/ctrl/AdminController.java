@@ -19,13 +19,13 @@ import wang.bannong.gk5.test.shiro.ResultMap;
 public class AdminController {
 
     @Autowired
-    private ShiroUserMapper shiroUserMapper;
+    private ShiroUserMapper masterShiroUserMapper;
 
     @GetMapping("/getUser")
     @RequiresRoles("admin")
     public ResultMap getUser() {
         QueryWrapper<ShiroUser> wrapper = new QueryWrapper<>();
-        List<ShiroUser> list = shiroUserMapper.selectList(wrapper);
+        List<ShiroUser> list = masterShiroUserMapper.selectList(wrapper);
         return ResultMap.success(list);
     }
 }

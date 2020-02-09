@@ -3,36 +3,33 @@ package wang.bannong.gk5.mybatis.x;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mybatis.spring.mapper.MapperScannerConfigurer;
 
 import javax.sql.DataSource;
 
-import wang.bannong.gk5.mybatis.x.config.DataSourceDB;
+import lombok.extern.slf4j.Slf4j;
 
+
+@Slf4j
 public class DBSupporter {
 
-    private static String url      = "jdbc:p6spy:mysql://%s:%d/%s?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=UTC";
-    private static String driver   = "com.p6spy.engine.spy.P6SpyDriver";
-    private static String poolName = "Hikari-MyBatisX";
+    private static String url                        = "jdbc:p6spy:mysql://%s:%d/%s?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=UTC";
+    private static String driver                     = "com.p6spy.engine.spy.P6SpyDriver";
+    private static String poolName                   = "Hikari-MyBatisX";
+    private static String SqlSessionTemplateBeanName = "%sSqlSessionTemplate";
 
-    @Autowired
-    private DataSourceDB dataSourceDB;
 
-    public static DataSource buildPoolProperties(DataSourceDB.DB db) {
+    public static DataSource buildPoolProperties(DBProperties db) {
         HikariConfig config = new HikariConfig();
-        config.setJdbcUrl(String.format(url, db.getHost(), db.getPort(), db.getDb()));
+        String dataSourceUrl = String.format(url, db.getHost(), db.getPort(), db.getDb());
+        config.setJdbcUrl(dataSourceUrl);
         config.setDriverClassName(driver);
         config.setUsername(db.getUsername());
         config.setPassword(db.getPassword());
-        // 自动提交从池中返回的连接 默认true
         config.setAutoCommit(true);
-        // 连接允许在池中闲置的最长时间 默认600000
         config.setIdleTimeout(600000);
-        // 池中维护的最小空闲连接数 默认10
         config.setMinimumIdle(db.getMinIdle());
-        // 池中最大连接数，包括闲置和使用中的连接 默认10
         config.setMaximumPoolSize(db.getMaxIdle());
-        // 等待来自池的连接的最大毫秒数 默认30000
         config.setConnectionTimeout(db.getConnectionTimeout());
         config.setPoolName(poolName);
 
@@ -42,7 +39,19 @@ public class DBSupporter {
         return new HikariDataSource(config);
     }
 
-    public static boolean isMasterDB(DataSourceDB.DB db) {
-        return db.getKey().startsWith(DataSourcePrefix.master.name());
+    /**
+     * MyBatis-Spring提供了一个MapperFactoryBean，可以将数据映射接口转为Spring Bean
+     * 开发中有很多的接口需要转换为Bean，一个个配置就显得恶心啦，所有出现了这个MapperScannerConfigurer
+     * <p>
+     * MapperScannerConfigurer将扫描basePackage所指定的包下的所有接口类（包括子类），如果它们在SQL映射
+     * 文件中定义过，则将它们动态定义为一个Spring Bean，这样，我们在Service中就可以直接注入映射接口的bean
+     */
+    public static MapperScannerConfigurer mapperScannerConfigurer(String key, String mappersPath) throws Exception {
+        MapperScannerConfigurer configurer = new MapperScannerConfigurer();
+        log.info("DataSource-{} loading MappersPath:{}", key, mappersPath);
+        configurer.setBasePackage(mappersPath);
+        configurer.setSqlSessionTemplateBeanName(String.format(SqlSessionTemplateBeanName, key));
+        configurer.setNameGenerator(new MapperBeanNameGenerator(key));
+        return configurer;
     }
 }

@@ -20,7 +20,7 @@ import wang.bannong.gk5.test.shiro.ResultMap;
 public class LoginController {
 
     @Autowired
-    private ShiroUserMapper shiroUserMapper;
+    private ShiroUserMapper masterShiroUserMapper;
 
     @PostMapping("/login")
     public ResultMap login(@RequestParam("username") String username,
@@ -28,7 +28,7 @@ public class LoginController {
 
         QueryWrapper<ShiroUser> wrapper = new QueryWrapper<>();
         wrapper.eq("name", username);
-        String realPassword = shiroUserMapper.selectOne(wrapper).getPasswd();
+        String realPassword = masterShiroUserMapper.selectOne(wrapper).getPasswd();
         if (realPassword == null) {
             return ResultMap.fail("用户名错误");
         } else if (!realPassword.equals(password)) {

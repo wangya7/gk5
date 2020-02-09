@@ -26,13 +26,13 @@ import wang.bannong.gk5.util.SpringBeanUtils;
 @Component
 public class ProfileRealm extends AuthorizingRealm {
 
-    private ShiroUserMapper shiroUserMapper;
-    private ShiroRoleMapper shiroRoleMapper;
+    private ShiroUserMapper masterShiroUserMapper;
+    private ShiroRoleMapper masterShiroRoleMapper;
 
     private void setShiroUserDao() {
-        if (shiroUserMapper == null) {
-            shiroUserMapper = SpringBeanUtils.getBean("shiroUserMapper", ShiroUserMapper.class);
-            shiroRoleMapper = SpringBeanUtils.getBean("shiroRoleMapper", ShiroRoleMapper.class);
+        if (masterShiroUserMapper == null) {
+            masterShiroUserMapper = SpringBeanUtils.getBean("masterShiroUserMapper", ShiroUserMapper.class);
+            masterShiroRoleMapper = SpringBeanUtils.getBean("masterShiroRoleMapper", ShiroRoleMapper.class);
         }
     }
 
@@ -66,7 +66,7 @@ public class ProfileRealm extends AuthorizingRealm {
 
         QueryWrapper<ShiroUser> queryWrapper = new QueryWrapper();
         queryWrapper.eq("name", userName);
-        ShiroUser user = shiroUserMapper.selectOne(queryWrapper);
+        ShiroUser user = masterShiroUserMapper.selectOne(queryWrapper);
 
         String password = user.getPasswd();
         if (password == null) {
@@ -87,13 +87,13 @@ public class ProfileRealm extends AuthorizingRealm {
         //获得该用户角色
         QueryWrapper<ShiroUser> queryWrapper = new QueryWrapper();
         queryWrapper.eq("name", username);
-        ShiroUser user = shiroUserMapper.selectOne(queryWrapper);
+        ShiroUser user = masterShiroUserMapper.selectOne(queryWrapper);
         String role = user.getRole();
         //每个角色拥有默认的权限
 
         QueryWrapper<ShiroRole> roleQueryWrapper = new QueryWrapper();
         roleQueryWrapper.eq("role", role);
-        ShiroRole shiroRole = shiroRoleMapper.selectOne(roleQueryWrapper);
+        ShiroRole shiroRole = masterShiroRoleMapper.selectOne(roleQueryWrapper);
 
         String rolePermission = shiroRole.getPermission();
         //每个用户可以设置新的权限

@@ -216,11 +216,11 @@ Source repository address | Release Download
 ## 2. Quick Start
 
 ### 2.1 Init database
-Please download project source code，get db scripts and execute, it will generate 16 tables if succeed.
+Please download project source code，get dbProperties scripts and execute, it will generate 16 tables if succeed.
 
-The relative path of db scripts is as follows:
+The relative path of dbProperties scripts is as follows:
 
-    /xxl-job/doc/db/tables_xxl_job.sql
+    /xxl-job/doc/dbProperties/tables_xxl_job.sql
 
 The xxl-job-admin can be deployed as a cluster,all nodes of the cluster must connect to the same mysql instance.
 
@@ -250,10 +250,10 @@ Configure file’s path of schedule center is as follows:
 The concrete contet describe as follows:
 
     ### JDBC connection info of schedule center：keep Consistent with chapter 2.1
-    xxl.job.db.driverClass=com.mysql.jdbc.Driver
-    xxl.job.db.url=jdbc:mysql://localhost:3306/xxl-job?useUnicode=true&characterEncoding=UTF-8
-    xxl.job.db.user=root
-    xxl.job.db.password=root_pwd
+    xxl.job.dbProperties.driverClass=com.mysql.jdbc.Driver
+    xxl.job.dbProperties.url=jdbc:mysql://localhost:3306/xxl-job?useUnicode=true&characterEncoding=UTF-8
+    xxl.job.dbProperties.user=root
+    xxl.job.dbProperties.password=root_pwd
     
     ### Alarm mailbox
     xxl.job.mail.host=smtp.163.com
@@ -284,7 +284,7 @@ Now,the “xxl-job-admin” project is deployed success.
 #### Step3:schedule center Cluster(Option):
 xxl-job-admin can be deployed as a cluster to improve system availability.
 
-Prerequisites for cluster is to keep all node configuration(db and login account info) consistent with each other. Different xxl-job-admin cluster distinguish with each other by db configuration.
+Prerequisites for cluster is to keep all node configuration(dbProperties and login account info) consistent with each other. Different xxl-job-admin cluster distinguish with each other by dbProperties configuration.
 
 xxl-job-admin can be visited through nginx proxy and configure a domain for nginx,and the domain url can be configured as the executor’s callback url.
 
@@ -591,7 +591,7 @@ Click the delete button on the right side of the task,the task will be deteted.
 ## 5. Overall design
 ### 5.1 Source directory introduction
     - /doc :documentation and material
-    - /db :db scripts
+    - /dbProperties :dbProperties scripts
     - /xxl-job-admin :schedule and admin center
     - /xxl-job-core :common core Jar
     - /xxl-job-executor-samples :executor，Demo project（you can develop on this demo project or adjust your own exist project to executor project)
@@ -890,7 +890,7 @@ The scheduling center API service requests reference code：com.xxl.job.adminbiz
 	- /xxl-job-admin -------------------- 【schedule center】:Responsible for managing schedule information，send schedule request according to schedule configuration;
 	- /xxl-job-core -----------------------  Public core dependence
 	- /xxl-job-executor-example ------ 【executor】:Responsible for receiving scheduling request and execute task logic;
-	- /db ---------------------------------- create table script
+	- /dbProperties ---------------------------------- create table script
 	- /doc --------------------------------- user manual
 - 2、Upgrade the user manual under the new directory structure;
 - 3、Optimize some interactions and UI;
@@ -902,7 +902,7 @@ The scheduling center API service requests reference code：com.xxl.job.adminbiz
 
 ### 6.6 version V1.4.0 New features [2016-07-24]
 - 1、Task dependency: it is implemented by trigger event, it will automatically trigger a child task schedule after Task execute success and callback, multiple child tasks are separated by commas;
-- 2、executor source code has been reconstructed, optimize underlying db script;
+- 2、executor source code has been reconstructed, optimize underlying dbProperties script;
 - 3、optimize task thread group logic of executor, before it is group by executor’s JobHandler so when multiple task reuse Jobhanlder will cause block with each other. Now it is grouped by task of schedule center so tasks are isolated from task execution.
 - 4、optimize communication scheme between executor and schedule center, a simple RPC protocol was implemented through Hex + HC, optimize the maintenance and analysis process of communication parameters.
 - 5、schedule center, create/edit task, page attribute adjustment:

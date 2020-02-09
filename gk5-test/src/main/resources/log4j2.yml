@@ -4,8 +4,6 @@ Configuration:
     Property:
     - name: log.level.console
       value: trace
-    - name: log.level.xjj
-      value: trace
     - name: log.path
       value: /Users/wangya/Downloads/logs
     - name: project.name
@@ -58,3 +56,9 @@ Configuration:
       level: debug
       AppenderRef:
       - ref: ROLLING_SQL_FILE
+    - name: com.baomidou.mybatisplus
+      additivity: false
+      level: error
+      AppenderRef:
+      - ref: CONSOLE
+      - ref: ROLLING_FILE

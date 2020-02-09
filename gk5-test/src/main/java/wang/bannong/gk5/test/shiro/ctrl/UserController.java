@@ -20,7 +20,7 @@ import wang.bannong.gk5.test.shiro.ResultMap;
 public class UserController{
 
     @Autowired
-    private ShiroUserMapper shiroUserMapper;
+    private ShiroUserMapper masterShiroUserMapper;
 
     /**
      * 拥有 user, admin 角色的用户可以访问下面的页面
@@ -36,11 +36,11 @@ public class UserController{
     public ResultMap updatePassword(String username, String oldPassword, String newPassword) {
         QueryWrapper<ShiroUser> wrapper = new QueryWrapper<>();
         wrapper.eq("name", username);
-        ShiroUser user = shiroUserMapper.selectOne(wrapper);
+        ShiroUser user = masterShiroUserMapper.selectOne(wrapper);
         String dataBasePassword = user.getPasswd();
         if (dataBasePassword.equals(oldPassword)) {
             user.setPasswd(newPassword);
-            shiroUserMapper.updateById(user);
+            masterShiroUserMapper.updateById(user);
         } else {
             return ResultMap.fail("密码错误！");
         }

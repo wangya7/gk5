@@ -347,7 +347,7 @@ XXL-JOB是一个轻量级分布式任务调度平台，其核心设计目标是�
 
 "调度数据库初始化SQL脚本" 位置为:
 
-    /xxl-job/doc/db/tables_xxl_job.sql
+    /xxl-job/doc/dbProperties/tables_xxl_job.sql
 
 调度中心支持集群部署，集群情况下各节点务必连接同一个mysql实例;
 
@@ -807,7 +807,7 @@ try{
 ## 五、总体设计
 ### 5.1 源码目录介绍
     - /doc :文档资料
-    - /db :“调度数据库”建表脚本
+    - /dbProperties :“调度数据库”建表脚本
     - /xxl-job-admin :调度中心，项目源码
     - /xxl-job-core :公共Jar依赖
     - /xxl-job-executor-samples :执行器，Sample示例项目（大家可以在该项目上进行开发，也可以将现有项目改造生成执行器项目）
@@ -1180,7 +1180,7 @@ docker run --name xxl-job-admin -p 8080:8080 -d xuxueli/xxl-job-admin
 	- /xxl-job-admin -------------------- 【调度中心】：负责管理调度信息，按照调度配置发出调度请求；
 	- /xxl-job-core ----------------------- 公共依赖
 	- /xxl-job-executor-example ------ 【执行器】：负责接收调度请求并执行任务逻辑；
-	- /db ---------------------------------- 建表脚本
+	- /dbProperties ---------------------------------- 建表脚本
 	- /doc --------------------------------- 用户手册
 - 2、在新的目录结构上，升级了用户手册；
 - 3、优化了一些交互和UI；
