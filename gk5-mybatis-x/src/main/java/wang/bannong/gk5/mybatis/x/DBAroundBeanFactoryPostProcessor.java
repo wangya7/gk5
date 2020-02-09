@@ -7,13 +7,11 @@ import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.ibatis.plugin.Interceptor;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.config.YamlMapFactoryBean;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
-import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Component;
@@ -43,14 +41,14 @@ public class DBAroundBeanFactoryPostProcessor implements BeanFactoryPostProcesso
     @Getter
     private static List<DBProperties> slaves  = new ArrayList<>();
 
-    @Bean
-    public MapperScannerConfigurer masterMapperScannerConfigurer() throws Exception {
-        return DBSupporter.mapperScannerConfigurer(DataSourcePrefix.master.name(), "wang.bannong.gk5.test.mapper");
-    }
-    @Bean
-    public MapperScannerConfigurer slaveMapperScannerConfigurer() throws Exception {
-        return DBSupporter.mapperScannerConfigurer(DataSourcePrefix.slave.name(), "wang.bannong.gk5.test.mapper");
-    }
+    //    @Bean
+    //    public MapperScannerConfigurer masterMapperScannerConfigurer() {
+    //        return DBSupporter.mapperScannerConfigurer(DataSourcePrefix.master.name(), "wang.bannong.gk5.test.mapper");
+    //    }
+    //    @Bean
+    //    public MapperScannerConfigurer slaveMapperScannerConfigurer() {
+    //        return DBSupporter.mapperScannerConfigurer(DataSourcePrefix.slave.name(), "wang.bannong.gk5.test.mapper");
+    //    }
 
 
     @Override
@@ -60,7 +58,7 @@ public class DBAroundBeanFactoryPostProcessor implements BeanFactoryPostProcesso
         YamlMapFactoryBean yamlMapFactoryBean = new YamlMapFactoryBean();
         yamlMapFactoryBean.setResources(new ClassPathResource("application.yml"));
         Map<String, Object> map = (Map<String, Object>) yamlMapFactoryBean.getObject().get("datasource");
-        mappersPath = (String) map.get("mappersPath");
+        // mappersPath = (String) map.get("mappersPath");
         primary = (String) map.get("primary");
         List<Map<String, Object>> items = (List<Map<String, Object>>) map.get("dbs");
         if (CollectionUtils.isEmpty(items)) {
@@ -150,6 +148,7 @@ public class DBAroundBeanFactoryPostProcessor implements BeanFactoryPostProcesso
 
         TransactionTemplate transactionTemplate = new TransactionTemplate(txManager);
         beanFactory.registerSingleton(key + "TransactionTemplate", transactionTemplate);
+
     }
 
     private void registerSlave(DBProperties dbProperties, DefaultListableBeanFactory beanFactory) {

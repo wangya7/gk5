@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import wang.bannong.gk5.cache.CacheManager;
 import wang.bannong.gk5.cache.CacheResult;
 import wang.bannong.gk5.test.common.Car;
+import wang.bannong.gk5.test.common.ShiroUser;
 import wang.bannong.gk5.test.mapper.ShiroUserMapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,8 @@ public class CommonCtrl {
 
     @Autowired
     private ShiroUserMapper masterShiroUserMapper;
+    @Autowired
+    private ShiroUserMapper slaveShiroUserMapper;
 
 
     @GetMapping(value = "/queryUser", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -68,6 +71,16 @@ public class CommonCtrl {
         log.info("personManager2 is not null ? {}", personManager2 != null);
         log.info("personManager3 is not null ? {}", personManager3 != null);
 
+        ShiroUser record = new ShiroUser();
+        record.setId(11);
+        record.setName("HG");
+        record.setPasswd("HG");
+        record.setRole("HG");
+        record.setPermission("HG");
+        masterShiroUserMapper.insert(record);
+
+        ShiroUser shiroUser = slaveShiroUserMapper.selectById(11);
+        log.info("Rs={}", shiroUser);
         return new JSONObject();
     }
 }

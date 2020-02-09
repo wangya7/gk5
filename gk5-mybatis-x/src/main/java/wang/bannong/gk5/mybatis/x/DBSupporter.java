@@ -13,10 +13,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DBSupporter {
 
-    private static String url                        = "jdbc:p6spy:mysql://%s:%d/%s?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=UTC";
-    private static String driver                     = "com.p6spy.engine.spy.P6SpyDriver";
-    private static String poolName                   = "Hikari-MyBatisX";
-    private static String SqlSessionTemplateBeanName = "%sSqlSessionTemplate";
+    private static String url      = "jdbc:p6spy:mysql://%s:%d/%s?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=UTC";
+    private static String driver   = "com.p6spy.engine.spy.P6SpyDriver";
+    private static String poolName = "Hikari-MyBatisX";
+
+    public static String sqlSessionTemplateBeanName      = "%sSqlSessionTemplate";
+    public static String mapperScannerConfigurerBeanName = "%sMapperScannerConfigurer";
 
 
     public static DataSource buildPoolProperties(DBProperties db) {
@@ -46,11 +48,11 @@ public class DBSupporter {
      * MapperScannerConfigurer将扫描basePackage所指定的包下的所有接口类（包括子类），如果它们在SQL映射
      * 文件中定义过，则将它们动态定义为一个Spring Bean，这样，我们在Service中就可以直接注入映射接口的bean
      */
-    public static MapperScannerConfigurer mapperScannerConfigurer(String key, String mappersPath) throws Exception {
+    public static MapperScannerConfigurer mapperScannerConfigurer(String key, String mappersPath) {
         MapperScannerConfigurer configurer = new MapperScannerConfigurer();
         log.info("DataSource-{} loading MappersPath:{}", key, mappersPath);
         configurer.setBasePackage(mappersPath);
-        configurer.setSqlSessionTemplateBeanName(String.format(SqlSessionTemplateBeanName, key));
+        configurer.setSqlSessionTemplateBeanName(String.format(sqlSessionTemplateBeanName, key));
         configurer.setNameGenerator(new MapperBeanNameGenerator(key));
         return configurer;
     }
