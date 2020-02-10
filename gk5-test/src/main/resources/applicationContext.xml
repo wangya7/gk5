@@ -21,13 +21,22 @@
         <constructor-arg value="master"/>
     </bean>
 
-    <bean id="slaveMapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+    <bean id="slave1MapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="wang.bannong.gk5.test.mapper" />
-        <property name="sqlSessionTemplateBeanName" value="slaveSqlSessionTemplate" />
-        <property name="nameGenerator" ref="slaveMapperBeanNameGenerator"/>
+        <property name="sqlSessionTemplateBeanName" value="slave1SqlSessionTemplate" />
+        <property name="nameGenerator" ref="slave1MapperBeanNameGenerator"/>
     </bean>
-    <bean id="slaveMapperBeanNameGenerator" class="wang.bannong.gk5.mybatis.x.MapperBeanNameGenerator">
-        <constructor-arg value="slave"/>
+    <bean id="slave1MapperBeanNameGenerator" class="wang.bannong.gk5.mybatis.x.MapperBeanNameGenerator">
+        <constructor-arg value="slave1"/>
+    </bean>
+
+    <bean id="slave2MapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="wang.bannong.gk5.test.mapper" />
+        <property name="sqlSessionTemplateBeanName" value="slave2SqlSessionTemplate" />
+        <property name="nameGenerator" ref="slave2MapperBeanNameGenerator"/>
+    </bean>
+    <bean id="slave2MapperBeanNameGenerator" class="wang.bannong.gk5.mybatis.x.MapperBeanNameGenerator">
+        <constructor-arg value="slave2"/>
     </bean>
 
 </beans>

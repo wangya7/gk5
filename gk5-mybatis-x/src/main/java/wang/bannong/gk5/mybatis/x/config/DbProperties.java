@@ -1,9 +1,9 @@
-package wang.bannong.gk5.mybatis.x;
+package wang.bannong.gk5.mybatis.x.config;
 
 import lombok.Data;
 
 @Data
-public class DBProperties {
+public class DbProperties {
     // 用于区分DataSource
     private String key;
     private String host;

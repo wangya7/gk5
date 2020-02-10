@@ -8,20 +8,21 @@ import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import javax.sql.DataSource;
 
 import lombok.extern.slf4j.Slf4j;
+import wang.bannong.gk5.mybatis.x.config.DbProperties;
 
 
 @Slf4j
-public class DBSupporter {
+public class DbSupporter {
 
     private static String url      = "jdbc:p6spy:mysql://%s:%d/%s?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=UTC";
     private static String driver   = "com.p6spy.engine.spy.P6SpyDriver";
-    private static String poolName = "Hikari-MyBatisX";
+    private static String poolName = "Hikari-MyBatisX-%s";
 
     public static String sqlSessionTemplateBeanName      = "%sSqlSessionTemplate";
     public static String mapperScannerConfigurerBeanName = "%sMapperScannerConfigurer";
 
 
-    public static DataSource buildPoolProperties(DBProperties db) {
+    public static DataSource buildPoolProperties(DbProperties db) {
         HikariConfig config = new HikariConfig();
         String dataSourceUrl = String.format(url, db.getHost(), db.getPort(), db.getDb());
         config.setJdbcUrl(dataSourceUrl);
@@ -33,7 +34,7 @@ public class DBSupporter {
         config.setMinimumIdle(db.getMinIdle());
         config.setMaximumPoolSize(db.getMaxIdle());
         config.setConnectionTimeout(db.getConnectionTimeout());
-        config.setPoolName(poolName);
+        config.setPoolName(String.format(poolName, db.getKey()));
 
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");

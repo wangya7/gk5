@@ -24,7 +24,9 @@ public class CommonCtrl {
     @Autowired
     private ShiroUserMapper masterShiroUserMapper;
     @Autowired
-    private ShiroUserMapper slaveShiroUserMapper;
+    private ShiroUserMapper slave1ShiroUserMapper;
+    @Autowired
+    private ShiroUserMapper slave2ShiroUserMapper;
 
 
     @GetMapping(value = "/queryUser", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -72,15 +74,16 @@ public class CommonCtrl {
         log.info("personManager3 is not null ? {}", personManager3 != null);
 
         ShiroUser record = new ShiroUser();
-        record.setId(11);
         record.setName("HG");
         record.setPasswd("HG");
         record.setRole("HG");
         record.setPermission("HG");
         masterShiroUserMapper.insert(record);
 
-        ShiroUser shiroUser = slaveShiroUserMapper.selectById(11);
-        log.info("Rs={}", shiroUser);
+        ShiroUser shiroUser1 = slave1ShiroUserMapper.selectById(1);
+        ShiroUser shiroUser2 = slave2ShiroUserMapper.selectById(2);
+        log.info("Rs={}", shiroUser1);
+        log.info("Rs={}", shiroUser2);
         return new JSONObject();
     }
 }

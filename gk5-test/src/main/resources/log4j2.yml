@@ -56,9 +56,3 @@ Configuration:
       level: debug
       AppenderRef:
       - ref: ROLLING_SQL_FILE
-    - name: com.baomidou.mybatisplus
-      additivity: false
-      level: error
-      AppenderRef:
-      - ref: CONSOLE
-      - ref: ROLLING_FILE
