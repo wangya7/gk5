@@ -1,4 +1,4 @@
-package wang.bannong.gk5.mybatis.x.config;
+package wang.bannong.gk5.mybatis.x.db;
 
 import lombok.Data;
 

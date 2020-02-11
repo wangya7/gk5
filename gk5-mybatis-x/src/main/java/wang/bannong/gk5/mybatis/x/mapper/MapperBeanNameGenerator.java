@@ -1,4 +1,4 @@
-package wang.bannong.gk5.mybatis.x;
+package wang.bannong.gk5.mybatis.x.mapper;
 
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;

@@ -1,6 +1,7 @@
 package wang.bannong.gk5.test.ctrl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 import lombok.extern.slf4j.Slf4j;
 import wang.bannong.gk5.cache.CacheManager;
@@ -13,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -64,25 +67,27 @@ public class CommonCtrl {
     private WillRegisterBeanBO personManager1;
     @Autowired
     private WillRegisterBeanBO personManager2;
-    @Autowired
-    private WillRegisterBeanBO personManager3;
 
     @GetMapping(value = "/rb", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public JSONObject getRb() {
         log.info("personManager1 is not null ? {}", personManager1 != null);
         log.info("personManager2 is not null ? {}", personManager2 != null);
-        log.info("personManager3 is not null ? {}", personManager3 != null);
 
         ShiroUser record = new ShiroUser();
+        record.setName("HG");
         record.setName("HG");
         record.setPasswd("HG");
         record.setRole("HG");
         record.setPermission("HG");
         masterShiroUserMapper.insert(record);
 
+        QueryWrapper<ShiroUser> queryWrapper = new QueryWrapper();
+        queryWrapper.eq("name", "HG");
+        List<ShiroUser> shiroUsers = masterShiroUserMapper.selectList(queryWrapper);
+        log.info("Rs={}", shiroUsers);
         ShiroUser shiroUser1 = slave1ShiroUserMapper.selectById(1);
-        ShiroUser shiroUser2 = slave2ShiroUserMapper.selectById(2);
         log.info("Rs={}", shiroUser1);
+        ShiroUser shiroUser2 = slave2ShiroUserMapper.selectById(2);
         log.info("Rs={}", shiroUser2);
         return new JSONObject();
     }

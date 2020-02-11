@@ -1,6 +1,5 @@
-package wang.bannong.gk5.mybatis.x;
+package wang.bannong.gk5.mybatis.x.db;
 
-import com.baomidou.mybatisplus.core.config.GlobalConfig;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.pagination.optimize.JsqlParserCountOptimize;
 import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
@@ -28,7 +27,6 @@ import javax.sql.DataSource;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
-import wang.bannong.gk5.mybatis.x.config.DbProperties;
 
 @Slf4j
 @Component
@@ -43,17 +41,6 @@ public class DbAroundBeanFactoryPostProcessor implements BeanFactoryPostProcesso
     @Getter
     private static List<DbProperties> slaves  = new ArrayList<>();
 
-    //    @Bean
-    //    public MapperScannerConfigurer masterMapperScannerConfigurer() {
-    //        return DbSupporter.mapperScannerConfigurer(DataSourcePrefix.master.name(), "wang.bannong.gk5.test.mapper");
-    //    }
-    //    @Bean
-    //    public MapperScannerConfigurer slaveMapperScannerConfigurer() {
-    //        return DbSupporter.mapperScannerConfigurer(DataSourcePrefix.slave.name(), "wang.bannong.gk5.test.mapper");
-    //    }
-
-    private static GlobalConfig globalConfig;
-
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
         DefaultListableBeanFactory beanFactory = (DefaultListableBeanFactory) configurableListableBeanFactory;
@@ -61,7 +48,7 @@ public class DbAroundBeanFactoryPostProcessor implements BeanFactoryPostProcesso
         YamlMapFactoryBean yamlMapFactoryBean = new YamlMapFactoryBean();
         yamlMapFactoryBean.setResources(new ClassPathResource("application.yml"));
         Map<String, Object> map = (Map<String, Object>) yamlMapFactoryBean.getObject().get("datasource");
-        // mappersPath = (String) map.get("mappersPath");
+        mappersPath = (String) map.get("mappersPath");
         primary = (String) map.get("primary");
         List<Map<String, Object>> items = (List<Map<String, Object>>) map.get("dbs");
         if (CollectionUtils.isEmpty(items)) {
@@ -87,8 +74,6 @@ public class DbAroundBeanFactoryPostProcessor implements BeanFactoryPostProcesso
             dbProperties.setMaxIdle((Integer) item.get("maxIdle"));
             dbProperties.setConnectionTimeout((Integer) item.get("connectionTimeout"));
         }
-
-        globalConfig = (GlobalConfig) beanFactory.getBean("globalConfig");
         log.info("init database connections......");
 
         if (CollectionUtils.isNotEmpty(masters)) {
@@ -123,7 +108,7 @@ public class DbAroundBeanFactoryPostProcessor implements BeanFactoryPostProcesso
 
         // 引用了MyBatis-Plus中的SqlSessionFactoryBean取代org.mybatis.spring.SqlSessionFactoryBean
         MybatisSqlSessionFactoryBean sqlSessionFactory = new MybatisSqlSessionFactoryBean();
-        sqlSessionFactory.setGlobalConfig(globalConfig);
+        sqlSessionFactory.setGlobalConfig(DbSupporter.globalConfig());
         sqlSessionFactory.setDataSource(dataSource);
         String sqlSessionFactoryBeanName = key + "SqlSessionFactory";
         beanFactory.registerSingleton(sqlSessionFactoryBeanName, sqlSessionFactory);
@@ -161,7 +146,7 @@ public class DbAroundBeanFactoryPostProcessor implements BeanFactoryPostProcesso
         beanFactory.registerSingleton(key + "DataSource", dataSource);
 
         MybatisSqlSessionFactoryBean sqlSessionFactory = new MybatisSqlSessionFactoryBean();
-        sqlSessionFactory.setGlobalConfig(globalConfig);
+        sqlSessionFactory.setGlobalConfig(DbSupporter.globalConfig());
         sqlSessionFactory.setDataSource(dataSource);
         String sqlSessionFactoryBeanName = key + "SqlSessionFactory";
         beanFactory.registerSingleton(sqlSessionFactoryBeanName, sqlSessionFactory);
@@ -179,5 +164,4 @@ public class DbAroundBeanFactoryPostProcessor implements BeanFactoryPostProcesso
         String SqlSessionTemplateBeanName = key + "SqlSessionTemplate";
         beanFactory.registerSingleton(SqlSessionTemplateBeanName, sqlSessionTemplate);
     }
-
 }

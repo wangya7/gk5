@@ -1,32 +1,29 @@
-package wang.bannong.gk5.mybatis.x;
+package wang.bannong.gk5.mybatis.x.db;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.core.config.GlobalConfig;
+import com.baomidou.mybatisplus.core.incrementer.DefaultIdentifierGenerator;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
+import org.springframework.context.annotation.Bean;
 
 import javax.sql.DataSource;
 
 import lombok.extern.slf4j.Slf4j;
-import wang.bannong.gk5.mybatis.x.config.DbProperties;
+import wang.bannong.gk5.mybatis.x.mapper.MapperBeanNameGenerator;
+import wang.bannong.gk5.mybatis.x.MybatisXConstant;
 
 
 @Slf4j
 public class DbSupporter {
 
-    private static String url      = "jdbc:p6spy:mysql://%s:%d/%s?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=UTC";
-    private static String driver   = "com.p6spy.engine.spy.P6SpyDriver";
-    private static String poolName = "Hikari-MyBatisX-%s";
-
-    public static String sqlSessionTemplateBeanName      = "%sSqlSessionTemplate";
-    public static String mapperScannerConfigurerBeanName = "%sMapperScannerConfigurer";
-
-
     public static DataSource buildPoolProperties(DbProperties db) {
         HikariConfig config = new HikariConfig();
-        String dataSourceUrl = String.format(url, db.getHost(), db.getPort(), db.getDb());
+        String dataSourceUrl = String.format(MybatisXConstant.url, db.getHost(), db.getPort(), db.getDb());
         config.setJdbcUrl(dataSourceUrl);
-        config.setDriverClassName(driver);
+        config.setDriverClassName(MybatisXConstant.driver);
         config.setUsername(db.getUsername());
         config.setPassword(db.getPassword());
         config.setAutoCommit(true);
@@ -34,12 +31,23 @@ public class DbSupporter {
         config.setMinimumIdle(db.getMinIdle());
         config.setMaximumPoolSize(db.getMaxIdle());
         config.setConnectionTimeout(db.getConnectionTimeout());
-        config.setPoolName(String.format(poolName, db.getKey()));
+        config.setPoolName(String.format(MybatisXConstant.poolName, db.getKey()));
 
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
         return new HikariDataSource(config);
+    }
+
+
+    public static GlobalConfig globalConfig() {
+        GlobalConfig globalConfig = new GlobalConfig();
+        globalConfig.setBanner(false);
+        globalConfig.setIdentifierGenerator(new DefaultIdentifierGenerator());
+        GlobalConfig.DbConfig dbConfig = new GlobalConfig.DbConfig();
+        dbConfig.setIdType(IdType.AUTO);
+        globalConfig.setDbConfig(dbConfig);
+        return globalConfig;
     }
 
     /**
@@ -53,7 +61,7 @@ public class DbSupporter {
         MapperScannerConfigurer configurer = new MapperScannerConfigurer();
         log.info("DataSource-{} loading MappersPath:{}", key, mappersPath);
         configurer.setBasePackage(mappersPath);
-        configurer.setSqlSessionTemplateBeanName(String.format(sqlSessionTemplateBeanName, key));
+        configurer.setSqlSessionTemplateBeanName(String.format(MybatisXConstant.sqlSessionTemplateBeanName, key));
         configurer.setNameGenerator(new MapperBeanNameGenerator(key));
         return configurer;
     }
