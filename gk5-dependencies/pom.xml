@@ -99,7 +99,7 @@
             </dependency>
             <dependency>
                 <groupId>wang.bannong</groupId>
-                <artifactId>gk5-mybatis-plus-x</artifactId>
+                <artifactId>gk5-mybatis-x</artifactId>
                 <version>${gk5.version}</version>
             </dependency>
             <dependency>
@@ -125,6 +125,11 @@
             <dependency>
                 <groupId>wang.bannong</groupId>
                 <artifactId>gk5-util</artifactId>
+                <version>${gk5.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>wang.bannong</groupId>
+                <artifactId>gk5-velocity</artifactId>
                 <version>${gk5.version}</version>
             </dependency>
 

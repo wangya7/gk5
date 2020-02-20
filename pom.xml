@@ -30,6 +30,7 @@
         <module>gk5-test</module>
         <module>gk5-ttm</module>
         <module>gk5-util</module>
+        <module>gk5-velocity</module>
         <module>gk5-wechat</module>
     </modules>
 </project>
