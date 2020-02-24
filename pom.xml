@@ -23,6 +23,7 @@
         <module>gk5-mini</module>
         <module>gk5-mybatis-x</module>
         <module>gk5-normdb</module>
+        <module>gk5-ntm</module>
         <module>gk5-offer</module>
         <module>gk5-parent</module>
         <module>gk5-rmdb</module>

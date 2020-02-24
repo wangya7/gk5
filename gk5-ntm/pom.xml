@@ -1,0 +1,41 @@
+<project
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>wang.bannong</groupId>
+        <artifactId>gk5-parent</artifactId>
+        <version>1.0.0-beta</version>
+    </parent>
+
+    <groupId>wang.bannong</groupId>
+    <artifactId>gk5-ntm</artifactId>
+    <version>1.0.0-beta</version>
+    <name>gk5-ntm</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>wang.bannong</groupId>
+            <artifactId>gk5-util</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.10.0</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
+
+</project>
