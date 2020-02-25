@@ -54,6 +54,12 @@
             <version>1.0.0-beta</version>
         </dependency>
 
+        <dependency>
+            <groupId>wang.bannong</groupId>
+            <artifactId>gk5-velocity</artifactId>
+            <version>1.0.0-beta</version>
+        </dependency>
+
     </dependencies>
 
 </project>

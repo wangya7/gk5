@@ -5,6 +5,15 @@ logging:
 spring:
   application:
     name: gk5-test
+  velocity:
+    charset: UTF-8
+    properties:
+      input:
+        encoding: UTF-8
+      output:
+        encoding: UTF-8
+    resourceLoaderPath: classpath:/web/views/
+    suffix: .vm
 
 cache:
   redis:
