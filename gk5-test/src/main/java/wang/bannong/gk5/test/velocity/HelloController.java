@@ -11,12 +11,12 @@ import java.util.Map;
 @Controller
 public class HelloController {
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    @RequestMapping(value = "/bn", method = RequestMethod.GET)
     public ModelAndView index() {
         Map<String, String> map = new HashMap<>();
         map.put("name", "bn");
         map.put("age", "29");
-        return new ModelAndView("index", map);
+        return new ModelAndView("bn", map);
     }
 
 }

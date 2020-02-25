@@ -13,7 +13,7 @@ spring:
       output:
         encoding: UTF-8
     resourceLoaderPath: classpath:/web/views/
-    suffix: .vm
+    suffix: .html
 
 cache:
   redis:
