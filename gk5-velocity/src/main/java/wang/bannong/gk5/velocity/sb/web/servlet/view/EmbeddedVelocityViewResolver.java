@@ -20,15 +20,6 @@ package wang.bannong.gk5.velocity.sb.web.servlet.view;
 import wang.bannong.gk5.velocity.sf.web.VelocityView;
 import wang.bannong.gk5.velocity.sf.web.VelocityViewResolver;
 
-/**
- * Extended version of {@link VelocityViewResolver} that uses
- * {@link EmbeddedVelocityToolboxView} when the {@link #setToolboxConfigLocation(String)
- * toolboxConfigLocation} is set.
- *
- * @author Phillip Webb
- * @since 1.2.5
- * 4.3
- */
 public class EmbeddedVelocityViewResolver extends VelocityViewResolver {
 
     private String toolboxConfigLocation;

@@ -21,7 +21,6 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.exception.VelocityException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnNotWebApplication;
@@ -47,17 +46,8 @@ import wang.bannong.gk5.velocity.sf.ui.VelocityEngineFactoryBean;
 import wang.bannong.gk5.velocity.sf.web.VelocityConfig;
 import wang.bannong.gk5.velocity.sf.web.VelocityConfigurer;
 
-/**
- * {@link EnableAutoConfiguration Auto-configuration} for Velocity.
- *
- * @author Andy Wilkinson
- * @author Brian Clozel
- * @since 1.1.0
- * 4.3
- */
 @Configuration
 @ConditionalOnClass({ VelocityEngine.class, VelocityEngineFactory.class })
-// @AutoConfigureAfter(WebMvcAutoConfiguration.class)
 @EnableConfigurationProperties(VelocityProperties.class)
 public class VelocityAutoConfiguration {
 

@@ -37,15 +37,6 @@ import org.springframework.core.io.ClassPathResource;
 
 import wang.bannong.gk5.velocity.sf.web.VelocityToolboxView;
 
-/**
- * Extended version of {@link VelocityToolboxView} that can load toolbox locations from
- * the classpath as well as the servlet context. This is useful when running in an
- * embedded web server.
- *
- * @author Phillip Webb
- * @author Andy Wilkinson
- * @since 1.2.5
- */
 @SuppressWarnings("deprecation")
 public class EmbeddedVelocityToolboxView extends VelocityToolboxView {
 
@@ -77,10 +68,6 @@ public class EmbeddedVelocityToolboxView extends VelocityToolboxView {
         return (ServletContext) factory.getProxy(getClass().getClassLoader());
     }
 
-    /**
-     * {@link MethodInterceptor} to allow the calls to getResourceAsStream() to resolve
-     * the toolboxFile from the classpath.
-     */
     private static class GetResourceMethodInterceptor implements MethodInterceptor {
 
         private final String toolboxFile;

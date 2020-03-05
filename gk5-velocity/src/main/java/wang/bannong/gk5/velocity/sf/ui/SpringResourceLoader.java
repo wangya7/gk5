@@ -29,25 +29,6 @@ import org.apache.velocity.runtime.resource.loader.ResourceLoader;
 
 import org.springframework.util.StringUtils;
 
-/**
- * Velocity ResourceLoader adapter that loads via a Spring ResourceLoader.
- * Used by VelocityEngineFactory for any resource loader path that cannot
- * be resolved to a {@code java.io.File}.
- *
- * <p>Note that this loader does not allow for modification detection:
- * Use Velocity's default FileResourceLoader for {@code java.io.File}
- * resources.
- *
- * <p>Expects "spring.resource.loader" and "spring.resource.loader.path"
- * application attributes in the Velocity runtime: the former of type
- * {@code org.springframework.core.io.ResourceLoader}, the latter a String.
- *
- * @author Juergen Hoeller
- * @since 14.03.2004
- * @see VelocityEngineFactory#setResourceLoaderPath
- * @see org.springframework.core.io.ResourceLoader
- * @see org.apache.velocity.runtime.resource.loader.FileResourceLoader
- */
 public class SpringResourceLoader extends ResourceLoader {
 
 	public static final String NAME = "spring";
