@@ -11,7 +11,6 @@ public final class ParamsCheckUtils {
     /**
      * 正则表达式：验证手机号
      */
-    // public static final String REGEX_MOBILE = "^((17[0-9])|(14[0-9])|(13[0-9])|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
     public static final String REGEX_MOBILE = "^(1)\\d{10}$";
 
     /**
@@ -37,7 +36,7 @@ public final class ParamsCheckUtils {
     /**
      * 校验手机号
      *
-     * @param mobile
+     * @param mobile 校验字符串
      * @return 校验通过返回true，否则返回false
      */
     public static boolean isMobile(String mobile) {
@@ -47,7 +46,7 @@ public final class ParamsCheckUtils {
     /**
      * 校验邮箱
      *
-     * @param email
+     * @param email 校验字符串
      * @return 校验通过返回true，否则返回false
      */
     public static boolean isEmail(String email) {
@@ -57,7 +56,7 @@ public final class ParamsCheckUtils {
     /**
      * 校验汉字
      *
-     * @param chinese
+     * @param chinese 校验字符串
      * @return 校验通过返回true，否则返回false
      */
     public static boolean isChinese(String chinese) {
@@ -67,7 +66,7 @@ public final class ParamsCheckUtils {
     /**
      * 校验密码
      *
-     * @param passwd
+     * @param passwd 校验字符串
      * @return 校验通过返回true，否则返回false
      */
     public static boolean isPassword(String passwd) {
@@ -77,7 +76,7 @@ public final class ParamsCheckUtils {
     /**
      * 校验身份证
      *
-     * @param idCard
+     * @param idCard 校验字符串
      * @return 校验通过返回true，否则返回false
      */
     public static boolean isIDCard(String idCard) {
@@ -88,7 +87,8 @@ public final class ParamsCheckUtils {
     /**
      * 允许中英文数字
      *
-     * @return
+     * @param sign 校验字符串
+     * @return 校验通过返回true，否则返回false
      */
     public static boolean checkSign(String sign) {
         String str = "[\\w\\u4e00-\\u9fa5]+";

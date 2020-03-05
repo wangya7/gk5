@@ -10,24 +10,18 @@ import java.util.Date;
 import java.util.List;
 
 public class DateUtils {
-    public static final String DAY_START = " 00:00:00";
-    public static final String DAY_END = " 23:59:59";
-    public static final String MONTH_START = "-01 00:00:00";
-    public static final SimpleDateFormat YMDHMS = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    public static final SimpleDateFormat YMD = new SimpleDateFormat("yyyy-MM-dd");
-    public static final SimpleDateFormat YM = new SimpleDateFormat("yyyy-MM");
-    public static final SimpleDateFormat Y = new SimpleDateFormat("yyyy");
-    public static final SimpleDateFormat M = new SimpleDateFormat("MM");
-    public static final SimpleDateFormat YYYYMMDD = new SimpleDateFormat("yyyyMMdd");
-    
+    public static final String           DAY_START   = " 00:00:00";
+    public static final String           DAY_END     = " 23:59:59";
+    public static final String           MONTH_START = "-01 00:00:00";
+    public static final SimpleDateFormat YMDHMS      = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public static final SimpleDateFormat YMD         = new SimpleDateFormat("yyyy-MM-dd");
+    public static final SimpleDateFormat YM          = new SimpleDateFormat("yyyy-MM");
+    public static final SimpleDateFormat Y           = new SimpleDateFormat("yyyy");
+    public static final SimpleDateFormat M           = new SimpleDateFormat("MM");
+    public static final SimpleDateFormat YYYYMMDD    = new SimpleDateFormat("yyyyMMdd");
+
     public static final SimpleDateFormat YMD_APP = new SimpleDateFormat("yyyy/MM/dd");
 
-    /**
-     * 获取季度第一天
-     * 
-     * @author tuanzuo
-     * @date 2019年2月15日
-     */
     public static String getStartQuarterTime(Calendar cal) throws NullPointerException {
         if (cal == null) {
             throw new NullPointerException("the param cal is null");
@@ -59,12 +53,6 @@ public class DateUtils {
         return result;
     }
 
-    /**
-     * 获取季度最后一天
-     * 
-     * @author tuanzuo
-     * @date 2019年2月15日
-     */
     public static String getEndQuarterTime(Calendar cal) throws NullPointerException {
         if (cal == null) {
             throw new NullPointerException("the param cal is null");
@@ -96,68 +84,33 @@ public class DateUtils {
         return result;
     }
 
-    /**
-     * 获得月开始时间
-     * 
-     * @author tuanzuo
-     * @date 2019年2月22日
-     */
     public static String getMonthStartTime(Calendar cal, int month) {
         return getMonthStartDate(cal, month) + DAY_START;
     }
 
-    /**
-     * 获得月开始时间
-     * 
-     * @author tuanzuo
-     * @date 2019年2月22日
-     */
     public static String getMonthStartDate(Calendar cal, int month) {
         cal.add(Calendar.MONTH, month);
         cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
         return YMD.format(cal.getTime());
     }
 
-    /**
-     * 添加月
-     * 
-     * @author tuanzuo
-     * @date 2019年3月5日
-     */
-
     public static String addMonth(Calendar cal, int month) {
         cal.add(Calendar.MONTH, month);
         return YMD.format(cal.getTime());
     }
 
-    /**
-     * 获得月结束时间
-     * 
-     * @author tuanzuo
-     * @date 2019年2月22日
-     */
     public static String getMonthEndDate(Calendar cal, int month) {
         cal.add(Calendar.MONTH, month);
         cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
         return YMD.format(cal.getTime());
     }
 
-    /**
-     * 获得月结束时间
-     * 
-     * @author tuanzuo
-     * @date 2019年2月22日
-     */
+
     public static String getMonthEndTime(Calendar cal, int month) {
         return getMonthEndDate(cal, month) + DAY_END;
     }
 
-    /**
-     * 获取年度开始时间
-     * 
-     * @author tuanzuo
-     * @date 2019年3月20日
-     */
+
     public static String getYearStartTime(Date date) {
         return Y.format(date) + "-01-01" + DAY_START;
     }
@@ -177,12 +130,7 @@ public class DateUtils {
         return num + "";
     }
 
-    /**
-     * 多少天之前到现在的时间集合
-     * 
-     * @author tuanzuo
-     * @date 2019年3月20日
-     */
+
     public static List<Date> getBeforDaysStartTime(int beforDays, Calendar cal) {
         List<String> dateStrs = getBeforDaysStartTimeStr(beforDays, cal);
         if (CollectionUtils.isEmpty(dateStrs)) {
@@ -199,12 +147,7 @@ public class DateUtils {
         return dates;
     }
 
-    /**
-     * 多少天之前到现在的时间集合
-     * 
-     * @author tuanzuo
-     * @date 2019年3月20日
-     */
+
     public static List<String> getBeforDaysStartTimeStr(int beforDays, Calendar cal) {
         if (beforDays < 0) {
             return null;
@@ -217,12 +160,7 @@ public class DateUtils {
         return dates;
     }
 
-    /**
-     * 多少天之前到现在的时间集合
-     * 
-     * @author tuanzuo
-     * @date 2019年3月20日
-     */
+
     public static List<Date> getBeforDaysEndTime(int beforDays, Calendar cal) {
         List<String> dateStrs = getBeforDaysEndTimeStr(beforDays, cal);
         if (CollectionUtils.isEmpty(dateStrs)) {
@@ -239,12 +177,7 @@ public class DateUtils {
         return dates;
     }
 
-    /**
-     * 多少天之前到现在的时间集合
-     * 
-     * @author tuanzuo
-     * @date 2019年3月20日
-     */
+
     public static List<String> getBeforDaysEndTimeStr(int beforDays, Calendar cal) {
         if (beforDays < 0) {
             return null;
@@ -257,12 +190,7 @@ public class DateUtils {
         return dates;
     }
 
-    /**
-     * 多少天之前到现在的时间集合
-     * 
-     * @author tuanzuo
-     * @date 2019年3月20日
-     */
+
     public static List<String> getBeforDayDate(int beforDays, Calendar cal) {
         if (beforDays < 0) {
             return null;
@@ -275,12 +203,7 @@ public class DateUtils {
         return dates;
     }
 
-    /**
-     * 获得往前推几个月的时间
-     * 
-     * @author tuanzuo
-     * @date 2019年3月21日
-     */
+
     public static List<String> getBeforMonthDateStr(Calendar cal, int months) {
         List<String> monthLists = new ArrayList<>();
         while (months > 0) {
@@ -291,12 +214,7 @@ public class DateUtils {
         return monthLists;
     }
 
-    /**
-     * 之前多少个月开始时间
-     * 
-     * @author tuanzuo
-     * @date 2019年3月21日
-     */
+
     public static List<String> getBeforMonthsStartTimeStr(Calendar cal, int months) {
         List<String> dates = new ArrayList<>();
         for (int i = 0; i < months; i++) {
@@ -306,12 +224,7 @@ public class DateUtils {
         return dates;
     }
 
-    /**
-     * 之前多少个月开始时间
-     * 
-     * @author tuanzuo
-     * @date 2019年3月21日
-     */
+
     public static List<Date> getBeforMonthsStartTime(Calendar cal, int months) {
         List<String> dates = getBeforMonthsStartTimeStr(cal, months);
         List<Date> resultDates = new ArrayList<>(dates.size());
@@ -325,12 +238,7 @@ public class DateUtils {
         return resultDates;
     }
 
-    /**
-     * 之前多少个月结束时间
-     * 
-     * @author tuanzuo
-     * @date 2019年3月21日
-     */
+
     public static List<String> getBeforMonthsEndTimeStr(Calendar cal, int months) {
         List<String> dates = new ArrayList<>();
         for (int i = 0; i < months; i++) {
@@ -341,12 +249,7 @@ public class DateUtils {
         return dates;
     }
 
-    /**
-     * 之前多少个月结束时间
-     * 
-     * @author tuanzuo
-     * @date 2019年3月21日
-     */
+
     public static List<Date> getBeforMonthsEndTime(Calendar cal, int months) {
         List<String> dates = getBeforMonthsEndTimeStr(cal, months);
         List<Date> resultDates = new ArrayList<>(dates.size());
@@ -360,12 +263,7 @@ public class DateUtils {
         return resultDates;
     }
 
-    /**
-     * 获得天开始时间
-     * 
-     * @author tuanzuo
-     * @date 2019年3月21日
-     */
+
     public static String getDayStartTimeStr(Calendar cal, int days) {
         cal.add(Calendar.DAY_OF_MONTH, days);
         return YMD.format(cal.getTime()) + DAY_START;
@@ -375,12 +273,6 @@ public class DateUtils {
         return YMDHMS.parse(getDayStartTimeStr(cal, days));
     }
 
-    /**
-     * 获得天结束时间
-     * 
-     * @author tuanzuo
-     * @date 2019年3月21日
-     */
     public static String getDayEndTimeStr(Calendar cal, int days) {
         cal.add(Calendar.DAY_OF_MONTH, days);
         return YMD.format(cal.getTime()) + DAY_END;
@@ -395,7 +287,7 @@ public class DateUtils {
         System.out.println(getDayStartTimeStr(Calendar.getInstance(), -30));
     }
 
-    public static Date beforeTime(Date time, int months,int beforeType) {
+    public static Date beforeTime(Date time, int months, int beforeType) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(time);
 

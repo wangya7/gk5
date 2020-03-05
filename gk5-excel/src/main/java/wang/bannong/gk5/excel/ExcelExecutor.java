@@ -22,8 +22,7 @@ public interface ExcelExecutor {
      * 返回字节流更容易扩展，文档基本上需要上传到云端
      *
      * @param data 数据
-     * @return
-     * @throws IOException
+     * @return 二进制字节
      */
     default byte[] exportExcel(List<Map<String, Object>> data) {
         byte[] bytes = null;

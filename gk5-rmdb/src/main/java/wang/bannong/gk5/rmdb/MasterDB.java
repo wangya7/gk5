@@ -23,7 +23,6 @@ import wang.bannong.gk5.rmdb.config.DataSourceDB;
  * com.zaxxer.hikari.HikariDataSource
  *
  * @author wang.bannong(inc11003307@gmail.com)
- * @create 2017-06-26 21:19
  */
 @Configuration
 @EnableConfigurationProperties(DataSourceDB.class)

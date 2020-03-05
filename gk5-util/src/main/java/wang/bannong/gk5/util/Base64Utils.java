@@ -17,11 +17,13 @@ public class Base64Utils {
     }
 
     /**
-     * 先将内容编码成Base64结果; 将结果中的加号”+”替换成中划线“-“; 将结果中的斜杠”/”替换成下划线”_”;
+     * 先将内容编码成Base64结果;
+     * 将结果中的加号”+”替换成中划线“-“;
+     * 将结果中的斜杠”/”替换成下划线”_”;
      * 将结果中尾部的“=”号全部保留;
      *
-     * @param str
-     * @return
+     * @param str 编码字符串
+     * @return 编码后的字符串
      */
     public static String safeBase64(String str) {
         String encodeStr = "";

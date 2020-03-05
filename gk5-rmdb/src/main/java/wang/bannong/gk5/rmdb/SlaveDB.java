@@ -22,7 +22,6 @@ import javax.sql.DataSource;
  * SlaveDB
  *
  * @author wang.bannong(inc11003307@gmail.com)
- * @create 2017-06-26 21:23
  */
 @Configuration
 @EnableConfigurationProperties(DataSourceDB.class)

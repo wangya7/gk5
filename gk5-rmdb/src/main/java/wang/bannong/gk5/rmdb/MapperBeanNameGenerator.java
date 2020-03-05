@@ -10,14 +10,13 @@ import java.util.Objects;
 /**
  * Mybatis Mapper对象名称生成器
  * @author wang.bannong(inc11003307@gmail.com)
- * @create 2017-06-22 15:19
  */
 public class MapperBeanNameGenerator implements BeanNameGenerator {
 
     private String prefix;
 
     /**
-     * @param prefix
+     * @param prefix 前缀
      */
     public MapperBeanNameGenerator(String prefix) {
         Objects.requireNonNull(prefix, "prefix cannot be null");

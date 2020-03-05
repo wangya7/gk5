@@ -192,6 +192,9 @@ public class DynamicDto implements Serializable {
 
     /**
      * dto的成员变量类型有限
+     *
+     * @param clazz class
+     * @return T model
      */
     public <T> T get(Class<T> clazz) {
         // 即使params为空也需要创建一个对象

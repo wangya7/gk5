@@ -23,7 +23,7 @@ public class VerifyCodeUtils {
 
     //使用到Algerian字体，系统里没有的话需要安装字体，字体只显示大写，去掉了1,0,i,o几个容易混淆的字符
     public static final String VERIFY_CODES = "23456789ABCDEFGHJKLMNPQRSTUVWXYZ";
-    private static Random random = new Random();
+    private static      Random random       = new Random();
 
 
     /**
@@ -65,6 +65,12 @@ public class VerifyCodeUtils {
 
     /**
      * 输出随机验证码图片流,并返回验证码值
+     * @param w  width
+     * @param h  heigh
+     * @param os 输出流
+     * @param verifySize size
+     * @return
+     * @throws IOException
      */
     public static String outputVerifyImage(int w, int h, OutputStream os, int verifySize) throws IOException {
         String verifyCode = generateVerifyCode(verifySize);
@@ -74,6 +80,12 @@ public class VerifyCodeUtils {
 
     /**
      * 生成指定验证码图像文件
+     *
+     * @param w   width
+     * @param h   heigh
+     * @param outputFile  输出文件
+     * @param code        code
+     * @throws IOException
      */
     public static void outputImage(int w, int h, File outputFile, String code) throws IOException {
         if (outputFile == null) {

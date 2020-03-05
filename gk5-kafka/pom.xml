@@ -1,36 +1,37 @@
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-         xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelVersion>4.0.0</modelVersion>
+<project
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>wang.bannong</groupId>
-        <artifactId>gk5-parent</artifactId>
-        <version>1.0.0-beta</version>
-    </parent>
-
+  <parent>
     <groupId>wang.bannong</groupId>
-    <artifactId>gk5-kafka</artifactId>
-    <version>1.0.0-beta</version>
-    <name>gk5-kafka</name>
-    <url>http://maven.apache.org</url>
+    <artifactId>gk5-parent</artifactId>
+    <version>1.1.1-beta</version>
+  </parent>
 
-    <properties>
-        <kafka-clients.version>2.3.0</kafka-clients.version>
-    </properties>
+  <groupId>wang.bannong</groupId>
+  <artifactId>gk5-kafka</artifactId>
+  <version>1.1.1-beta</version>
+  <name>gk5-kafka</name>
+  <url>http://maven.apache.org</url>
 
-    <dependencies>
-        <dependency>
-            <groupId>wang.bannong</groupId>
-            <artifactId>gk5-starter</artifactId>
-            <version>1.0.0-beta</version>
-        </dependency>
+  <properties>
+    <kafka-clients.version>2.3.0</kafka-clients.version>
+  </properties>
 
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>kafka-clients</artifactId>
-            <version>${kafka-clients.version}</version>
-        </dependency>
-    </dependencies>
+  <dependencies>
+    <dependency>
+      <groupId>wang.bannong</groupId>
+      <artifactId>gk5-starter</artifactId>
+      <version>1.1.1-beta</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka-clients</artifactId>
+      <version>${kafka-clients.version}</version>
+    </dependency>
+  </dependencies>
 
 </project>

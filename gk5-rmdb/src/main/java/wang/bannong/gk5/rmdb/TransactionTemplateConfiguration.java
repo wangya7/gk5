@@ -7,7 +7,6 @@ import org.springframework.transaction.support.TransactionTemplate;
 
 /**
  * @author wang.bannong(inc11003307@gmail.com)
- * @create 2017-06-22 15:23
  */
 @Configuration
 public class TransactionTemplateConfiguration {

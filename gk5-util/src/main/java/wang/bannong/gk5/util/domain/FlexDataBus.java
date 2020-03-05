@@ -1,4 +1,4 @@
-package wang.bannong.gk5.util;
+package wang.bannong.gk5.util.domain;
 
 import java.io.Serializable;
 import java.util.*;
@@ -26,7 +26,7 @@ public class FlexDataBus implements Serializable {
     public FlexDataBus() {
     }
 
-    public static FlexDataBus succ() {
+    private static FlexDataBus succ() {
         FlexDataBus bus = new FlexDataBus();
         bus.bizMap = null;
         bus.isSuccess = true;

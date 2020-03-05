@@ -11,7 +11,6 @@ import wang.bannong.gk5.rmdb.config.DataSourceDB;
 
 /**
  * @author wang.bannong(inc11003307@gmail.com)
- * @create 2017-06-22 15:21
  */
 @Configuration
 public class AutoMapperScannerConfigurator implements EnvironmentAware {
@@ -32,8 +31,8 @@ public class AutoMapperScannerConfigurator implements EnvironmentAware {
      * MapperScannerConfigurer将扫描basePackage所指定的包下的所有接口类（包括子类），如果它们在SQL映射
      * 文件中定义过，则将它们动态定义为一个Spring Bean，这样，我们在Service中就可以直接注入映射接口的bean
      *
-     * @return
-     * @throws Exception
+     * @return MapperScannerConfigurer
+     * @throws Exception 异常
      */
     @Bean
     public MapperScannerConfigurer masterMapperScannerConfigurer() throws Exception {

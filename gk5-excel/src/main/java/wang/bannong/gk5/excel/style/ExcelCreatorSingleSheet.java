@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 普通的报表使用  --->   ExcelStyle.single_sheet
+ * 普通的报表使用  ExcelStyle.single_sheet
  *
  * Created by wang.bannong on 2018/6/21 下午3:30
  */

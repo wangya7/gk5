@@ -7,7 +7,6 @@ import lombok.Data;
 
 /**
  * @author wang.bannong(inc11003307@gmail.com)
- * @create 2017-06-22 13:25
  */
 @Data
 @Component

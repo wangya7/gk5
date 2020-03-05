@@ -4,12 +4,6 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * " 1-GET 2-POST 3-PUT 4-PATCH 5-DELETE
- * 
- * @author tuanzuo
- * @date 2019年7月10日
- */
 public enum MethodEnum {
 
     GET((byte) 1, "GET"), 

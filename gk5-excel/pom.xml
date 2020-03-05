@@ -2,49 +2,49 @@
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
         xmlns="http://maven.apache.org/POM/4.0.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>wang.bannong</groupId>
-        <artifactId>gk5-parent</artifactId>
-        <version>1.0.0-beta</version>
-    </parent>
-
+  <parent>
     <groupId>wang.bannong</groupId>
-    <artifactId>gk5-excel</artifactId>
-    <version>1.0.0-beta</version>
-    <name>gk5-excel</name>
-    <url>http://maven.apache.org</url>
+    <artifactId>gk5-parent</artifactId>
+    <version>1.1.1-beta</version>
+  </parent>
 
-    <properties>
-        <poi.version>4.1.0</poi.version>
-    </properties>
+  <groupId>wang.bannong</groupId>
+  <artifactId>gk5-excel</artifactId>
+  <version>1.1.1-beta</version>
+  <name>gk5-excel</name>
+  <url>http://maven.apache.org</url>
 
-    <dependencies>
-        <dependency>
-            <groupId>wang.bannong</groupId>
-            <artifactId>gk5-log</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi</artifactId>
-            <version>${poi.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>${poi.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml-schemas</artifactId>
-            <version>${poi.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-scratchpad</artifactId>
-            <version>${poi.version}</version>
-        </dependency>
-    </dependencies>
+  <properties>
+    <poi.version>4.1.0</poi.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>wang.bannong</groupId>
+      <artifactId>gk5-log</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>${poi.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>${poi.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml-schemas</artifactId>
+      <version>${poi.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-scratchpad</artifactId>
+      <version>${poi.version}</version>
+    </dependency>
+  </dependencies>
 
 </project>

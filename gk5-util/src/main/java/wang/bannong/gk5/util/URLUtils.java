@@ -23,13 +23,14 @@ import java.util.List;
 public class URLUtils {
     private final static Logger log = LoggerFactory.getLogger(URLUtils.class);
 
-    public final static String HTTPS = "https";
-    public final static String HTTP = "http";
+    public final static String HTTPS      = "https";
+    public final static String HTTP       = "http";
     public final static String URL_PREFIX = "://";
 
     /**
      * 去除url路径 http://admin-internal.s-ant.cn/spa/messageForm?id=10
      *
+     * @param url url
      * @return http://admin-internal.s-ant.cn
      */
     public static String getUrl(String url) {
@@ -82,7 +83,8 @@ public class URLUtils {
     public static InputStream getInputStreamFromUrl(String url) {
         InputStream is = null;
         try {
-            if (StringUtils.isBlank(url)) return null;
+            if (StringUtils.isBlank(url))
+                return null;
             URL urlGet = new URL(url);
             HttpURLConnection http = (HttpURLConnection) urlGet.openConnection();
             http.setRequestMethod("GET"); // 必须是get方式请求
@@ -102,6 +104,8 @@ public class URLUtils {
 
     /**
      * 按行读取文本文件内容，使用时注意文件大小
+     *
+     * @param url url
      */
     public static List<String> getLinesFromUrl(String url) {
         InputStream is = getInputStreamFromUrl(url);

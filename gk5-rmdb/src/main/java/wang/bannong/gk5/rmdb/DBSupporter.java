@@ -9,7 +9,6 @@ import wang.bannong.gk5.rmdb.config.DataSourceDB;
 
 /**
  * @author wang.bannong(inc11003307@gmail.com)
- * @create 2017-06-22 14:32
  */
 public class DBSupporter {
     private static String url      = "jdbc:mysql://%s:%d/%s?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=UTC";
