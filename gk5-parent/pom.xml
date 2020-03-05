@@ -13,8 +13,8 @@
   <version>1.1.1-beta</version>
   <packaging>pom</packaging>
   <name>gk5-parent</name>
+  <url>https://bannong.wang</url>
   <description>gk5-parent</description>
-
 
   <licenses>
     <license>

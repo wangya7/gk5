@@ -14,7 +14,8 @@
   <artifactId>gk5-util</artifactId>
   <version>1.1.1-beta</version>
   <name>gk5-util</name>
-  <url>http://maven.apache.org</url>
+  <url>https://bannong.wang</url>
+  <description>gk5-util</description>
 
   <properties>
     <uk.com.robust-it.version>1.9.0</uk.com.robust-it.version>
