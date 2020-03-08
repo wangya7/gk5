@@ -16,10 +16,11 @@ public enum ApiStatusEnum {
     ;
 
     private byte   code;
-    private String name;
-    ApiStatusEnum(byte code, String name) {
+    private String value;
+
+    ApiStatusEnum(byte code, String value) {
         this.code = code;
-        this.name = name;
+        this.value = value;
     }
 
     private static Map<Byte, ApiStatusEnum> map = new HashMap<>();

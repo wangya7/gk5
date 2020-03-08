@@ -1,5 +1,7 @@
 package wang.bannong.gk5.ntm.common.model;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+
 import java.io.Serializable;
 import java.util.Collections;
 
@@ -14,13 +16,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PaginationResult<T> implements Serializable {
-    private static final long serialVersionUID = -5926063110399372045L;
-    private int    pageNum;
-    private int    pageSize;
-    private long   total;
-    private int    pages;
-    private T      list;
-    private Object extend;
+    private static final long   serialVersionUID = -5926063110399372045L;
+    private              int    pageNum;
+    private              int    pageSize;
+    private              long   total;
+    private              int    pages;
+    private              T      list;
+    private              Object extend;
 
     public static PaginationResult empty(int pageNum, int pageSize) {
         return of(pageNum, pageSize, 0, 0, Collections.emptyList(), null);
@@ -41,4 +43,7 @@ public class PaginationResult<T> implements Serializable {
         return result;
     }
 
+    public static <T> PaginationResult of(IPage page, T list) {
+        return of((int) page.getCurrent(), (int) page.getSize(), (int) page.getPages(), page.getTotal(), list);
+    }
 }

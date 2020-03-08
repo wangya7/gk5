@@ -7,14 +7,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import wang.bannong.gk5.ntm.common.domain.Api;
+import wang.bannong.gk5.ntm.common.domain.NtmApi;
 
 public class NtmInnerRequest {
 
     private NtmRequest          request;
     private AuthToken           authToken;
     private long                entityId = 0;
-    private Api                 api;
+    private NtmApi              ntmApi;
     private Map<String, String> dataStore = new HashMap<>();
 
     public static NtmInnerRequest of(NtmRequest request) {
@@ -48,8 +48,8 @@ public class NtmInnerRequest {
         return entityId;
     }
 
-    public Api getApi() {
-        return api;
+    public NtmApi getNtmApi() {
+        return ntmApi;
     }
 
     public String get(String key) {
@@ -71,8 +71,8 @@ public class NtmInnerRequest {
         }
     }
 
-    public void setApi(Api api) {
-        this.api = api;
+    public void setNtmApi(NtmApi ntmApi) {
+        this.ntmApi = ntmApi;
     }
 
     private void setDataStore(Map<String, String> dataStore) {
@@ -85,7 +85,7 @@ public class NtmInnerRequest {
                 "request=" + request +
                 ", authToken=" + authToken +
                 ", entityId=" + entityId +
-                ", api=" + api +
+                ", ntmApi=" + ntmApi +
                 ", dataStore=" + dataStore +
                 '}';
     }

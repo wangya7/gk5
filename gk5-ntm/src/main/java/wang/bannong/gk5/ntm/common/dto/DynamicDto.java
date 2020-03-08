@@ -23,10 +23,10 @@ import wang.bannong.gk5.util.Constant;
 public class DynamicDto implements Serializable {
     private static final long serialVersionUID = 8000871365988125861L;
 
-    private long                entityId = 0;
+    private long                subjectId = 0;
     private String              channel;
-    private int                 pageNum  = 1;
-    private int                 pageSize = 10;
+    private int                 pageNum   = 1;
+    private int                 pageSize  = 10;
     private Map<String, String> params;
 
     private DynamicDto() {
@@ -38,7 +38,7 @@ public class DynamicDto implements Serializable {
 
     public static DynamicDto of(long entityId, Map<String, String> params) {
         DynamicDto dto = new DynamicDto();
-        dto.setEntityId(entityId);
+        dto.setSubjectId(entityId);
         dto.setParams(params);
         if (params != null) {
             if (StringUtils.isNotBlank(params.get(NtmConstant.PAGE_NUM))) {
@@ -54,7 +54,7 @@ public class DynamicDto implements Serializable {
 
     public static DynamicDto of(long entityId, Map<String, String> params, String channel) {
         DynamicDto dto = new DynamicDto();
-        dto.setEntityId(entityId);
+        dto.setSubjectId(entityId);
         dto.setChannel(channel);
         dto.setParams(params);
         if (params != null) {
@@ -76,12 +76,12 @@ public class DynamicDto implements Serializable {
         return of(0, params);
     }
 
-    public long getEntityId() {
-        return entityId;
+    public long getSubjectId() {
+        return subjectId;
     }
 
-    public void setEntityId(long entityId) {
-        this.entityId = entityId;
+    public void setSubjectId(long subjectId) {
+        this.subjectId = subjectId;
     }
 
     public int getPageNum() {
@@ -263,7 +263,7 @@ public class DynamicDto implements Serializable {
     @Override
     public String toString() {
         return "DynamicDto{" +
-                "entityId=" + entityId +
+                "subjectId=" + subjectId +
                 ", channel='" + channel + '\'' +
                 ", pageNum=" + pageNum +
                 ", pageSize=" + pageSize +

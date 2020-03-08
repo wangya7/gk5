@@ -4,6 +4,11 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 
+import lombok.Getter;
+import lombok.ToString;
+
+@Getter
+@ToString
 public enum MethodEnum {
 
     GET((byte) 1, "GET"), 
@@ -12,12 +17,12 @@ public enum MethodEnum {
     PATCH((byte) 4,"PATCH"), 
     DELETE((byte) 5, "DELETE");
 
-    private Byte code;
-    private String msg;
+    private Byte   code;
+    private String value;
 
-    MethodEnum(Byte code, String msg) {
+    MethodEnum(Byte code, String value) {
         this.code = code;
-        this.msg = msg;
+        this.value = value;
     }
 
     public static final Map<Byte, MethodEnum> methodEnumMap = new HashMap<>();
@@ -26,21 +31,5 @@ public enum MethodEnum {
         for (MethodEnum gen : EnumSet.allOf(MethodEnum.class)) {
             methodEnumMap.put(gen.getCode(), gen);
         }
-    }
-
-    public Byte getCode() {
-        return code;
-    }
-
-    public void setCode(Byte code) {
-        this.code = code;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
     }
 }

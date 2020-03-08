@@ -4,20 +4,23 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 
+import lombok.Getter;
+import lombok.ToString;
+
 /**
  * Created by bn. on 2019/7/4 3:16 PM
  */
+@Getter
+@ToString
 public enum HttpMethod {
 
     GET((byte) 1),
     POST((byte) 2),
     PUT((byte) 3),
     PATCH((byte) 4),
-    DELETE((byte) 5)
+    DELETE((byte) 5);
 
-    ;
-
-    HttpMethod (byte code) {
+    HttpMethod(byte code) {
         this.code = code;
     }
 
@@ -29,16 +32,5 @@ public enum HttpMethod {
         for (HttpMethod item : EnumSet.allOf(HttpMethod.class)) {
             map.put(item.name(), item);
         }
-    }
-
-    public byte getCode() {
-        return code;
-    }
-
-    @Override
-    public String toString() {
-        return "HttpMethod{" +
-                "code=" + code +
-                "} " + super.toString();
     }
 }

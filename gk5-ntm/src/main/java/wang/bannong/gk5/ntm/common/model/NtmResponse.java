@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import lombok.Getter;
 import lombok.ToString;
-import wang.bannong.gk5.ntm.common.domain.Api;
+import wang.bannong.gk5.ntm.common.domain.NtmApi;
 
 /**
  * Created by bn. on 2019/7/4 3:03 PM
@@ -20,16 +20,16 @@ public class NtmResponse implements Serializable {
     private int          v;
     private String       ia;
 
-    NtmResponse(NtmResult ntmResult, Api api, NtmRequest request) {
+    NtmResponse(NtmResult ntmResult, NtmApi ntmApi, NtmRequest request) {
         this.code = ntmResult.getCode();
         this.msg = ntmResult.getMsg();
         this.data = ntmResult.getData();
-        if (api != null) {
-            this.api = api.getUnique();
+        if (ntmApi != null) {
+            this.api = ntmApi.getUnique();
         }
 
         if (request != null) {
-            this.v = api.getVersion();
+            this.v = ntmApi.getVersion();
             this.ia = request.getIa();
         }
     }
@@ -41,16 +41,16 @@ public class NtmResponse implements Serializable {
 
     @ToString
     public static class Builder {
-        private final NtmResult ntmResult;
-        private Api             api;
-        private NtmRequest      request;
+        private final NtmResult  ntmResult;
+        private       NtmApi     ntmApi;
+        private       NtmRequest request;
 
         public Builder(NtmResult ntmResult) {
             this.ntmResult = ntmResult;
         }
 
-        public Builder api(Api api) {
-            this.api = api;
+        public Builder api(NtmApi ntmApi) {
+            this.ntmApi = ntmApi;
             return this;
         }
 
@@ -60,7 +60,7 @@ public class NtmResponse implements Serializable {
         }
 
         public NtmResponse builder() {
-            return new NtmResponse(this.ntmResult, this.api, this.request);
+            return new NtmResponse(this.ntmResult, this.ntmApi, this.request);
         }
     }
 

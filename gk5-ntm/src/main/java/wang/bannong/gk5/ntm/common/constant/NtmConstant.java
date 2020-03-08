@@ -20,4 +20,7 @@ public interface NtmConstant {
     String ORDER_BY_ID_ASC           = " id asc ";
     String PAGE_NUM                  = "pageNum";
     String PAGE_SIZE                 = "pageSize";
+
+
+    Integer SUCCESS_CODE = 1;
 }

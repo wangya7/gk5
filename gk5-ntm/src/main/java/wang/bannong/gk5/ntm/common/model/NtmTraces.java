@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.Map;
 
 import lombok.Data;
-import wang.bannong.gk5.ntm.common.domain.Api;
+import wang.bannong.gk5.ntm.common.domain.NtmApi;
 import wang.bannong.gk5.util.Constant;
 
 /**
@@ -42,9 +42,9 @@ public class NtmTraces implements Serializable {
     private long   createMs = 0;
     private String createTime;
 
-    public static NtmTraces of(NtmRequest request, NtmResponse response, Api api) {
+    public static NtmTraces of(NtmRequest request, NtmResponse response, NtmApi ntmApi) {
         NtmTraces bo = new NtmTraces();
-        if (api != null) bo.setApiId(api.getId());
+        if (ntmApi != null) bo.setApiId(ntmApi.getId());
         bo.setApi(request.getApi() + Constant.UNDERLINE + request.getV());
         bo.setIa(request.getIa());
         bo.setOia(request.getOia());

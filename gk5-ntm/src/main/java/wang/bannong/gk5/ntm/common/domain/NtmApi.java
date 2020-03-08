@@ -1,14 +1,13 @@
-package wang.bannong.gk5.ntm.common.dto;
+package wang.bannong.gk5.ntm.common.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import lombok.Data;
-import wang.bannong.gk5.ntm.common.model.BaseDto;
 
 @Data
-public class ApiDto extends BaseDto {
-
-    private static final long serialVersionUID = 6256707767503617544L;
+public class NtmApi implements Serializable {
+    private static final long serialVersionUID = -7729924480298703376L;
 
     private Long    id;
     private String  unique;
@@ -23,7 +22,7 @@ public class ApiDto extends BaseDto {
     private Integer dailyFlowLimit;
     private String  result;
     private Byte    status;
-    private Date    beginTime;
-    private Date    endTime;
+    private Date    createTime;
+    private Date    modifyTime;
 
 }

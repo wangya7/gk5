@@ -84,7 +84,6 @@ public class ApiConfig {
 
 
     /** 特殊的API名称定义 */
-
     public static final String LOGIN_API     = "login";
     public static final String LOGOUT_API    = "logout";
     public static final String LOGIN_API_H5  = LOGIN_API + ".h5";
