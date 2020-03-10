@@ -1,8 +1,15 @@
 ### 网关NTM
-
-
+开箱即用的网关集成，支持单机和分布式部署。
 
 ### 业务统一接口
+#### 请求路径
+```
+${domain}:${port}/ntm
+```
+#### 请求方式
+GET、POST
+> POST采用form表单提交
+
 #### 请求结构
 参数|类型|允许为空|载体|说明|案例
 :---:|:---:|:---:|:---:|:---:|:---:
@@ -49,3 +56,9 @@ data|Object|N|业务数据|{"mobile":"18205710401"}
 ntmApi|String|N|接口|"chech.test.demo"
 v|Number|N|版本|1
 ia|String|Y|32位认证标识|0c7b79497a8b3d6a8cd06b21883e6a28
+
+
+基础接口：
+* [接口文档](/doc/DOC-API.MD)
+* [接口参数文档](/doc/DOC-APIPARAM.MD)
+* [接口统计文档](/doc/DOC-APICOLLECT.MD)

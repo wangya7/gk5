@@ -166,26 +166,44 @@ public class NtmApiMgr {
         if (record == null) {
             return NtmResult.fail("接口不存在");
         }
-        String appid = dto.getAppid();
-        String unique = dto.getUnique();
-        int version = dto.getVersion();
+        String appid;
+        if (dto.getAppid() != null) {
+            appid = dto.getAppid();
+            record.setAppid(appid);
+        } else {
+            appid = record.getAppid();
+        }
+
+        String unique;
+        if (dto.getUnique() != null) {
+            unique = dto.getUnique();
+            record.setUnique(unique);
+        } else {
+            unique = record.getUnique();
+        }
+
+        int version;
+        if (dto.getVersion() != null) {
+            version = dto.getVersion();
+            record.setVersion(version);
+        } else {
+            version = record.getVersion();
+        }
+
         NtmApi recordCheck = queryByUniqueAndVersionAppid(unique, version, appid);
         if (recordCheck != null && !recordCheck.getId().equals(id)) {
             return NtmResult.fail("接口已经存在");
         }
 
-        record.setUnique(unique);
-        record.setName(dto.getName());
-        record.setVersion(version);
-        record.setMethod(dto.getMethod());
-        record.setAppid(appid);
-        record.setInnerInterface(dto.getInnerInterface());
-        record.setInnerMethod(dto.getInnerMethod());
-        record.setIsIa(dto.getIsIa());
-        record.setIsAsync(dto.getIsAsync());
-        record.setDailyFlowLimit(dto.getDailyFlowLimit());
-        record.setResult(dto.getResult());
-        record.setStatus(dto.getStatus());
+        if (dto.getName() != null) record.setName(dto.getName());
+        if (dto.getMethod() != null) record.setMethod(dto.getMethod());
+        if (dto.getInnerInterface() != null) record.setInnerInterface(dto.getInnerInterface());
+        if (dto.getInnerMethod() != null) record.setInnerMethod(dto.getInnerMethod());
+        if (dto.getIsIa() != null) record.setIsIa(dto.getIsIa());
+        if (dto.getIsAsync() != null) record.setIsAsync(dto.getIsAsync());
+        if (dto.getDailyFlowLimit() != null) record.setDailyFlowLimit(dto.getDailyFlowLimit());
+        if (dto.getResult() != null) record.setResult(dto.getResult());
+        if (dto.getStatus() != null) record.setStatus(dto.getStatus());
         record.setModifyTime(new Date());
         masterNtmApiDao.updateById(record);
         return NtmResult.success(record);
@@ -253,21 +271,23 @@ public class NtmApiMgr {
     @Transactional
     public NtmResult modifyApiParam(ApiParamDto dto) throws Exception {
         Long id = dto.getId();
-        String name = dto.getName();
         NtmApiParam record = queryParamById(id);
-
-        NtmApiParam recordCheck = queryParamByAppidAndName(record.getApiId(), name);
-        if (recordCheck != null && !recordCheck.getId().equals(id)) {
-            return NtmResult.fail("接口参数已经存在");
+        String name = dto.getName();
+        if (name != null) {
+            NtmApiParam recordCheck = queryParamByAppidAndName(record.getApiId(), name);
+            if (recordCheck != null && !recordCheck.getId().equals(id)) {
+                return NtmResult.fail("接口参数已经存在");
+            }
+            record.setName(name);
         }
-        record.setPid(dto.getPid());
-        record.setName(name);
-        record.setStatus(dto.getStatus());
-        record.setType(dto.getType());
-        record.setIsRequired(dto.getIsRequired());
-        record.setErrMsg(dto.getErrMsg());
-        record.setDesp(dto.getDesp());
-        record.setExample(dto.getExample());
+
+        if (dto.getPid() != null) record.setPid(dto.getPid());
+        if (dto.getStatus() != null) record.setStatus(dto.getStatus());
+        if (dto.getType() != null) record.setType(dto.getType());
+        if (dto.getIsRequired() != null) record.setIsRequired(dto.getIsRequired());
+        if (dto.getErrMsg() != null) record.setErrMsg(dto.getErrMsg());
+        if (dto.getDesp() != null) record.setDesp(dto.getDesp());
+        if (dto.getExample() != null) record.setExample(dto.getExample());
         record.setModifyTime(new Date());
         masterNtmApiParamDao.updateById(record);
         return NtmResult.success(record);

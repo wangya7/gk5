@@ -15,18 +15,12 @@
   <version>1.1.1-beta</version>
   <name>gk5-normdb</name>
   <url>http://maven.apache.org</url>
+  <description>gk5-normdb</description>
 
   <properties>
-    <mongo-java-driver.version>3.5.0</mongo-java-driver.version>
-    <spring-data-mongodb.version>2.2.0.RELEASE</spring-data-mongodb.version>
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>wang.bannong</groupId>
-      <artifactId>gk5-starter</artifactId>
-      <version>1.1.1-beta</version>
-    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-mongodb</artifactId>
