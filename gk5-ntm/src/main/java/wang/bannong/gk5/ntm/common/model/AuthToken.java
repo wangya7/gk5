@@ -14,7 +14,7 @@ public class AuthToken implements Serializable {
 
     private String              appid;
     private String              ia;
-    private long                entityId;
+    private long                subjectId;
     private String              mobile;
     private Role                role;
     private Date                createTime;

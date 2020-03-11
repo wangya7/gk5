@@ -33,7 +33,7 @@ public class DynamicDto implements Serializable {
     }
 
     public static DynamicDto of(NtmInnerRequest innerRequest) {
-        return of(innerRequest.getEntityId(), innerRequest.getDataStore(), innerRequest.getRequest().getChannel());
+        return of(innerRequest.getSubjectId(), innerRequest.getDataStore(), innerRequest.getRequest().getChannel());
     }
 
     public static DynamicDto of(long entityId, Map<String, String> params) {

@@ -30,7 +30,7 @@ public class NtmTracesManager {
     private NtmTracesDao ntmTracesDao;
 
     public enum method {
-        file, rmdb, mongodb;
+        log, rmdb, mongodb;
     }
 
     public int persistence(NtmRequest request, NtmResponse response, NtmApi ntmApi) throws Exception {

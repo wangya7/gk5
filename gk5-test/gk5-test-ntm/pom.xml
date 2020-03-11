@@ -1,0 +1,36 @@
+<project
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>wang.bannong</groupId>
+    <artifactId>gk5-test</artifactId>
+    <version>1.1.1-beta</version>
+  </parent>
+
+  <groupId>wang.bannong</groupId>
+  <artifactId>gk5-test-ntm</artifactId>
+  <version>1.1.1-beta</version>
+  <name>gk5-test-ntm</name>
+  <url>http://maven.apache.org</url>
+  <description>gk5-test-ntm</description>
+
+  <properties>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>wang.bannong</groupId>
+      <artifactId>gk5-starter</artifactId>
+      <version>1.1.1-beta</version>
+    </dependency>
+
+    <dependency>
+      <groupId>wang.bannong</groupId>
+      <artifactId>gk5-ntm</artifactId>
+    </dependency>
+  </dependencies>
+
+</project>

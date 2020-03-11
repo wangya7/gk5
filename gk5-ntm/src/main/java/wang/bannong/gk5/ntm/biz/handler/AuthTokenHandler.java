@@ -12,12 +12,12 @@ import wang.bannong.gk5.cache.CacheManager;
 import wang.bannong.gk5.cache.CacheResult;
 import wang.bannong.gk5.ntm.common.domain.NtmApi;
 import wang.bannong.gk5.ntm.common.model.AuthToken;
-import wang.bannong.gk5.ntm.common.model.Entity;
 import wang.bannong.gk5.ntm.common.model.NtmInnerRequest;
 import wang.bannong.gk5.ntm.common.model.NtmRequest;
 import wang.bannong.gk5.ntm.common.model.NtmResult;
 import wang.bannong.gk5.ntm.common.model.ResultCode;
 import wang.bannong.gk5.util.SpringBeanUtils;
+import wang.bannong.gk5.util.domain.Subject;
 
 public class AuthTokenHandler {
 
@@ -58,20 +58,20 @@ public class AuthTokenHandler {
     /**
      * 创建Token
      *
-     * @param entity   关联实体ID
+     * @param subject  关联实体ID
      * @param role     角色
      * @param extend   扩展字段
      * @param request  网关请求
      */
-    public static void creteAuthToken(Entity entity, AuthToken.Role role, Map<String, String> extend, NtmRequest request) {
+    public static void creteAuthToken(Subject subject, AuthToken.Role role, Map<String, String> extend, NtmRequest request) {
         initCacheManager();
         String ia = TokenHandler.generateToken();
         String appid = request.getAppid();
         AuthToken authToken = new AuthToken();
         authToken.setAppid(appid);
         authToken.setIa(ia);
-        authToken.setEntityId(entity.getId());
-        authToken.setMobile(entity.getMobile());
+        authToken.setSubjectId(subject.getId());
+        authToken.setMobile(subject.getMobile());
         authToken.setRole(role);
         if (MapUtils.isNotEmpty(extend)) {
             authToken.setExtend(extend);
@@ -104,7 +104,7 @@ public class AuthTokenHandler {
         Date now = new Date();
         if (TokenHandler.isNeedUpdateToken(authToken)) {
             AuthToken authTokenNew = new AuthToken();
-            authTokenNew.setEntityId(authToken.getEntityId());
+            authTokenNew.setSubjectId(authToken.getSubjectId());
             String iaNew = TokenHandler.generateToken();
             authTokenNew.setIa(iaNew);
             authTokenNew.setRole(authToken.getRole());

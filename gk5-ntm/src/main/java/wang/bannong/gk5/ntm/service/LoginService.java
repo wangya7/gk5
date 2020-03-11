@@ -8,10 +8,10 @@ import wang.bannong.gk5.ntm.common.constant.ApiConfig;
 import wang.bannong.gk5.ntm.common.domain.NtmApi;
 import wang.bannong.gk5.ntm.common.dto.DynamicDto;
 import wang.bannong.gk5.ntm.common.model.AuthToken;
-import wang.bannong.gk5.ntm.common.model.Entity;
 import wang.bannong.gk5.ntm.common.model.NtmInnerRequest;
 import wang.bannong.gk5.ntm.common.model.NtmRequest;
 import wang.bannong.gk5.ntm.common.model.NtmResult;
+import wang.bannong.gk5.util.domain.Subject;
 
 /**
  * Created by bn. on 2019/10/18 4:29 PM
@@ -27,12 +27,12 @@ public class LoginService {
             return result;
         }
         HashMap<String, Object> data = result.getData();
-        Entity entity = new Entity();
-        entity.setId((Long) data.get(ApiConfig.ID));
-        entity.setMobile((String) data.get(ApiConfig.MOBILE));
-        entity.setName((String) data.get(ApiConfig.NAME));
+        Subject subject = new Subject();
+        subject.setId((Long) data.get(ApiConfig.ID));
+        subject.setMobile((String) data.get(ApiConfig.MOBILE));
+        subject.setName((String) data.get(ApiConfig.NAME));
 
-        AuthTokenHandler.creteAuthToken(entity,
+        AuthTokenHandler.creteAuthToken(subject,
                 apiUnique.equals(ApiConfig.LOGIN_API) ? AuthToken.Role.user : AuthToken.Role.admin,
                 null, ntmRequest);
         return result;

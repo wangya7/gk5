@@ -19,7 +19,7 @@
 application.yml增加配置
 ```yaml
 datasource:
-  mappersPath: wang.bannong.gk5.test.mapper
+  mappersPath: wang.bannong.gk5.test.mybatisx.mappersx.mapper
   primary: master
   dbs:
     - key: master

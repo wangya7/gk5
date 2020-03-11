@@ -13,7 +13,7 @@ public class NtmInnerRequest {
 
     private NtmRequest          request;
     private AuthToken           authToken;
-    private long                entityId = 0;
+    private long                subjectId = 0;
     private NtmApi              ntmApi;
     private Map<String, String> dataStore = new HashMap<>();
 
@@ -44,8 +44,8 @@ public class NtmInnerRequest {
         return authToken;
     }
 
-    public long getEntityId() {
-        return entityId;
+    public long getSubjectId() {
+        return subjectId;
     }
 
     public NtmApi getNtmApi() {
@@ -67,7 +67,7 @@ public class NtmInnerRequest {
     public void setAuthToken(AuthToken authToken) {
         this.authToken = authToken;
         if (authToken != null) {
-            this.entityId = authToken.getEntityId();
+            this.subjectId = authToken.getSubjectId();
         }
     }
 
@@ -84,7 +84,7 @@ public class NtmInnerRequest {
         return "NtmInnerRequest{" +
                 "request=" + request +
                 ", authToken=" + authToken +
-                ", entityId=" + entityId +
+                ", subjectId=" + subjectId +
                 ", ntmApi=" + ntmApi +
                 ", dataStore=" + dataStore +
                 '}';
