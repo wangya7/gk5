@@ -46,4 +46,8 @@ public class PaginationResult<T> implements Serializable {
     public static <T> PaginationResult of(IPage page, T list) {
         return of((int) page.getCurrent(), (int) page.getSize(), (int) page.getPages(), page.getTotal(), list);
     }
+
+    public static <T> PaginationResult of(IPage page, T list, Object extend) {
+        return of((int) page.getCurrent(), (int) page.getSize(), (int) page.getPages(), page.getTotal(), list, extend);
+    }
 }
