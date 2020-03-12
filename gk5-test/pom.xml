@@ -20,7 +20,6 @@
 
   <modules>
     <module>gk5-test-mybatis-x</module>
-    <module>gk5-test-ntm</module>
   </modules>
 
 </project>
