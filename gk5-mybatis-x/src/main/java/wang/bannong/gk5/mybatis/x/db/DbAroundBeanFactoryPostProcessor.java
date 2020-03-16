@@ -59,6 +59,7 @@ public class DbAroundBeanFactoryPostProcessor implements BeanFactoryPostProcesso
         YamlMapFactoryBean yamlMapFactoryBean = new YamlMapFactoryBean();
         yamlMapFactoryBean.setResources(new ClassPathResource("application.yml"));
         Map<String, Object> map = (Map<String, Object>) yamlMapFactoryBean.getObject().get("datasource");
+
         mappersPath = (String) map.get("mappersPath");
         if (mappersPath == null || mappersPath.length() == 0) {
             throw new RuntimeException("mappersPath cannot be null");
@@ -66,7 +67,7 @@ public class DbAroundBeanFactoryPostProcessor implements BeanFactoryPostProcesso
 
         mapperLocations = (String) map.get("mapperLocations");
         if (mapperLocations == null || mapperLocations.length() == 0) {
-            throw new RuntimeException("mappersPath cannot be null");
+            throw new RuntimeException("mapperLocations cannot be null");
         }
         mapperLocationArr = mapperLocations.trim().split(",");
 
