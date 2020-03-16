@@ -52,7 +52,7 @@
     <dependency>
       <groupId>wang.bannong</groupId>
       <artifactId>gk5-mybatis-x</artifactId>
-      <version>1.1.1-beta</version>
+      <version>1.1.2-beta</version>
     </dependency>
     <dependency>
       <groupId>wang.bannong</groupId>

@@ -91,4 +91,15 @@ public class CommonCtrl {
         log.info("Rs={}", shiroUser2);
         return new JSONObject();
     }
+
+    @GetMapping(value = "/rbspe", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public JSONObject getRbspe() {
+        ShiroUser user = slave1ShiroUserMapper.selectByName("HG1");
+        log.info("user={}", user);
+        JSONObject res = new JSONObject();
+        res.put("user", user);
+        return res;
+    }
+
+
 }

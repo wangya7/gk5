@@ -12,7 +12,7 @@
 
   <groupId>wang.bannong</groupId>
   <artifactId>gk5-mybatis-x</artifactId>
-  <version>1.1.1-beta</version>
+  <version>1.1.2-beta</version>
   <name>gk5-mybatis-x</name>
   <url>http://maven.apache.org</url>
   <description>gk5-mybatis-x</description>

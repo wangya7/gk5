@@ -13,15 +13,21 @@ import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.config.YamlMapFactoryBean;
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 import javax.sql.DataSource;
 
@@ -32,6 +38,11 @@ import lombok.extern.slf4j.Slf4j;
 @Component
 public class DbAroundBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 
+    private static final ResourcePatternResolver resourceResolver = new PathMatchingResourcePatternResolver();
+
+    private static String[]           mapperLocationArr;
+    @Getter
+    private static String             mapperLocations;
     @Getter
     private static String             mappersPath;
     @Getter
@@ -49,6 +60,16 @@ public class DbAroundBeanFactoryPostProcessor implements BeanFactoryPostProcesso
         yamlMapFactoryBean.setResources(new ClassPathResource("application.yml"));
         Map<String, Object> map = (Map<String, Object>) yamlMapFactoryBean.getObject().get("datasource");
         mappersPath = (String) map.get("mappersPath");
+        if (mappersPath == null || mappersPath.length() == 0) {
+            throw new RuntimeException("mappersPath cannot be null");
+        }
+
+        mapperLocations = (String) map.get("mapperLocations");
+        if (mapperLocations == null || mapperLocations.length() == 0) {
+            throw new RuntimeException("mappersPath cannot be null");
+        }
+        mapperLocationArr = mapperLocations.trim().split(",");
+
         primary = (String) map.get("primary");
         List<Map<String, Object>> items = (List<Map<String, Object>>) map.get("dbs");
         if (CollectionUtils.isEmpty(items)) {
@@ -110,6 +131,9 @@ public class DbAroundBeanFactoryPostProcessor implements BeanFactoryPostProcesso
         MybatisSqlSessionFactoryBean sqlSessionFactory = new MybatisSqlSessionFactoryBean();
         sqlSessionFactory.setGlobalConfig(DbSupporter.globalConfig());
         sqlSessionFactory.setDataSource(dataSource);
+        sqlSessionFactory.setMapperLocations(Stream.of(Optional.ofNullable(mapperLocationArr).orElse(new String[0]))
+                                                   .flatMap(location -> Stream.of(getResources(location)))
+                                                   .toArray(Resource[]::new));
         String sqlSessionFactoryBeanName = key + "SqlSessionFactory";
         beanFactory.registerSingleton(sqlSessionFactoryBeanName, sqlSessionFactory);
 
@@ -148,6 +172,10 @@ public class DbAroundBeanFactoryPostProcessor implements BeanFactoryPostProcesso
         MybatisSqlSessionFactoryBean sqlSessionFactory = new MybatisSqlSessionFactoryBean();
         sqlSessionFactory.setGlobalConfig(DbSupporter.globalConfig());
         sqlSessionFactory.setDataSource(dataSource);
+        sqlSessionFactory.setMapperLocations(Stream.of(Optional.ofNullable(mapperLocationArr).orElse(new String[0]))
+                                                   .flatMap(location -> Stream.of(getResources(location)))
+                                                   .toArray(Resource[]::new));
+
         String sqlSessionFactoryBeanName = key + "SqlSessionFactory";
         beanFactory.registerSingleton(sqlSessionFactoryBeanName, sqlSessionFactory);
 
@@ -163,5 +191,14 @@ public class DbAroundBeanFactoryPostProcessor implements BeanFactoryPostProcesso
         }
         String SqlSessionTemplateBeanName = key + "SqlSessionTemplate";
         beanFactory.registerSingleton(SqlSessionTemplateBeanName, sqlSessionTemplate);
+    }
+
+
+    private Resource[] getResources(String location) {
+        try {
+            return resourceResolver.getResources(location);
+        } catch (IOException e) {
+            return new Resource[0];
+        }
     }
 }
