@@ -23,6 +23,7 @@ cache:
 
 datasource:
   mappersPath: wang.bannong.gk5.ntm.core.dao
+  mapperLocations: classpath*:/wang/bannong/gk5/ntm/core/dao/*.xml
   primary: master
   dbs:
     - key: master
