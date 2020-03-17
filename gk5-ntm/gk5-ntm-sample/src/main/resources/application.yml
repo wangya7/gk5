@@ -29,7 +29,7 @@ datasource:
     - key: master
       host: 127.0.0.1
       port: 3306
-      db: gk5
+      db: ntm
       username: root
       password: '@iam3307'
       minIdle: 10
@@ -38,7 +38,7 @@ datasource:
     - key: slave
       host: 127.0.0.1
       port: 3306
-      db: gk5
+      db: ntm
       username: root
       password: '@iam3307'
       minIdle: 10

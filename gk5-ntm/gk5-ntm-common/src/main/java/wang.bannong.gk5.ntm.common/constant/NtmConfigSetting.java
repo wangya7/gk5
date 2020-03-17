@@ -1,26 +1,26 @@
 package wang.bannong.gk5.ntm.common.constant;
 
-public interface NtmConfigSetting {
+public abstract class NtmConfigSetting {
 
-    boolean corsOriginDefaultSetting = false;
-    String  corsOriginHosts          = "";
-    String  corsOriginHostsDef       = "";
-    long    TS_THRESHOLD             = 10000;
-    String  TS_THRESHOLD_CONFIG      = "TS_THRESHOLD";
-    String  CHECK_SIGN_CONFIG        = "CHECK_SIGN";
+    public static boolean corsOriginDefaultSetting = false;
+    public static String  corsOriginHosts          = "";
+    public static String  corsOriginHostsDef       = "";
+    public static long    TS_THRESHOLD             = 10000;
+    public static String  TS_THRESHOLD_CONFIG      = "TS_THRESHOLD";
+    public static String  CHECK_SIGN_CONFIG        = "CHECK_SIGN";
 
 
     /**
      * RSA加密
      */
-    boolean     sign = true;
-    String publicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsLp2NLUOqRdWItvH3zWJsdWvveUvWj/B\n" +
+    public static boolean     sign = true;
+    public static String publicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsLp2NLUOqRdWItvH3zWJsdWvveUvWj/B\n" +
                     "+XRzRuzDTvsaMgHAfE7zpjEqFj4/BVw4LThOseLXwsxt4RHxEpykL/OMpMUz8MJmN3gKVID43tN7\n" +
                     "5H0b6IL46ymMNwOcPt9EfEGdnUaTJEwxG4VpKIGWxDOUnEybS7QuUztJlNMByxEYR69dLUSSOCM+\n" +
                     "TbQNIVeVVXixPhI43pb5umR/3mQ+XHTuAZ2zoMA4OsrEO/052Wdv66dmNtaK8eTwwrGcmHOCi5fQ\n" +
                     "SWT2gi3Vq592461w3H8cbdfHU+3cgS0HkG4u3D/cU8eK8lUSUKxIY9wcv2nDdNWpYOwi5oY06sNF\n" +
                     "9UpSwQIDAQAB";
-    String privateKey = "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCwunY0tQ6pF1Yi28ffNYmx1a+9\n" +
+    public static String privateKey = "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCwunY0tQ6pF1Yi28ffNYmx1a+9\n" +
                     "5S9aP8H5dHNG7MNO+xoyAcB8TvOmMSoWPj8FXDgtOE6x4tfCzG3hEfESnKQv84ykxTPwwmY3eApU\n" +
                     "gPje03vkfRvogvjrKYw3A5w+30R8QZ2dRpMkTDEbhWkogZbEM5ScTJtLtC5TO0mU0wHLERhHr10t\n" +
                     "RJI4Iz5NtA0hV5VVeLE+Ejjelvm6ZH/eZD5cdO4BnbOgwDg6ysQ7/TnZZ2/rp2Y21orx5PDCsZyY\n" +
