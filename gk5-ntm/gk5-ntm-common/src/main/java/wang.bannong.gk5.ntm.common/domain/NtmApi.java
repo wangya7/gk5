@@ -1,5 +1,7 @@
 package wang.bannong.gk5.ntm.common.domain;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -10,6 +12,7 @@ public class NtmApi implements Serializable {
     private static final long serialVersionUID = -7729924480298703376L;
 
     private Long    id;
+    @TableField(value = "`unique`")
     private String  unique;
     private String  name;
     private Integer version;

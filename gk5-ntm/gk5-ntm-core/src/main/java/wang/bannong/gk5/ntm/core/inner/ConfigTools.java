@@ -26,7 +26,7 @@ public final class ConfigTools {
     public static String get(String key) {
         Objects.requireNonNull(key, "key cannot be null");
         if (null == masterNtmConfigSettingDao) {
-            masterNtmConfigSettingDao = SpringBeanUtils.getBean(NtmConfigSettingDao.class);
+            masterNtmConfigSettingDao = SpringBeanUtils.getBean("masterNtmConfigSettingDao", NtmConfigSettingDao.class);
         }
         try {
             NtmConfigSetting cs = masterNtmConfigSettingDao.selectValueByKeyEff(key);

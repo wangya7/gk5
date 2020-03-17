@@ -1,5 +1,6 @@
 package wang.bannong.gk5.ntm.core.inner;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
@@ -49,34 +50,36 @@ public class NtmApiMgr {
 
     public NtmApi queryByUnique(String unique) {
         QueryWrapper<NtmApi> wrapper = new QueryWrapper<>();
-        wrapper.eq("unique", unique);
+        wrapper.lambda().eq(NtmApi::getUnique, unique);
         return masterNtmApiDao.selectOne(wrapper);
     }
 
     public NtmApi queryByUniqueAndVersionAppid(String unique, int version, String appid) {
         QueryWrapper<NtmApi> wrapper = new QueryWrapper<>();
-        wrapper.eq("unique", unique);
-        wrapper.eq("version", version);
-        wrapper.eq("appid", appid);
+        wrapper.lambda()
+               .eq(NtmApi::getUnique, unique)
+               .eq(NtmApi::getVersion, version)
+               .eq(NtmApi::getAppid, appid);
         return masterNtmApiDao.selectOne(wrapper);
     }
 
     public List<NtmApiParam> queryParams(Long apiId) {
         QueryWrapper<NtmApiParam> wrapper = new QueryWrapper<>();
-        wrapper.eq("apiId", apiId);
+        wrapper.lambda().eq(NtmApiParam::getApiId, apiId);
         return masterNtmApiParamDao.selectList(wrapper);
     }
 
     public List<NtmApiParam> queryParamsByPid(Long apiId) {
         QueryWrapper<NtmApiParam> wrapper = new QueryWrapper<>();
-        wrapper.eq("pid", apiId);
+        wrapper.lambda().eq(NtmApiParam::getPid, apiId);
         return masterNtmApiParamDao.selectList(wrapper);
     }
 
     public NtmApiParam queryParamByAppidAndName(Long apiId, String name) {
         QueryWrapper<NtmApiParam> wrapper = new QueryWrapper<>();
-        wrapper.eq("apiId", apiId);
-        wrapper.eq("name", name);
+        wrapper.lambda()
+               .eq(NtmApiParam::getApiId, apiId)
+               .eq(NtmApiParam::getName, name);
         return masterNtmApiParamDao.selectOne(wrapper);
     }
 
@@ -91,15 +94,16 @@ public class NtmApiMgr {
     //************************ 接口
 
     public NtmResult apiList(ApiDto dto) throws Exception {
-        QueryWrapper<NtmApi> wrapper = new QueryWrapper<>();
+        LambdaQueryWrapper<NtmApi> wrapper = new LambdaQueryWrapper<>();
+
         if (dto.getName() != null) {
-            wrapper.like("name", dto.getName());
+            wrapper.like(NtmApi::getName, dto.getName());
         }
         if (dto.getUnique() != null) {
-            wrapper.like("unique", dto.getUnique());
+            wrapper.like(NtmApi::getUnique, dto.getUnique());
         }
         if (dto.getAppid() != null) {
-            wrapper.eq("appid", dto.getAppid());
+            wrapper.eq(NtmApi::getAppid, dto.getAppid());
         }
 
         Page<NtmApi> ntmApiPage = new Page<>(dto.getPageNum(), dto.getPageSize());
