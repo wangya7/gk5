@@ -17,7 +17,7 @@ import wang.bannong.gk5.ntm.common.model.NtmRequest;
 import wang.bannong.gk5.ntm.common.model.NtmResult;
 import wang.bannong.gk5.ntm.common.model.ResultCode;
 import wang.bannong.gk5.util.SpringBeanUtils;
-import wang.bannong.gk5.util.domain.Subject;
+import wang.bannong.gk5.ntm.common.model.Subject;
 
 public class AuthTokenHandler {
 

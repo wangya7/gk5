@@ -106,7 +106,6 @@
     </profile>
   </profiles>
 
-  <!--
   <distributionManagement>
     <repository>
       <id>releases</id>
@@ -118,6 +117,5 @@
       <url>http://192.168.31.158:8081/repository/maven-snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
-  -->
 
 </project>

@@ -1,4 +1,4 @@
-package wang.bannong.gk5.util.domain;
+package wang.bannong.gk5.ntm.common.model;
 
 import java.io.Serializable;
 
@@ -13,5 +13,4 @@ public class Subject implements Serializable {
     private static final long serialVersionUID = 4297631829121850860L;
     private Long   id;
     private String mobile;
-    private String name;
 }

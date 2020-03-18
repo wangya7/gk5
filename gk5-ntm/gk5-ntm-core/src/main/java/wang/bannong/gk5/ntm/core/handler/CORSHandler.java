@@ -16,6 +16,7 @@ public final class CORSHandler {
 
     public static void setCORSSettingIfNeed(NtmRequest mtopRequest, HttpServletRequest request, HttpServletResponse response) {
         if (NtmConfigSetting.corsOriginDefaultSetting) {
+            log.info("CORS ALL-PARAMS Allowed");
             response.setHeader("Access-Control-Allow-Origin", "*");
             response.setHeader("Access-Control-Allow-Credentials", "true");
             response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, PATCH");
