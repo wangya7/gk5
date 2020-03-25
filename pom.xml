@@ -18,7 +18,6 @@
     <module>gk5-devops</module>
     <module>gk5-excel</module>
     <module>gk5-gate</module>
-    <module>gk5-iam</module>
     <module>gk5-kafka</module>
     <module>gk5-log</module>
     <module>gk5-mini</module>

@@ -1,7 +1,9 @@
 package wang.bannong.gk5.test.mybatisx.ctrl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import lombok.extern.slf4j.Slf4j;
 import wang.bannong.gk5.cache.CacheManager;
@@ -38,7 +40,6 @@ public class CommonCtrl {
         obj.put("user", masterShiroUserMapper.selectById(3L));
         return obj;
     }
-
 
 
     @GetMapping(value = "/put", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -99,6 +100,16 @@ public class CommonCtrl {
         JSONObject res = new JSONObject();
         res.put("user", user);
         return res;
+    }
+
+    @GetMapping(value = "/page", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void pageTest() {
+        LambdaQueryWrapper<ShiroUser> wrapper = new LambdaQueryWrapper<>();
+        wrapper.like(ShiroUser::getName, "HG");
+        Page<ShiroUser> page1 = new Page<>(1, 5);
+        Page<ShiroUser> page2 = slave1ShiroUserMapper.selectPage(page1, wrapper);
+        log.info("page1={}", JSONObject.toJSONString(page1));
+        log.info("page2={}", JSONObject.toJSONString(page2));
     }
 
 
