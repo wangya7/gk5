@@ -4,7 +4,7 @@
 <mapper namespace="wang.bannong.gk5.test.mybatisx.mapper.ShiroUserMapper">
 
   <resultMap id="BaseResultMap" type="wang.bannong.gk5.test.mybatisx.common.ShiroUser">
-    <id column="id" jdbcType="INTEGER" property="id"/>
+    <id column="id" jdbcType="BIGINT" property="id"/>
     <result column="name" jdbcType="VARCHAR" property="name"/>
     <result column="role" jdbcType="VARCHAR" property="role"/>
     <result column="passwd" jdbcType="VARCHAR" property="passwd"/>

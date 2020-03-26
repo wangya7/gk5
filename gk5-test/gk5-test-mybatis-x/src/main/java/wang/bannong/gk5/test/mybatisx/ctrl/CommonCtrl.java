@@ -11,6 +11,7 @@ import wang.bannong.gk5.cache.CacheResult;
 import wang.bannong.gk5.test.mybatisx.common.Car;
 import wang.bannong.gk5.test.mybatisx.common.ShiroUser;
 import wang.bannong.gk5.test.mybatisx.mapper.ShiroUserMapper;
+import wang.bannong.gk5.util.SnowFlakeGenerator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -75,6 +76,9 @@ public class CommonCtrl {
         log.info("personManager2 is not null ? {}", personManager2 != null);
 
         ShiroUser record = new ShiroUser();
+        Long id = SnowFlakeGenerator.Factory.creategGnerator(1L,1L).nextId();
+        log.info("id={}", id);
+        record.setId(id);
         record.setName("HG");
         record.setName("HG");
         record.setPasswd("HG");

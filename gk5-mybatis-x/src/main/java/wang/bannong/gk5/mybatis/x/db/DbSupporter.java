@@ -45,7 +45,7 @@ public class DbSupporter {
         globalConfig.setBanner(false);
         globalConfig.setIdentifierGenerator(new DefaultIdentifierGenerator());
         GlobalConfig.DbConfig dbConfig = new GlobalConfig.DbConfig();
-        dbConfig.setIdType(IdType.AUTO);
+        dbConfig.setIdType(IdType.ASSIGN_ID);
         globalConfig.setDbConfig(dbConfig);
         return globalConfig;
     }
