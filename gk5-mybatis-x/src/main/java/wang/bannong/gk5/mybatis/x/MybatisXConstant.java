@@ -1,7 +1,7 @@
 package wang.bannong.gk5.mybatis.x;
 
 public interface MybatisXConstant {
-    String url      = "jdbc:p6spy:mysql://%s:%d/%s?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2B8";
+    String url      = "jdbc:p6spy:mysql://%s:%d/%s?useUnicode=true&characterEncoding=utf8&useSSL=false&allowMultiQueries=true&serverTimezone=Asia/Shanghai";
     String driver   = "com.p6spy.engine.spy.P6SpyDriver";
     String poolName = "Hikari-MyBatisX-%s";
 
