@@ -1,7 +1,14 @@
 项目参考：https://gitee.com/xuxueli0323/xxl-job
 
+
+* gk5-ttm-admin: 后台系统
+* gk5-ttm-admin: 核心包，业务系统仅仅依赖这个包就行啦
+* gk5-ttm-executor: 执行样例
+* gk5-ttm-doc: 文档
+
+
 部署步骤如下：
-1. 初始化数据库，文件所在位置：gk5-ttm-doc/dbProperties/tables_xxl_job.sql
+1. 初始化数据库，文件所在位置：gk5-ttm-doc/db/tables_xxl_job.sql
 2. 部署ADMIN
     * 修改服务端口、数据库连接、邮箱提醒 文件：gk5-ttm-admin/src/main/resources/application.properties
     * 修改打印日志目录 文件：gk5-ttm-admin/src/main/resources/logback.xml
