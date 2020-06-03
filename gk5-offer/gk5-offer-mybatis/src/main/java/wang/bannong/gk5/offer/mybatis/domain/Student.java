@@ -1,10 +1,11 @@
 package wang.bannong.gk5.offer.mybatis.domain;
 
 public class Student {
-    private Integer id;
-    private String  name;
-    private Integer age;
-    private String  num;
+    private Integer         id;
+    private String          name;
+    private Integer         age;
+    private String          num;
+    private StudentTypeEnum type;
 
     public Integer getId() {
         return id;
@@ -38,6 +39,14 @@ public class Student {
         this.num = num;
     }
 
+    public StudentTypeEnum getType() {
+        return type;
+    }
+
+    public void setType(StudentTypeEnum type) {
+        this.type = type;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -45,6 +54,7 @@ public class Student {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", num='" + num + '\'' +
+                ", type=" + type +
                 '}';
     }
 }
