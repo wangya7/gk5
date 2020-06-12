@@ -11,6 +11,9 @@
     <result column="type" property="type" jdbcType="TINYINT"/>
   </resultMap>
 
+  <!-- 注意要在映射文件中配置缓存 -->
+  <cache/>
+
   <sql id="Base_Column_List">
     id, name, age, num, type
     </sql>
@@ -18,8 +21,12 @@
   <select id="selectOne" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List"/>
-    from student where id = #{id}
+    from student where id=#{id}
   </select>
+
+  <update id="updateName">
+    update student set name = #{name} where id=#{id}
+  </update>
 
   <select id="selectByNameLike" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
