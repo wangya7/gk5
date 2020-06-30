@@ -1,4 +1,4 @@
-package wang.bannong.gk5.offer.mybatis.domain;
+package wang.bannong.gk5.offer.mybatis.handler;
 
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
@@ -8,6 +8,8 @@ import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import wang.bannong.gk5.offer.mybatis.enums.StudentTypeEnum;
 
 /**
  * 采用自动配置typeHandlers， 相应的需要配置扫码的包路径

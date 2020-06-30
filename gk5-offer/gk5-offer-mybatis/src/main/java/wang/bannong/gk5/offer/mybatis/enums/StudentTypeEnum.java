@@ -1,4 +1,4 @@
-package wang.bannong.gk5.offer.mybatis.domain;
+package wang.bannong.gk5.offer.mybatis.enums;
 
 import java.util.HashMap;
 import java.util.Map;
