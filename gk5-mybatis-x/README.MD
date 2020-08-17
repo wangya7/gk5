@@ -19,27 +19,28 @@
 application.yml增加配置
 ```yaml
 datasource:
-  mappersPath: wang.bannong.gk5.test.mybatisx.mappersx.mapper
+  mappersPath: wang.bannong.gk5.ntm.rpc.dao
+  mapperLocations: classpath*:/wang/bannong/gk5/ntm/rpc/dao/*.xml
   primary: master
   dbs:
-    - key: master
-      host: 127.0.0.1
-      port: 3306
-      db: gk5
-      username: root
-      password: '@iam3307'
-      minIdle: 10
-      maxIdle: 10
-      connectionTimeout: 30000
-    - key: slave
-      host: 127.0.0.1
-      port: 3306
-      db: gk5
-      username: root
-      password: '@iam3307'
-      minIdle: 10
-      maxIdle: 10
-      connectionTimeout: 30000
+  - key: master
+    host: 192.168.3.20
+    port: 3306
+    db: ntmx
+    username: dbmaster
+    password: qwer1234!@#$
+    minIdle: 10
+    maxIdle: 10
+    connectionTimeout: 3000
+  - key: slave
+    host: 192.168.3.20
+    port: 3306
+    db: ntmx
+    username: dbmaster
+    password: qwer1234!@#$
+    minIdle: 10
+    maxIdle: 10
+    connectionTimeout: 3000
 ```
 注意：
 1. dbs中定义的数组key必须以master,slave开头
