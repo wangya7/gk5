@@ -55,7 +55,7 @@ public final class MD5Util {
 
     public static void main(String... args) {
         System.out.println("11       : " + md5LowerCase("11"));
-        System.out.println("123456   : " + md5LowerCase("13265821397"));
+        System.out.println("123456   : " + md5LowerCase("lj532630"));
         System.out.println("111111   : " + md5LowerCase("111111"));
         System.out.println("666666   : " + md5LowerCase("666666"));
     }

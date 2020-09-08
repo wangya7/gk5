@@ -12,6 +12,7 @@
 
   <modules>
     <module>gk5-offer-jdk</module>
+    <module>gk5-offer-leetcode</module>
     <module>gk5-offer-mybatis</module>
     <module>gk5-offer-spring</module>
   </modules>

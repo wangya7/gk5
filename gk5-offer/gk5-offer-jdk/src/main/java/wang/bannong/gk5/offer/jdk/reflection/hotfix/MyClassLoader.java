@@ -13,6 +13,7 @@ public class MyClassLoader extends ClassLoader {
     protected Class<?> findClass(String name) throws ClassNotFoundException {
         String fileName = name.replaceAll("\\.", "/");
         fileName = BASE_DIR + fileName + ".class";
+
         try {
             InputStream is = new FileInputStream(fileName);
             ByteArrayOutputStream output = new ByteArrayOutputStream();

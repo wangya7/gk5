@@ -2,6 +2,8 @@ package wang.bannong.gk5.offer.jdk.reflection;
 
 import org.junit.Test;
 
+import java.net.URL;
+
 public class ClassLoaderTaste {
 
     @Test
@@ -32,5 +34,20 @@ public class ClassLoaderTaste {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void unique() {
+        ClassLoader cl = new ClassLoader() {
+            @Override
+            public Class<?> loadClass(String name) throws ClassNotFoundException {
+                return super.loadClass(name);
+            }
+
+            @Override
+            protected URL findResource(String name) {
+                return super.findResource(name);
+            }
+        };
     }
 }

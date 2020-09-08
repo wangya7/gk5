@@ -11,23 +11,12 @@
   </parent>
 
   <groupId>wang.bannong</groupId>
-  <artifactId>gk5-offer-jdk</artifactId>
+  <artifactId>gk5-offer-leetcode</artifactId>
   <version>1.0.0-beta</version>
-  <name>gk5-offer-jdk</name>
+  <name>gk5-offer-leetcode</name>
   <url>http://maven.apache.org</url>
 
   <dependencies>
-    <dependency>
-      <groupId>cglib</groupId>
-      <artifactId>cglib</artifactId>
-      <version>3.2.6</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.netty</groupId>
-      <artifactId>netty-all</artifactId>
-      <version>4.1.36.Final</version>
-    </dependency>
   </dependencies>
 
 </project>
