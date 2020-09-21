@@ -8,7 +8,7 @@ import java.lang.reflect.Proxy;
 
 public class IServiceProxy implements InvocationHandler {
 
-    private Object realObject;
+    private final Object realObject;
 
     public IServiceProxy(Object realObject) {
         this.realObject = realObject;
@@ -30,7 +30,7 @@ public class IServiceProxy implements InvocationHandler {
 
 
         /**
-         * 分析上面的过程
+         * 分析下面的过程
          * 1. 通过Proxy.getProxyClass创建代理类定义，类定义会被缓存
          * 2. 获取代理类的构造方法，构造方法有一个InvocationHandler类型的参数
          * 3. 创建InvocationHandler对象，创建代理类对象
@@ -51,12 +51,16 @@ public class IServiceProxy implements InvocationHandler {
          */
         IService serviceProxy = null;
         try {
-            Class<?> proxyCls = Proxy.getProxyClass(IService.class.getClassLoader(),
-                    new Class<?>[]{IService.class});
-            Constructor<?> ctor = proxyCls.getConstructor(new Class<?>[]{InvocationHandler.class});
-            InvocationHandler handler = new IServiceProxy(service);
-            serviceProxy = (IService) ctor.newInstance(handler);
+            // Class<?> proxyCls = Proxy.getProxyClass(IService.class.getClassLoader(),
+            //         new Class<?>[]{IService.class});
+            // Constructor<?> ctor = proxyCls.getConstructor(new Class<?>[]{InvocationHandler.class});
+            // InvocationHandler handler = new IServiceProxy(service);
+            // serviceProxy = (IService) ctor.newInstance(handler);
 
+            Class<?> cls = Proxy.getProxyClass(IService.class.getClassLoader(), new Class[]{IService.class});
+            Constructor<?> ctor = cls.getConstructor(new Class[]{InvocationHandler.class});
+            InvocationHandler invocationHandler = new IServiceProxy(service);
+            serviceProxy = (IService) ctor.newInstance(invocationHandler);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {

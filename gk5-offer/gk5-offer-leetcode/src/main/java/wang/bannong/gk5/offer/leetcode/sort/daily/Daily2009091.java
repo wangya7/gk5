@@ -88,9 +88,8 @@ public class Daily2009091 {
         //    选择当前节点
         int value = candidates.get(position);
         if (target >= value) {
-            target -= value;
             combine.add(value);
-            dfs(candidates, combine, target, position, allAnswers);
+            dfs(candidates, combine, target - value, position, allAnswers);
             // 注意下面这句代码
             combine.remove(combine.size() - 1);
         }
