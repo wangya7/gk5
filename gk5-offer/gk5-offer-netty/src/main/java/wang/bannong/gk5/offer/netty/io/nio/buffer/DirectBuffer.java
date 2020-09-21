@@ -16,13 +16,11 @@ public class DirectBuffer {
         //管理效率
 
         //首先我们从磁盘上读取刚才我们写出的文件内容
-        String infile = "E://test.txt";
-        FileInputStream fin = new FileInputStream(infile);
+        FileInputStream fin = new FileInputStream("/Users/wangya/Downloads/CYQa46WhNO.txt");
         FileChannel fcin = fin.getChannel();
 
         //把刚刚读取的内容写入到一个新的文件中
-        String outfile = String.format("E://testcopy.txt");
-        FileOutputStream fout = new FileOutputStream(outfile);
+        FileOutputStream fout = new FileOutputStream("/Users/wangya/Downloads/CYQa46WhNOo.txt");
         FileChannel fcout = fout.getChannel();
 
         // 使用allocateDirect，而不是allocate
@@ -36,9 +34,7 @@ public class DirectBuffer {
             if (r == -1) {
                 break;
             }
-
             buffer.flip();
-
             fcout.write(buffer);
         }
     }

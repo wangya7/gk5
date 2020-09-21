@@ -8,8 +8,7 @@ public class FileInputDemo {
 
 
     static public void main(String args[]) throws Exception {
-        FileInputStream fin = new FileInputStream("E://test.txt");
-
+        FileInputStream fin = new FileInputStream("/Users/wangya/Downloads/CYQa46WhNO.txt");
         // 获取通道  
         FileChannel fc = fin.getChannel();
 

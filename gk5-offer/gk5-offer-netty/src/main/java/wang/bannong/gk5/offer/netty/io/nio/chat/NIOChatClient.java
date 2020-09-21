@@ -6,21 +6,23 @@ import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
-import java.nio.charset.Charset;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
 
+import static wang.bannong.gk5.offer.netty.io.nio.chat.NIOChatServer.USER_CONTENT_SPILIT;
+import static wang.bannong.gk5.offer.netty.io.nio.chat.NIOChatServer.USER_EXIST;
+import static wang.bannong.gk5.offer.netty.io.nio.chat.NIOChatServer.ip;
+import static wang.bannong.gk5.offer.netty.io.nio.chat.NIOChatServer.port;
+import static wang.bannong.gk5.offer.netty.io.nio.chat.NIOChatServer.charset;
+
 public class NIOChatClient {
 
-    private final InetSocketAddress serverAdrress = new InetSocketAddress("localhost", 8080);
+    private final InetSocketAddress serverAdrress = new InetSocketAddress(ip, port);
     private       Selector          selector      = null;
     private       SocketChannel     client        = null;
 
-    private        String  nickName            = "";
-    private        Charset charset             = Charset.forName("UTF-8");
-    private static String  USER_EXIST          = "系统提示：该昵称已经存在，请换一个昵称";
-    private static String  USER_CONTENT_SPILIT = "#@#";
+    private String nickName = "";
 
 
     public NIOChatClient() throws IOException {
@@ -77,7 +79,7 @@ public class NIOChatClient {
                     Set<SelectionKey> selectedKeys = selector.selectedKeys();  //可以通过这个方法，知道可用通道的集合
                     Iterator<SelectionKey> keyIterator = selectedKeys.iterator();
                     while (keyIterator.hasNext()) {
-                        SelectionKey key = (SelectionKey) keyIterator.next();
+                        SelectionKey key = keyIterator.next();
                         keyIterator.remove();
                         process(key);
                     }

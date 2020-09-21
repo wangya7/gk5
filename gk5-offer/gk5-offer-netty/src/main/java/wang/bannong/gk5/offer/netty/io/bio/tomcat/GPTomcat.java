@@ -19,30 +19,28 @@ import wang.bannong.gk5.offer.netty.io.bio.tomcat.http.GPServlet;
 public class GPTomcat {
     private int                    port           = 8080;
     private ServerSocket           server;
-    private Map<String, GPServlet> servletMapping = new HashMap<String,GPServlet>();
+    private Map<String, GPServlet> servletMapping = new HashMap<>();
 
     private Properties webxml = new Properties();
-    //J2EE标准
-    //Servlet
-    //Request
-    //Response
+    // J2EE标准
+    // Servlet
+    // Request
+    // Response
 
 
-    //1、配置好启动端口，默认8080  ServerSocket  IP:localhost
-    //2、配置web.xml 自己写的Servlet继承HttpServlet
-    //   servlet-name
-    //   servlet-class
-    //   url-pattern
-    //3、读取配置，url-pattern  和 Servlet建立一个映射关系
-    //   Map servletMapping
+    // 1、配置好启动端口，默认8080  ServerSocket  IP:localhost
+    // 2、配置web.xml 自己写的Servlet继承HttpServlet
+    //    servlet-name
+    //    servlet-class
+    //    url-pattern
+    // 3、读取配置，url-pattern  和 Servlet建立一个映射关系
+    //    Map servletMapping
 
 
-
-
-    private void init(){
+    private void init() {
 
         //加载web.xml文件,同时初始化 ServletMapping对象
-        try{
+        try {
             String WEB_INF = this.getClass().getResource("/").getPath();
             FileInputStream fis = new FileInputStream(WEB_INF + "web.properties");
 
@@ -51,25 +49,24 @@ public class GPTomcat {
             for (Object k : webxml.keySet()) {
 
                 String key = k.toString();
-                if(key.endsWith(".url")){
+                if (key.endsWith(".url")) {
                     String servletName = key.replaceAll("\\.url$", "");
                     String url = webxml.getProperty(key);
                     String className = webxml.getProperty(servletName + ".className");
                     //单实例，多线程
-                    GPServlet obj = (GPServlet)Class.forName(className).newInstance();
+                    GPServlet obj = (GPServlet) Class.forName(className).newInstance();
                     servletMapping.put(url, obj);
                 }
-
             }
 
 
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
 
-    public void start(){
+    public void start() {
 
         //1、加载配置文件，初始化ServeltMapping
         init();
@@ -104,10 +101,10 @@ public class GPTomcat {
         //5、从协议内容中拿到URL，把相应的Servlet用反射进行实例化
         String url = request.getUrl();
 
-        if(servletMapping.containsKey(url)){
+        if (servletMapping.containsKey(url)) {
             //6、调用实例化对象的service()方法，执行具体的逻辑doGet/doPost方法
-            servletMapping.get(url).service(request,response);
-        }else{
+            servletMapping.get(url).service(request, response);
+        } else {
             response.write("404 - Not Found");
         }
 
