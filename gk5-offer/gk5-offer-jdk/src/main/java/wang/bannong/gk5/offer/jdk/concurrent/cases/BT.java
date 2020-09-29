@@ -165,29 +165,56 @@ public class BT<T> {
      * @param args
      */
     public static void main(String[] args) {
+        // BT<String> bt_d = BT.of("D", BT.of("J"), BT.of("K", BT.of("L"), BT.of("M")));
+        // BT<String> bt_c = BT.of("C", BT.of("F", BT.of("H"), BT.of("I")), BT.of("G"));
+        // BT<String> bt_a = BT.of("A", BT.of("B", bt_d, BT.of("E")), bt_c);
+        // System.out.print("前序（递归） = ");
+        // preView(bt_a);
+        // System.out.println();
+        // System.out.print("前序 = ");
+        // preView4Loop(bt_a);
+        // System.out.println();
+        //
+        // System.out.print("中序（递归） = ");
+        // midView(bt_a);
+        // System.out.println();
+        // System.out.print("中序 = ");
+        // midView4Loop(bt_a);
+        // System.out.println();
+        //
+        // System.out.print("后序（递归） = ");
+        // bckView(bt_a);
+        // System.out.println();
+        // System.out.print("后序 = ");
+        // bckView4Loop(bt_a);
+        // System.out.println();
+
         BT<String> bt_d = BT.of("D", BT.of("J"), BT.of("K", BT.of("L"), BT.of("M")));
-        BT<String> bt_c = BT.of("C", BT.of("F", BT.of("H"), BT.of("I")), BT.of("G"));
-        BT<String> bt_a = BT.of("A", BT.of("B", bt_d, BT.of("E")), bt_c);
-        System.out.print("前序（递归） = ");
-        preView(bt_a);
-        System.out.println();
-        System.out.print("前序 = ");
-        preView4Loop(bt_a);
-        System.out.println();
+    }
 
-        System.out.print("中序（递归） = ");
-        midView(bt_a);
-        System.out.println();
-        System.out.print("中序 = ");
-        midView4Loop(bt_a);
-        System.out.println();
 
-        System.out.print("后序（递归） = ");
-        bckView(bt_a);
-        System.out.println();
-        System.out.print("后序 = ");
-        bckView4Loop(bt_a);
-        System.out.println();
+    public int minCameraCover(BT root) {
+        if (root == null) {
+            return 0;
+        } else if (root.getRchild() == null && root.getLchild() == null) {
+            return 1;
+        }
+        // 保证至少大于1层
+        return minCameraCoverDo(root, 1, 0);
+    }
+
+    public int minCameraCoverDo(BT root, int depth, int size) {
+        if (root.getRchild() == null && root.getLchild() == null) {
+            depth++;
+            return depth % 2 == 0 ? 1 : 0;
+        } else {
+            int rSize = minCameraCoverDo(root.getRchild(), depth + 1, size);
+            int lSize = minCameraCoverDo(root.getLchild(), depth + 1, size);
+            if (rSize == 0 || lSize == 0) {
+                return size + lSize + rSize;
+            }
+            return size + (rSize > lSize ? lSize : rSize);
+        }
     }
 
 }

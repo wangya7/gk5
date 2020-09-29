@@ -72,7 +72,8 @@ public class NIOChatServer {
             SocketChannel client = server.accept();
             // 非阻塞模式
             client.configureBlocking(false);
-            // 注册选择器，并设置为读取模式，收到一个连接请求，然后起一个SocketChannel，并注册到selector上，之后这个连接的数据，就由这个SocketChannel处理
+            // 注册选择器，并设置为读取模式，收到一个连接请求，然后起一个SocketChannel，并注册到selector上，
+            // 之后这个连接的数据，就由这个SocketChannel处理
             client.register(selector, SelectionKey.OP_READ);
 
             // 将此对应的channel设置为准备接受其他客户端请求
