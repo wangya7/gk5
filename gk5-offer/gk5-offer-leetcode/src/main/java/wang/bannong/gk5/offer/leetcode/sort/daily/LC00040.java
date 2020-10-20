@@ -38,11 +38,11 @@ import java.util.List;
  * 链接：https://leetcode-cn.com/problems/combination-sum-ii
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class Daily2009092 {
+public class LC00040 {
 
     public static void main(String[] args) {
         int[] candidates = {1, 1};
-        List<List<Integer>> answers = new Daily2009092().combinationSum(candidates, 1);
+        List<List<Integer>> answers = new LC00040().combinationSum(candidates, 1);
         if (answers != null && answers.size() > 0) {
             for (List<Integer> answer : answers) {
                 System.out.println(answer);

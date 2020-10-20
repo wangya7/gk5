@@ -23,11 +23,11 @@ import java.util.List;
  * 链接：https://leetcode-cn.com/problems/permutations-ii
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class Daily2009102 {
+public class LC00047 {
 
     public static void main(String[] args) {
         int[] candidates = {2, 1, 1};
-        List<List<Integer>> answers = new Daily2009102().permuteUnique(candidates);
+        List<List<Integer>> answers = new LC00047().permuteUnique(candidates);
         if (answers != null && answers.size() > 0) {
             for (List<Integer> answer : answers) {
                 System.out.println(answer);

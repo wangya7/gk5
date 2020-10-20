@@ -38,11 +38,11 @@ import java.util.List;
  * ]
  *  
  */
-public class Daily2009091 {
+public class LC00039 {
 
     public static void main(String[] args) {
         int[] candidates = {2, 3, 6, 7};
-        List<List<Integer>> answers = new Daily2009091().combinationSum2(candidates, 7);
+        List<List<Integer>> answers = new LC00039().combinationSum2(candidates, 7);
         if (answers != null && answers.size() > 0) {
             for (List<Integer> answer : answers) {
                 System.out.println(answer);

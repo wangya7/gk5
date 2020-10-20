@@ -24,11 +24,11 @@ import java.util.List;
  * 链接：https://leetcode-cn.com/problems/permutations
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class Daily2009101 {
+public class LC00046 {
 
     public static void main(String[] args) {
         int[] candidates = {1, 2, 3};
-        List<List<Integer>> answers = new Daily2009101().permute(candidates);
+        List<List<Integer>> answers = new LC00046().permute(candidates);
         if (answers != null && answers.size() > 0) {
             for (List<Integer> answer : answers) {
                 System.out.println(answer);
@@ -37,28 +37,34 @@ public class Daily2009101 {
     }
 
     public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> answers = new ArrayList<>();
-        List<Integer> group = new ArrayList<>();
-        dfs(nums, nums.length, 0, group, answers);
-        return answers;
+        List<List<Integer>> target = new ArrayList<>();
+        List<Integer> choose = new ArrayList<>();
+        boolean[] flags = new boolean[nums.length];
+        dfs(nums, 0, flags, choose, target);
+        return target;
     }
 
-    public void dfs(int[] nums, int length, int hight, List<Integer> group, List<List<Integer>> answers) {
-
-        if (hight == length) {
-            answers.add(new ArrayList<>(group));
+    public void dfs(int[] nums, int depth, boolean[] flags, List<Integer> choose, List<List<Integer>> target) {
+        if (nums.length == depth) {
+            target.add(new ArrayList<>(choose));
             return;
         }
 
-        for (int i = 0; i < length; i++) {
-            if (group.contains(nums[i])) {
+        for (int i = 0; i < nums.length; ++i) {
+            int num = nums[i];
+
+            boolean flag = flags[i];
+            if (flag) {
                 continue;
             }
 
-            group.add(nums[i]);
-            dfs(nums, length, hight + 1, group, answers);
-            // 能不能回来就看这句话啦  哈哈
-            group.remove(group.size() - 1);
+            flags[i] = true;
+            choose.add(num);
+
+            dfs(nums, depth + 1, flags, choose, target);
+
+            flags[i] = false;
+            choose.remove(choose.size() - 1);
         }
     }
 }

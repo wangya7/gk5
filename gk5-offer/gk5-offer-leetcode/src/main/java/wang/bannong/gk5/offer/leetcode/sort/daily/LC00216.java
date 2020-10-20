@@ -25,10 +25,10 @@ import java.util.List;
  * 链接：https://leetcode-cn.com/problems/combination-sum-iii
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class Daily2009111 {
+public class LC00216 {
 
     public static void main(String[] args) {
-        List<List<Integer>> answers = new Daily2009111().combinationSum3(3, 7);
+        List<List<Integer>> answers = new LC00216().combinationSum3(3, 7);
         if (answers != null && answers.size() > 0) {
             for (List<Integer> answer : answers) {
                 System.out.println(answer);
