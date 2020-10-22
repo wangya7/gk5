@@ -7,12 +7,12 @@
   <parent>
     <groupId>wang.bannong</groupId>
     <artifactId>gk5-offer</artifactId>
-    <version>1.0.0-beta</version>
+    <version>0.0.1-ov</version>
   </parent>
 
   <groupId>wang.bannong</groupId>
   <artifactId>gk5-offer-mybatis</artifactId>
-  <version>1.0.0-beta</version>
+  <version>0.0.1-ov</version>
   <name>gk5-offer-mybatis</name>
   <url>http://maven.apache.org</url>
 
@@ -28,7 +28,7 @@
     <dependency>
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis</artifactId>
-      <version>3.4.7-SNAPSHOT-local</version>
+      <version>3.5.3</version>
     </dependency>
     <dependency>
       <groupId>ognl</groupId>

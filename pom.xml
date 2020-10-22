@@ -5,22 +5,18 @@
 <modelVersion>4.0.0</modelVersion>
 <groupId>wang.bannong</groupId>
 <artifactId>gk5</artifactId>
-<version>1.1.1-beta</version>
+<version>0.0.1-ov</version>
 <packaging>pom</packaging>
 <name>gk5</name>
 <url>http://maven.apache.org</url>
 
 <modules>
   <module>gk5-administrative</module>
-  <module>gk5-autohub</module>
   <module>gk5-cache</module>
   <module>gk5-dependencies</module>
-  <module>gk5-devops</module>
   <module>gk5-excel</module>
   <module>gk5-gate</module>
-  <module>gk5-kafka</module>
   <module>gk5-log</module>
-  <module>gk5-mini</module>
   <module>gk5-mybatis-x</module>
   <module>gk5-normdb</module>
   <module>gk5-offer</module>
@@ -30,7 +26,5 @@
   <module>gk5-test</module>
   <module>gk5-ttm</module>
   <module>gk5-util</module>
-  <module>gk5-velocity</module>
-  <module>gk5-wechat</module>
 </modules>
 </project>

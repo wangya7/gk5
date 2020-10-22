@@ -7,12 +7,12 @@
   <parent>
     <groupId>wang.bannong</groupId>
     <artifactId>gk5-offer</artifactId>
-    <version>1.0.0-beta</version>
+    <version>0.0.1-ov</version>
   </parent>
 
   <groupId>wang.bannong</groupId>
   <artifactId>gk5-offer-leetcode</artifactId>
-  <version>1.0.0-beta</version>
+  <version>0.0.1-ov</version>
   <name>gk5-offer-leetcode</name>
   <url>http://maven.apache.org</url>
 

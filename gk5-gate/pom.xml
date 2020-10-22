@@ -6,14 +6,14 @@
   <parent>
     <groupId>wang.bannong</groupId>
     <artifactId>gk5-parent</artifactId>
-    <version>1.1.1-beta</version>
+    <version>0.0.1-ov</version>
   </parent>
 
   <groupId>wang.bannong</groupId>
   <artifactId>gk5-gate</artifactId>
   <!-- 1.0.0-beta 的分页信息给 生产的项目使用 -->
   <!-- 1.1.0-beta 的分页信息修改啦 -->
-  <version>1.1.1-beta</version>
+  <version>0.0.1-ov</version>
   <name>gk5-gate</name>
   <url>http://maven.apache.org</url>
 
@@ -21,7 +21,7 @@
     <dependency>
       <groupId>wang.bannong</groupId>
       <artifactId>gk5-starter</artifactId>
-      <version>1.1.1-beta</version>
+      <version>0.0.1-ov</version>
     </dependency>
   </dependencies>
 </project>

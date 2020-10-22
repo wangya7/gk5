@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>wang.bannong</groupId>
   <artifactId>gk5-offer</artifactId>
-  <version>1.0.0-beta</version>
+  <version>0.0.1-ov</version>
   <name>gk5-offer</name>
   <packaging>pom</packaging>
   <description>gk5-offer</description>
@@ -19,6 +19,8 @@
   </modules>
 
   <properties>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
     <lombok.version>1.16.20</lombok.version>
     <junit.version>4.12</junit.version>
   </properties>

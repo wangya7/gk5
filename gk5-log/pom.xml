@@ -7,12 +7,12 @@
   <parent>
     <groupId>wang.bannong</groupId>
     <artifactId>gk5-parent</artifactId>
-    <version>1.1.1-beta</version>
+    <version>0.0.1-ov</version>
   </parent>
 
   <groupId>wang.bannong</groupId>
   <artifactId>gk5-log</artifactId>
-  <version>1.1.1-beta</version>
+  <version>0.0.1-ov</version>
   <name>gk5-log</name>
   <url>https://bannong.wang</url>
   <description>gk5-log</description>

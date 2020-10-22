@@ -7,12 +7,12 @@
   <parent>
     <groupId>wang.bannong</groupId>
     <artifactId>gk5-ttm</artifactId>
-    <version>1.1.1-beta</version>
+    <version>0.0.1-ov</version>
   </parent>
 
   <groupId>wang.bannong</groupId>
   <artifactId>gk5-ttm-executor</artifactId>
-  <version>1.1.1-beta</version>
+  <version>0.0.1-ov</version>
   <name>gk5-ttm-executor</name>
   <url>http://maven.apache.org</url>
 

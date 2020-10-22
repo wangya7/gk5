@@ -6,12 +6,12 @@
   <parent>
     <groupId>wang.bannong</groupId>
     <artifactId>gk5-parent</artifactId>
-    <version>1.1.1-beta</version>
+    <version>0.0.1-ov</version>
   </parent>
 
   <groupId>wang.bannong</groupId>
   <artifactId>gk5-rmdb</artifactId>
-  <version>1.1.1-beta</version>
+  <version>0.0.1-ov</version>
   <name>gk5-rmdb</name>
   <url>http://maven.apache.org</url>
 

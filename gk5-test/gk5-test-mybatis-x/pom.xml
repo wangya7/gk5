@@ -7,12 +7,12 @@
   <parent>
     <groupId>wang.bannong</groupId>
     <artifactId>gk5-test</artifactId>
-    <version>1.1.1-beta</version>
+    <version>0.0.1-ov</version>
   </parent>
 
   <groupId>wang.bannong</groupId>
   <artifactId>gk5-test-mybatis-x</artifactId>
-  <version>1.1.1-beta</version>
+  <version>0.0.1-ov</version>
   <name>gk5-test-mybatis-x</name>
   <url>http://maven.apache.org</url>
   <description>gk5-test-mybatis-x</description>
@@ -30,10 +30,6 @@
     <dependency>
       <groupId>wang.bannong</groupId>
       <artifactId>gk5-cache</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>wang.bannong</groupId>
-      <artifactId>gk5-kafka</artifactId>
     </dependency>
 
     <!-- shiro -->
@@ -53,11 +49,6 @@
       <groupId>wang.bannong</groupId>
       <artifactId>gk5-mybatis-x</artifactId>
       <version>1.1.2-beta</version>
-    </dependency>
-    <dependency>
-      <groupId>wang.bannong</groupId>
-      <artifactId>gk5-velocity</artifactId>
-      <version>1.1.1-beta</version>
     </dependency>
   </dependencies>
 

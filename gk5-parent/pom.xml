@@ -10,7 +10,7 @@
   </parent>
   <groupId>wang.bannong</groupId>
   <artifactId>gk5-parent</artifactId>
-  <version>1.1.1-beta</version>
+  <version>0.0.1-ov</version>
   <packaging>pom</packaging>
   <name>gk5-parent</name>
   <url>https://bannong.wang</url>
@@ -54,7 +54,7 @@
       <dependency>
         <groupId>wang.bannong</groupId>
         <artifactId>gk5-dependencies</artifactId>
-        <version>1.1.1-beta</version>
+        <version>0.0.1-ov</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -98,31 +98,8 @@
     </profile>
   </profiles>
 
-
-  <distributionManagement>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
-    <repository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-    </repository>
-  </distributionManagement>
-
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>1.6.7</version>
-        <extensions>true</extensions>
-        <configuration>
-          <serverId>ossrh</serverId>
-          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-          <autoReleaseAfterClose>true</autoReleaseAfterClose>
-        </configuration>
-      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
@@ -149,21 +126,6 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <version>1.5</version>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
       <!-- maven 编译-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
