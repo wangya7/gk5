@@ -1,9 +1,5 @@
 package wang.bannong.gk5.offer.leetcode.sort.daily;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.TreeMap;
-
 /**
  * 10. 正则表达式匹配
  *
@@ -58,42 +54,77 @@ import java.util.TreeMap;
  * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
 public class LC00010 {
+
     public static void main(String[] args) {
-        List<List<Integer>> target = new LC00010().permute(new int[]{1,2,3});
-        for (List<Integer> item : target) {
-            System.out.println(item);
-        }
+        System.out.println(new LC00010().isMatch("aa", "a"));
+        System.out.println(new LC00010().isMatch("aa", "a*"));
+        System.out.println(new LC00010().isMatch("ab", ".*"));
+        System.out.println(new LC00010().isMatch("aab", "c*a*b"));
+        System.out.println(new LC00010().isMatch("mississippi", "mis*is*p*."));
+        System.out.println(new LC00010().isMatch("", "..*"));
     }
 
-    public List<List<Integer>> permute(int[] nums) {
-        List<List<Integer>> target = new ArrayList<>();
-        List<Integer> choose = new ArrayList<>();
-        boolean[] flags = new boolean[nums.length];
-        dfs(nums, 0, flags, choose, target);
-        return target;
-    }
+    public boolean isMatch(String s, String p) {
+        int m = s.length();
+        int n = p.length();
 
-    public void dfs(int[] nums, int depth, boolean[] flags, List<Integer> choose, List<List<Integer>> target) {
-        if (nums.length == depth) {
-            target.add(new ArrayList<>(choose));
-            return;
+        // 创建表格并初始化表格
+        boolean[][] f = new boolean[m + 1][n + 1];
+        f[0][0] = true;
+        // 如果s不为空 p为空 那么全部false
+        for (int i = 1; i <= m; ++i) {
+            f[i][0] = false;
         }
-
-        for (int i = 0; i < nums.length; ++i) {
-            int num = nums[i];
-
-            boolean flag = flags[i];
-            if (flag) {
-                continue;
+        // 如果s为空 p不为空 那么需要考虑如下
+        char c = '*';
+        int pos = 1;
+        for (; pos <= n; ++pos) {
+            char tmp = p.charAt(pos - 1);
+            if (tmp != c) {
+                if (c != '*' && tmp != '*') {
+                    f[0][pos] = false;
+                    break;
+                } else {
+                    f[0][pos] = (tmp == '*');
+                    c = tmp;
+                }
+            } else {
+                f[0][pos] = (c == '*');
             }
-
-            flags[i] = true;
-            choose.add(num);
-
-            dfs(nums, depth + 1, flags, choose, target);
-
-            flags[i] = false;
-            choose.remove(choose.size() - 1);
         }
+        for (; pos <= n; ++pos) {
+            f[0][pos] = false;
+        }
+
+        for (int i = 1; i <= m; ++i) {
+            for (int j = 1; j <= n; ++j) {
+                if (p.charAt(j - 1) == '*') {
+                    if (matches(s, p, i, j - 1)) {
+                        f[i][j] = f[i - 1][j] || f[i][j - 2];
+                    } else {
+                        f[i][j] = f[i][j - 2];
+                    }
+                } else {
+                    if (matches(s, p, i, j)) {
+                        f[i][j] = f[i - 1][j - 1];
+                    }
+                }
+            }
+        }
+        return f[m][n];
     }
+
+    /**
+     * 比较s的第i位和p的第j为是否相同
+     */
+    private boolean matches(String s, String p, int i, int j) {
+        if (i == 0) {
+            return false;
+        }
+        if (p.charAt(j - 1) == '.') {
+            return true;
+        }
+        return s.charAt(i - 1) == p.charAt(j - 1);
+    }
+
 }

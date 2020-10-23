@@ -89,6 +89,7 @@ public class CLHLock {
 
     private volatile static int count = 0;
 
+
     public static void main(String[] args) throws InterruptedException {
         int size = 100;
 
@@ -115,8 +116,8 @@ public class CLHLock {
 
             countDownLatch.await();
 
-            if (count != size) {
-                System.out.println(count);
+            if (count == size) {
+                // System.out.println(count);
                 break;
 
             }
