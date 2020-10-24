@@ -1,5 +1,4 @@
-<project
-        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
         xmlns="http://maven.apache.org/POM/4.0.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
@@ -7,26 +6,31 @@
   <parent>
     <groupId>wang.bannong</groupId>
     <artifactId>gk5-parent</artifactId>
-    <version>0.0.1-ov</version>
+    <version>0.47.1-rc</version>
+    <relativePath>../gk5-parent/pom.xml</relativePath>
   </parent>
 
   <groupId>wang.bannong</groupId>
   <artifactId>gk5-administrative</artifactId>
-  <version>0.0.1-ov</version>
+  <version>0.47.1-rc</version>
   <name>gk5-administrative</name>
-  <url>http://maven.apache.org</url>
+  <url>https://bannong.wang</url>
+  <description>gk5-administrative</description>
 
   <properties>
+    <spring-context.version>5.1.8.RELEASE</spring-context.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>wang.bannong</groupId>
-      <artifactId>gk5-log</artifactId>
+      <artifactId>gk5-util</artifactId>
+      <version>0.47.1-rc</version>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
+      <version>${spring-context.version}</version>
     </dependency>
   </dependencies>
 </project>

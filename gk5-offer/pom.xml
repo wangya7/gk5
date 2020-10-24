@@ -9,6 +9,7 @@
   <name>gk5-offer</name>
   <packaging>pom</packaging>
   <description>gk5-offer</description>
+  <url>https://bannong.wang</url>
 
   <modules>
     <module>gk5-offer-jdk</module>

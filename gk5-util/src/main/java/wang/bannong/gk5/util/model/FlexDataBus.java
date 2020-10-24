@@ -1,14 +1,11 @@
-package wang.bannong.gk5.util.domain;
+package wang.bannong.gk5.util.model;
 
 import java.io.Serializable;
 import java.util.*;
 
-import lombok.Data;
-
 /**
  * Created by wang.bannong on 2017/4/13.
  */
-@Data
 public class FlexDataBus implements Serializable {
 
     private static final long serialVersionUID = 3958384474944589195L;
@@ -158,4 +155,65 @@ public class FlexDataBus implements Serializable {
         }
     }
 
+    //*********getter & setter & toString
+
+    public Map<String, Object> getBizMap() {
+        return bizMap;
+    }
+
+    public void setBizMap(Map<String, Object> bizMap) {
+        this.bizMap = bizMap;
+    }
+
+    public boolean isSuccess() {
+        return isSuccess;
+    }
+
+    public void setSuccess(boolean success) {
+        isSuccess = success;
+    }
+
+    public String getErrMsg() {
+        return errMsg;
+    }
+
+    public void setErrMsg(String errMsg) {
+        this.errMsg = errMsg;
+    }
+
+    public int getErrCode() {
+        return errCode;
+    }
+
+    public void setErrCode(int errCode) {
+        this.errCode = errCode;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getNamespace() {
+        return namespace;
+    }
+
+    public void setNamespace(String namespace) {
+        this.namespace = namespace;
+    }
+
+    @Override
+    public String toString() {
+        return "FlexDataBus{" +
+                "bizMap=" + bizMap +
+                ", isSuccess=" + isSuccess +
+                ", errMsg='" + errMsg + '\'' +
+                ", errCode=" + errCode +
+                ", type='" + type + '\'' +
+                ", namespace='" + namespace + '\'' +
+                '}';
+    }
 }

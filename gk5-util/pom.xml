@@ -1,5 +1,4 @@
-<project
-        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
         xmlns="http://maven.apache.org/POM/4.0.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
@@ -7,28 +6,28 @@
   <parent>
     <groupId>wang.bannong</groupId>
     <artifactId>gk5-parent</artifactId>
-    <version>0.0.1-ov</version>
+    <version>0.47.1-rc</version>
   </parent>
 
   <groupId>wang.bannong</groupId>
   <artifactId>gk5-util</artifactId>
-  <version>0.0.1-ov</version>
+  <version>0.47.1-rc</version>
   <name>gk5-util</name>
   <url>https://bannong.wang</url>
   <description>gk5-util</description>
 
   <properties>
     <uk.com.robust-it.version>1.9.0</uk.com.robust-it.version>
+    <okhttp.version>3.8.0</okhttp.version>
+    <spring.version>5.1.8.RELEASE</spring.version>
+    <fastjson.version>1.2.73</fastjson.version>
   </properties>
 
   <dependencies>
     <dependency>
-      <groupId>wang.bannong</groupId>
-      <artifactId>gk5-log</artifactId>
-    </dependency>
-    <dependency>
       <groupId>com.squareup.okhttp3</groupId>
       <artifactId>okhttp</artifactId>
+      <version>${okhttp.version}</version>
     </dependency>
     <dependency>
       <groupId>uk.com.robust-it</groupId>
@@ -44,10 +43,17 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-beans</artifactId>
+      <version>${spring.version}</version>
     </dependency>
     <dependency>
-    <groupId>org.springframework</groupId>
-    <artifactId>spring-context</artifactId>
-  </dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.alibaba</groupId>
+      <artifactId>fastjson</artifactId>
+      <version>${fastjson.version}</version>
+    </dependency>
   </dependencies>
 </project>
