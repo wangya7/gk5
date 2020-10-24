@@ -106,11 +106,20 @@ public class LC00051 {
         List<String> board = new ArrayList<>();
         for (Integer num : path) {
             String row = CharBuffer.allocate(n).toString().replace('\0', '.');
+            // String row = dots(n);
             StringBuilder sb = new StringBuilder(row);
             sb.replace(num, num + 1, "Q");
             board.add(sb.toString());
         }
         return board;
+    }
+
+    private String dots(int n) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; ++i) {
+            sb.append('.');
+        }
+        return sb.toString();
     }
 
 }
