@@ -53,7 +53,7 @@
       <dependency>
         <groupId>wang.bannong</groupId>
         <artifactId>gk5-dependencies</artifactId>
-        <version>3.0.0-rc</version>
+        <version>0.47.1-rc</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
