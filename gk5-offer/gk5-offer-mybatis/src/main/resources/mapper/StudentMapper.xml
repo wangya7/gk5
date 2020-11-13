@@ -40,4 +40,11 @@
     from student where name like CONCAT('%', #{name}, '%')
   </select>
 
+  <select id="findByPaging" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from student
+    where id > #{id}
+  </select>
+
 </mapper>

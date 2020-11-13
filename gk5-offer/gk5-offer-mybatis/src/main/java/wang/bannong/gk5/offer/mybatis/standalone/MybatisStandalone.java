@@ -15,6 +15,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -30,9 +31,10 @@ import wang.bannong.gk5.offer.mybatis.standalone.mapper.StudentMapper;
 
 public class MybatisStandalone {
 
-    private final static SqlSessionFactory sqlSessionFactory;
+    private SqlSessionFactory sqlSessionFactory;
 
-    static {
+    @Before
+    public void init() {
         String resource = "mybatis-standalone.xml";
         InputStream inputStream = null;
         try {
@@ -62,12 +64,21 @@ public class MybatisStandalone {
         System.out.println("       " + student);
     }
 
-
     @Test
     public void selectList() {
         SqlSession sqlSession = sqlSessionFactory.openSession();
         StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
         List<Student> students = studentMapper.selectByNameLike("B");
+        System.out.println("Result=");
+        System.out.println("       " + students);
+    }
+
+    // 插件测试
+    @Test
+    public void selectPageByInterceptor() {
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+        StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+        List<Student> students = studentMapper.findByPaging(2, new RowBounds(2, 2));
         System.out.println("Result=");
         System.out.println("       " + students);
     }

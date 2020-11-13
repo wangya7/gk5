@@ -51,30 +51,18 @@ public class IServiceProxy implements InvocationHandler {
          */
         IService serviceProxy = null;
         try {
-            // Class<?> proxyCls = Proxy.getProxyClass(IService.class.getClassLoader(),
-            //         new Class<?>[]{IService.class});
-            // Constructor<?> ctor = proxyCls.getConstructor(new Class<?>[]{InvocationHandler.class});
-            // InvocationHandler handler = new IServiceProxy(service);
-            // serviceProxy = (IService) ctor.newInstance(handler);
-
-            Class<?> cls = Proxy.getProxyClass(IService.class.getClassLoader(), new Class[]{IService.class});
+            Class<?> cls = Proxy.getProxyClass(IService.class.getClassLoader(),
+                    new Class[]{IService.class});
             Constructor<?> ctor = cls.getConstructor(new Class[]{InvocationHandler.class});
             InvocationHandler invocationHandler = new IServiceProxy(service);
             serviceProxy = (IService) ctor.newInstance(invocationHandler);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
+
+            // serviceProxy = (IService) Proxy.newProxyInstance(IService.class.getClassLoader(),
+            //         new Class<?>[]{IService.class},
+            //         new IServiceProxy(service));
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
-
-
-
-
 
         if (serviceProxy != null) {
             serviceProxy.sayHi();
