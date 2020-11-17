@@ -28,6 +28,10 @@ public class LC00001 {
         System.out.print(Arrays.toString(res));
     }
 
+    /**
+     * 最基础的操作，穷举
+     * O(n^2)
+     */
     public int[] twoSum1(int[] nums, int target) {
         for (int i = 0; i < nums.length; ++i) {
             for (int j = i + 1; j < nums.length; ++j) {
@@ -39,6 +43,10 @@ public class LC00001 {
         return new int[0];
     }
 
+    /**
+     * 使用一个hashmap，先比较剩余的值在不在，如果不在先装进去
+     * 典型的空间换时间 O(n)
+     */
     public int[] twoSum2(int[] nums, int target) {
         Map<Integer, Integer> hashtable = new HashMap<>();
         for (int i = 0; i < nums.length; ++i) {

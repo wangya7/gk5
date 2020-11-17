@@ -69,11 +69,11 @@ public class LC00010 {
         int n = p.length();
 
         // 创建表格并初始化表格
-        boolean[][] f = new boolean[m + 1][n + 1];
-        f[0][0] = true;
+        boolean[][] dp = new boolean[m + 1][n + 1];
+        dp[0][0] = true;
         // 如果s不为空 p为空 那么全部false
         for (int i = 1; i <= m; ++i) {
-            f[i][0] = false;
+            dp[i][0] = false;
         }
         // 如果s为空 p不为空 那么需要考虑如下
         char c = '*';
@@ -82,36 +82,36 @@ public class LC00010 {
             char tmp = p.charAt(pos - 1);
             if (tmp != c) {
                 if (c != '*' && tmp != '*') {
-                    f[0][pos] = false;
+                    dp[0][pos] = false;
                     break;
                 } else {
-                    f[0][pos] = (tmp == '*');
+                    dp[0][pos] = (tmp == '*');
                     c = tmp;
                 }
             } else {
-                f[0][pos] = (c == '*');
+                dp[0][pos] = (c == '*');
             }
         }
         for (; pos <= n; ++pos) {
-            f[0][pos] = false;
+            dp[0][pos] = false;
         }
 
         for (int i = 1; i <= m; ++i) {
             for (int j = 1; j <= n; ++j) {
                 if (p.charAt(j - 1) == '*') {
                     if (matches(s, p, i, j - 1)) {
-                        f[i][j] = f[i - 1][j] || f[i][j - 2];
+                        dp[i][j] = dp[i - 1][j] || dp[i][j - 2];
                     } else {
-                        f[i][j] = f[i][j - 2];
+                        dp[i][j] = dp[i][j - 2];
                     }
                 } else {
                     if (matches(s, p, i, j)) {
-                        f[i][j] = f[i - 1][j - 1];
+                        dp[i][j] = dp[i - 1][j - 1];
                     }
                 }
             }
         }
-        return f[m][n];
+        return dp[m][n];
     }
 
     /**

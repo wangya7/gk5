@@ -37,12 +37,13 @@ public class LC00003 {
         // System.out.println(lengthOfLongestSubstring("pwwkew"));
     }
 
+    // debug看一下就明白啦
     public static int lengthOfLongestSubstring(String s) {
         // 哈希集合，记录每个字符是否出现过
         Set<Character> occ = new HashSet<>();
         int n = s.length();
         // 右指针，初始值为 -1，相当于我们在字符串的左边界的左侧，还没有开始移动
-        int rk = -1;
+        int rk = -1; // 这个游标是一直往前，
         int ans = 0;  // 保存最大长度值
 
         for (int i = 0; i < n; ++i) {

@@ -35,6 +35,13 @@ public class LC00002 {
         // System.out.println(reverse(rsult));
     }
 
+    /**
+     * 这道题直接计算就行，逢十进一，注意最高位的是否需要进一
+     *
+     * @param l1
+     * @param l2
+     * @return
+     */
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode ll1 = l1;
         ListNode ll2 = l2;
