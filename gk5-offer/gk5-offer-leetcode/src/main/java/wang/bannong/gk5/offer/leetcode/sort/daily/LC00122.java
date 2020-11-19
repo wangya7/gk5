@@ -50,8 +50,12 @@ public class LC00122 {
 
     /**
      * 参考121动态规划
+     *
+     * 参考： https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/solution/tan-xin-suan-fa-by-liweiwei1419-2/
+     * 但是还是把
+     * 状态结束成这个样子
      * dp[i][j]
-     * - j = 0，表示持有现金；
+     * - j = 0，表示不持有股票；
      * - j = 1，表示持有股票。
      *
      *
@@ -65,7 +69,7 @@ public class LC00122 {
         int[][] dp = new int[prices.length][2];
 
         // 初始化
-        // 第一天持有现金
+        // 第一天不持有股票
         dp[0][0] = 0;
         // 第一天持有股票
         dp[0][1] = -prices[0];
