@@ -10,13 +10,37 @@ public class AtomicAll {
 
     @Test
     public void jj()  {
-        String a = "helloworld2";
-        final String b = "helloworld";
+        String a = "helloworld2";      // 常量池创建"helloworld2" a直接指向常量池
+        final String b = "helloworld"; // b定义成final 那么下文引用b的地方在编译期间全部直接使用"helloworld" 替换
         String c = "helloworld";
-        String d = b + 2;
-        String e = d + 2;
+        // System.out.println(b == c);   true
+
+        String d = b + 2;              // d = "helloworld" + 2; 即 d = "helloworld2";
+        String e = c + 2;
         System.out.println((a == d));
         System.out.println((a == e));
+
+
+        String s1 = "d3f43g45";
+        String s2 = new String("d3f43g45");
+        System.out.println(s1 == s2);
+    }
+
+
+    /**
+     * https://tech.meituan.com/2014/03/06/in-depth-understanding-string-intern.html
+     */
+    @Test
+    public void testJdk8_jdk7() {
+        String s = new String("1");
+        s.intern();
+        String s2 = "1";
+        System.out.println(s == s2);   // java8 false; java7 false
+
+        String s3 = new String("1") + new String("1");
+        s3.intern();
+        String s4 = "11";
+        System.out.println(s3 == s4);  // java8 false; java7 true
     }
 
 

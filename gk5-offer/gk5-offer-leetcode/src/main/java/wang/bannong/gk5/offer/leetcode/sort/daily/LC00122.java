@@ -43,9 +43,9 @@ package wang.bannong.gk5.offer.leetcode.sort.daily;
 // 👍 991 👎 0
 public class LC00122 {
     public static void main(String[] args) {
-        System.out.println(new LC00122().maxProfit(new int[]{7,1,5,3,6,4}));
-        System.out.println(new LC00122().maxProfit(new int[]{1,2,3,4,5}));
-        System.out.println(new LC00122().maxProfit(new int[]{7,6,4,3,1}));
+        System.out.println(new LC00122().maxProfit2(new int[]{7,1,5,3,6,4}));
+        System.out.println(new LC00122().maxProfit2(new int[]{1,2,3,4,5}));
+        System.out.println(new LC00122().maxProfit2(new int[]{7,6,4,3,1}));
     }
 
     /**
@@ -80,5 +80,33 @@ public class LC00122 {
             dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] - prices[i]);
         }
         return dp[prices.length - 1][0];
+    }
+
+    /**
+     * 参考maxProfit做空间优化
+     * 直接根据状态转移方程做优化
+     *
+     * @param prices
+     * @return
+     */
+    public int maxProfit2(int[] prices) {
+        if (prices == null || prices.length < 2) {
+            return 0;
+        }
+
+        int[] dp = new int[2];
+
+        // 初始化
+        // 第一天不持有股票
+        dp[0] = 0;
+        // 第一天持有股票
+        dp[1] = -prices[0];
+
+        for (int i = 1; i < prices.length; ++i) {
+            // 注意区别于121题
+            dp[0] = Math.max(dp[0], dp[1] + prices[i]);
+            dp[1] = Math.max(dp[1], dp[0] - prices[i]);
+        }
+        return dp[0];
     }
 }

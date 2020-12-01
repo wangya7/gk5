@@ -33,7 +33,6 @@ public class AtomicReferenceDemo {
         Pair p = new Pair(100, 200);
         AtomicReference<Pair> pairRef = new AtomicReference<>(p);
         pairRef.compareAndSet(p, new Pair(200, 200));
-
         System.out.println(pairRef.get().getFirst());
     }
 

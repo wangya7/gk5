@@ -115,4 +115,34 @@ public class LC00121 {
 
         return dp[prices.length - 1][0];
     }
+
+
+    /**
+     * 对maxProfit2的优化
+     * 只看转态转移方程：
+     * 状态转移方程里下标为 i 的行只参考下标为 i - 1 的行（即只参考上一行），并且：
+     * - 下标为 i 的行并且状态为 0 的行参考了上一行状态为 0 和 1 的行；
+     * - 下标为 i 的行并且状态为 1 的行只参考了上一行状态为 1 的行。
+     *
+     * @param prices
+     * @return
+     */
+    public int maxProfit3(int[] prices) {
+        if (prices == null || prices.length < 2) {
+            return 0;
+        }
+        int[] dp = new int[2];
+
+        dp[0] = 0;
+        dp[1] = -prices[0];
+
+        for (int i = 1; i < prices.length; ++i) {
+            // 今天不持股
+            dp[0] = Math.max(dp[0], dp[1] + prices[i]);
+            dp[1] = Math.max(dp[1], -prices[i]);
+            System.out.println("dp[" + i + "][0]=" + dp[0] + ", dp[" + i + "][1]=" + dp[1]);
+        }
+
+        return dp[0];
+    }
 }

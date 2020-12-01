@@ -55,6 +55,13 @@ public class LC00123 {
      * dp[i][2][0]：表示第i天交易了2次时不持有股票
      * dp[i][2][1]：表示第i天交易了2次时持有股票  实际是不存在的，因为交易两次后，就不能再买入了
      *
+     *
+     *
+     * ！！！！！注意注意注意！！！！！！
+     * 下面写的全部不算，
+     * 直接参考解释，把买入的时候作为第二维度而不是卖出
+     * https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/solution/dong-tai-gui-hua-by-liweiwei1419-7/
+     *
      */
     public int maxProfit1(int[] prices) {
         if(prices==null || prices.length < 2) {
@@ -98,8 +105,6 @@ public class LC00123 {
 
         return Math.max(Math.max(dp[prices.length - 1][2][0], dp[prices.length - 1][1][0]), dp[prices.length - 1][0][0]);
     }
-
-
 
 
     //***********************

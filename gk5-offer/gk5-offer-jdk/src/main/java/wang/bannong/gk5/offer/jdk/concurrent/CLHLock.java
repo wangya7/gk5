@@ -28,7 +28,7 @@ public class CLHLock {
         // 初始化时尾结点指向一个空的CLH节点
         tailNode = new AtomicReference<>(new CLHNode());
 
-        // 初始化当前的CLH节点
+        // 初始化当前的CLH节点  每次必须new
         curNode = new ThreadLocal() {
             @Override
             protected CLHNode initialValue() {
@@ -94,6 +94,7 @@ public class CLHLock {
         int size = 100;
 
         while (true) {
+            System.out.println("size=" + size);
             CLHLock lock = new CLHLock();
             CountDownLatch countDownLatch = new CountDownLatch(size);
             count = 0;
