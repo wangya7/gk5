@@ -2,21 +2,46 @@
         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
         xmlns="http://maven.apache.org/POM/4.0.0"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>wang.bannong</groupId>
-        <artifactId>gk5-offer</artifactId>
-        <version>0.0.1-ov</version>
-    </parent>
-
+  <parent>
     <groupId>wang.bannong</groupId>
-    <artifactId>gk5-offer-spring</artifactId>
+    <artifactId>gk5-offer</artifactId>
     <version>0.0.1-ov</version>
-    <name>gk5-offer-spring</name>
-    <url>http://maven.apache.org</url>
+  </parent>
 
-    <dependencies>
-    </dependencies>
+  <groupId>wang.bannong</groupId>
+  <artifactId>gk5-offer-spring</artifactId>
+  <version>0.0.1-ov</version>
+  <name>gk5-offer-spring</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <spring.version>5.1.8.RELEASE</spring.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aop</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+  </dependencies>
 
 </project>

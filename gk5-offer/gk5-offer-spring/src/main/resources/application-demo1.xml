@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+  <bean id="dog" class="wang.bannong.gk5.offer.spring.model.impl.Husky"/>
+
+
+  <!-- s1 -->
+  <!-- 非自动注入，手动配置依赖 -->
+  <bean id="animalsAction-without-autowire"
+        class="wang.bannong.gk5.offer.spring.model.AnimalsAction" autowire="no">
+    <property name="dog" ref="dog"/>
+  </bean>
+  <!-- 通过设置 autowire 属性，我们就不需要像上面那样显式配置依赖了 -->
+  <bean id="animalsAction-with-autowire" class="wang.bannong.gk5.offer.spring.model.AnimalsAction" autowire="byName"/>
+
+  <!-- s2 -->
+  <bean id="helloFactoryBean" class="wang.bannong.gk5.offer.spring.model.HelloFactoryBean"/>
+
+  <!-- s3 -->
+  <bean id="staticHelloFactory" class="wang.bannong.gk5.offer.spring.model.StaticHelloFactory" factory-method="getHello"/>
+
+  <!-- s4 -->
+  <bean id="news" class="wang.bannong.gk5.offer.spring.model.News" scope="prototype"/>
+  <bean id="newsProvider" class="wang.bannong.gk5.offer.spring.model.NewsProvider">
+    <property name="news" ref="news"/>
+  </bean>
+  <!-- 1. 实现 ApplicationContextAware 接口 -->
+  <bean id="newsProvider2" class="wang.bannong.gk5.offer.spring.model.NewsProvider2">
+    <property name="news" ref="news"/>
+  </bean>
+  <!-- 2. lookup-method -->
+  <bean id="newsProvider3" class="wang.bannong.gk5.offer.spring.model.NewsProvider">
+    <!-- name 注意对应的是获取成员变量的方法名 -->
+    <lookup-method name="getNews" bean="news"/>
+  </bean>
+
+
+</beans>

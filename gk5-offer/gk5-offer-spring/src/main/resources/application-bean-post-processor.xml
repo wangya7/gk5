@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+  <bean class="wang.bannong.gk5.offer.spring.model.LoggerBeanPostProcessor"/>
+
+
+  <bean id="dog" class="wang.bannong.gk5.offer.spring.model.impl.Husky"/>
+  <bean id="animalsAction-without-autowire"
+        class="wang.bannong.gk5.offer.spring.model.AnimalsAction" autowire="no">
+    <property name="dog" ref="dog"/>
+  </bean>
+
+</beans>
