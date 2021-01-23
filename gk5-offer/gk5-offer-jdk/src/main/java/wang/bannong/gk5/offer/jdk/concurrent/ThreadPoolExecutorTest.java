@@ -2,6 +2,8 @@ package wang.bannong.gk5.offer.jdk.concurrent;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -96,13 +98,22 @@ public class ThreadPoolExecutorTest {
     @Test
     public void threadPoolExecutorDetail() {
         ExecutorService executorService = Executors.newFixedThreadPool(5);
-
-        Runnable task = () -> {
-            System.out.println("===> BIZ " + Thread.currentThread().getName());
-        };
+        List<Runnable> tasks = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            if (i != 2) {
+                tasks.add(() -> System.out.println("===> BIZ " + Thread.currentThread().getName()));
+            } else {
+                tasks.add(() -> {
+                    if (3 > 1) {
+                        throw new RuntimeException("pos");
+                    }
+                    System.out.println("===> BIZ " + Thread.currentThread().getName());
+                });
+            }
+        }
 
         for (int i = 0; i < 10; i++) {
-            executorService.execute(task);
+            executorService.execute(tasks.get(i));
         }
 
         System.out.println("newFixedThreadPool 线程任务开始执行");

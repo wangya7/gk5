@@ -6,6 +6,7 @@
 
   <bean class="wang.bannong.gk5.offer.spring.model.LoggerBeanPostProcessor"/>
 
+  <bean class="wang.bannong.gk5.offer.spring.model.ConfigurationBeanFactoryPostProcessor"/>
 
   <bean id="dog" class="wang.bannong.gk5.offer.spring.model.impl.Husky"/>
   <bean id="animalsAction-without-autowire"

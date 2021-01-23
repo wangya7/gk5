@@ -7,6 +7,15 @@
 
   <bean id="dog" class="wang.bannong.gk5.offer.spring.model.impl.Husky"/>
 
+  <!-- 循环依赖 -->
+  <bean id="model1" class="wang.bannong.gk5.offer.spring.model.Model1">
+    <property name="model2" ref="model2"/>
+  </bean>
+  <bean id="model2" class="wang.bannong.gk5.offer.spring.model.Model2">
+    <property name="model1" ref="model1"/>
+  </bean>
+
+
 
   <!-- s1 -->
   <!-- 非自动注入，手动配置依赖 -->
