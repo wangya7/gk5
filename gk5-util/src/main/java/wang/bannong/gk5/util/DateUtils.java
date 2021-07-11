@@ -40,7 +40,7 @@ public final class DateUtils {
     // ################################### 转换
 
     public static String format(Date date) {
-        return format(YMDHMS3, date);
+        return format(YMDHMS1, date);
     }
 
     public static String format(String dateFormatStr, Date date) {
@@ -49,7 +49,7 @@ public final class DateUtils {
     }
 
     public static Date parse(String dateStr) {
-        return parse(YMDHMS3, dateStr);
+        return parse(YMDHMS1, dateStr);
     }
 
     public static Date parse(String dateFormatStr, String dateStr) {

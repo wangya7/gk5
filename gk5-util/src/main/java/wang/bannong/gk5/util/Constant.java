@@ -24,10 +24,10 @@ public interface Constant {
     String BLANK                 = "";
     String UNDERLINE             = "_";
     String AT                    = "@";
-    String zero                  = "0";
+    String ZERO                  = "0";
 
 
     String SMILE_MARK            = "\\^_\\^";
     String UTF8                  = "UTF-8";
-    String SEPARATOR             = File.separator;
+    String FILE_SEPARATOR        = File.separator;
 }
