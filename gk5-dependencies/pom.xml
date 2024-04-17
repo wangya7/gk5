@@ -63,6 +63,13 @@
 
   <dependencyManagement>
     <dependencies>
+
+      <dependency>
+        <groupId>wang.bannong</groupId>
+        <artifactId>gk5-util</artifactId>
+        <version>0.47.3-rc</version>
+      </dependency>
+
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-lang3</artifactId>

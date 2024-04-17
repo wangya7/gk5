@@ -17,7 +17,6 @@
     <module>gk5-excel</module>
     <module>gk5-offer</module>
     <module>gk5-parent</module>
-    <module>gk5-ttm</module>
     <module>gk5-util</module>
   </modules>
 </project>
