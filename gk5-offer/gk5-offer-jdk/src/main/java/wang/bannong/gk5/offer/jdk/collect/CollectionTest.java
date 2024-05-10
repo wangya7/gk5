@@ -4,7 +4,9 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.EnumMap;
 import java.util.LinkedList;
+import java.util.Map;
 import java.util.PriorityQueue;
 
 import lombok.AllArgsConstructor;
@@ -53,4 +55,15 @@ public class CollectionTest {
         private String name;
     }
 
+    private enum Stage {
+        eff, exp
+    }
+
+    @Test
+    public void enumMapTest() {
+        Map m = new EnumMap(Stage.class);
+        m.put(Stage.eff, "HH");
+        m.put(Stage.exp, 45);
+        System.out.println(m);
+    }
 }

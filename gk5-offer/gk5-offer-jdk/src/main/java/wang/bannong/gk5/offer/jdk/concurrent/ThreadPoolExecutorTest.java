@@ -16,9 +16,9 @@ public class ThreadPoolExecutorTest {
 
     @Test
     public void sample() {
-        int COUNT_BITS = 3;
-        int RUNNING = -1 << COUNT_BITS;
-        int SHUTDOWN = 0 << COUNT_BITS;
+        int COUNT_BITS = Integer.SIZE - 3;
+        int RUNNING = -1 << COUNT_BITS; // -1 * 2^9
+        int SHUTDOWN = 0 << COUNT_BITS; // 0
         int STOP = 1 << COUNT_BITS;
         int TIDYING = 2 << COUNT_BITS;
         int TERMINATED = 3 << COUNT_BITS;

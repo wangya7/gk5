@@ -15,13 +15,13 @@ public class BIOServer {
     //服务器
     public BIOServer(int port) {
         try {
-            //Tomcat 默认端口8080
-            //只要是Java写的都这么玩，3306
-            //Redis  6379
-            //Zookeeper  2181
-            //HBase
-            //RMI
-            //TCP
+            // Tomcat 默认端口8080
+            // 只要是Java写的都这么玩，3306
+            // Redis  6379
+            // Zookeeper  2181
+            // HBase
+            // RMI
+            // TCP
             server = new ServerSocket(port);
             System.out.println("BIO服务已启动，监听端口是：" + port);
         } catch (IOException e) {
