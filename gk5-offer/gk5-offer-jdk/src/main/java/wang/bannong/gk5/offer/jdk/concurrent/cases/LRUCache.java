@@ -9,16 +9,21 @@ import java.util.Map;
 public class LRUCache<K,V> extends LinkedHashMap<K,V> {
     private static final long serialVersionUID = 8083179879983758378L;
 
-    private static final int MAX_ENTRIES = 5;
+    private int cacheSize;
+
+    public LRUCache(int cacheSize) {
+        super(cacheSize, 0.75f, true);
+        this.cacheSize = cacheSize;
+    }
 
     @Override
     protected boolean removeEldestEntry(Map.Entry eldest) {
-        return size() > MAX_ENTRIES;
+        return size() > this.cacheSize;
     }
 
 
     public static void main(String[] args) {
-        LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
+        Map<String, Integer> map = new LRUCache<>(5);
         map.put("Tom", 31);
         map.put("Jerry", 35);
         map.put("Pro", 33);
@@ -30,7 +35,10 @@ public class LRUCache<K,V> extends LinkedHashMap<K,V> {
         }
 
         System.out.println(map.get("Tom"));
-        System.out.println(map.get("Jerry"));
+        System.out.println(map.get("Tony"));
+
+        map.put("Tom", 31);
+
         for (Map.Entry entry : map.entrySet()) {
             System.out.println(entry.getKey() + ":" + entry.getValue());
         }
