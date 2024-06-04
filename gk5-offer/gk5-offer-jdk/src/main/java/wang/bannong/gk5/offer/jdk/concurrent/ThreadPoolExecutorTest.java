@@ -167,4 +167,24 @@ public class ThreadPoolExecutorTest {
         System.out.println(i);
     }
 
+    public static ExecutorService executor = TestThreadPool.getExecutor();
+
+    public static void main(String[] args) {
+        executor.submit(() -> test("正常"));
+        executor.submit(() -> test("正常"));
+        executor.submit(() -> test("任务执行异常"));
+        executor.submit(() -> test("正常"));
+        executor.shutdown();
+    }
+
+    public static void test(String str) {
+        String result = "当前ThreadName为" + Thread.currentThread().getName() + ":结果" + str;
+        if (str.equals("任务执行异常")) {
+            throw new RuntimeException(result);
+        } else {
+            System.out.println(result);
+        }
+    }
+
+
 }

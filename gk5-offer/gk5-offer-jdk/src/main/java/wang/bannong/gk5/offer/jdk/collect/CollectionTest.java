@@ -1,5 +1,6 @@
 package wang.bannong.gk5.offer.jdk.collect;
 
+import java.util.HashMap;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -65,5 +66,13 @@ public class CollectionTest {
         m.put(Stage.eff, "HH");
         m.put(Stage.exp, 45);
         System.out.println(m);
+    }
+
+    @Test
+    public void mapTreeify() {
+        HashMap<Integer, String> map = new HashMap<>(1,1f);
+        for (int i = 1; i <=10; i++) {
+            map.put(i, String.valueOf(i));
+        }
     }
 }
