@@ -2,10 +2,6 @@ package wang.bannong.gk5.offer.jdk.collect;
 
 import java.util.HashMap;
 
-/**
- * @author <a href="mailto:bannongvipp@163.com">bn</a>
- * @date 2024/4/22
- */
 public class HashMapInfiniteLoop {
     private static HashMap<Integer, String> map = new HashMap<>(2, 0.75f);
 
@@ -17,7 +13,6 @@ public class HashMapInfiniteLoop {
                 map.put(7, "B");
                 System.out.println(map);
             }
-
             ;
         }.start();
         new Thread("Thread2") {
@@ -25,7 +20,6 @@ public class HashMapInfiniteLoop {
                 map.put(3, "A");
                 System.out.println(map);
             }
-
             ;
         }.start();
     }

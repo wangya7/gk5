@@ -1,8 +1,5 @@
 package wang.bannong.gk5.util;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
-
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
@@ -18,6 +15,7 @@ import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 
+import java.util.Base64;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
@@ -132,16 +130,11 @@ public final class RSAUtils {
     }
 
     public static String base64Encode(byte[] data) {
-        return new BASE64Encoder().encode(data);
+        return Base64.getEncoder().encodeToString(data);
     }
 
     public static byte[] base64Decode(String data) {
-        try {
-            return new BASE64Decoder().decodeBuffer(data);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
+        return Base64.getDecoder().decode(data);
     }
 
     public static void main(String... args) throws UnsupportedEncodingException {

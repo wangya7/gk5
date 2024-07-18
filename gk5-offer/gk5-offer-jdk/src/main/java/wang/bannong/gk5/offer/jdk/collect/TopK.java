@@ -4,13 +4,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.PriorityQueue;
 
-
-import org.junit.Test;
-
-/**
- * @author <a href="mailto:bannongvipp@163.com">bn</a>
- * @date 2024/4/16
- */
 public class TopK<E> {
     // 最小堆
     private PriorityQueue<E> p;

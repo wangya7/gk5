@@ -6,12 +6,13 @@
   <parent>
     <groupId>wang.bannong</groupId>
     <artifactId>gk5-parent</artifactId>
-    <version>0.47.1-rc</version>
+    <version>1.0.0-SNAPSHOT</version>
+    <relativePath>../gk5-parent/pom.xml</relativePath>
   </parent>
 
   <groupId>wang.bannong</groupId>
   <artifactId>gk5-excel</artifactId>
-  <version>0.47.1-rc</version>
+  <version>1.0.0-SNAPSHOT</version>
   <name>gk5-excel</name>
   <url>https://bannong.wang</url>
   <description>gk5-excel</description>
