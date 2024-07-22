@@ -12,10 +12,9 @@ public class Consumer implements Runnable {
     public void run() {
         try {
             while (true) {
-
-                String element = queue.poll();
-                System.out.println(Thread.currentThread().getName() + "queue poll " + element);
-                Thread.sleep((int) (Math.random() * 100));
+                String element = queue.take();
+                System.out.println(Thread.currentThread().getName() + "queue take " + element);
+                Thread.sleep((int) (Math.random() * 50));
             }
         } catch (InterruptedException e) {
             //

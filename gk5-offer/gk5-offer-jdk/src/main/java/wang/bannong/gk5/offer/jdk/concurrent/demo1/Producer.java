@@ -13,9 +13,9 @@ public class Producer implements Runnable {
         try {
             int num = 0;
             while (true) {
-                String element = Thread.currentThread().getName() + ":" + String.valueOf(num++);
-                queue.add(element);
-                System.out.println("queue add " + element);
+                String element = Thread.currentThread().getName() + ":" + (++num);
+                queue.put(element);
+                System.out.println("queue put " + element);
                 Thread.sleep((int) (Math.random() * 100));
             }
         } catch (InterruptedException e) {

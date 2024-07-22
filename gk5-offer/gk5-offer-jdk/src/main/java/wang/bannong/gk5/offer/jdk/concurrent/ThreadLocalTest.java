@@ -3,30 +3,25 @@ package wang.bannong.gk5.offer.jdk.concurrent;
 import com.alibaba.ttl.TransmittableThreadLocal;
 import com.alibaba.ttl.TtlRunnable;
 
+import java.util.concurrent.CountDownLatch;
 import org.junit.Test;
 
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.stream.IntStream;
 
 public class ThreadLocalTest {
 
     @Test
-    public void main() {
-        Thread[] threads = new Thread[20];
-        ThreadLocalTest.u u = new ThreadLocalTest.u();
-        for (int i = 0; i < 20; ++i) {
-            threads[i] = new Thread(u, "Thread-" + (i + 1));
-        }
-
-        for (int i = 0; i < 20; ++i) {
-            threads[i].start();
-        }
+    public void main() throws InterruptedException {
+        U task = new U();
+        Thread thread = new Thread(task);
+        thread.start();
+        thread.join();
     }
 
 
-    static class u implements Runnable {
+    static class U implements Runnable {
         private ThreadLocal<String>  threadLocal1 = new ThreadLocal<>();
         private ThreadLocal<Integer> threadLocal2 = new ThreadLocal<>();
 

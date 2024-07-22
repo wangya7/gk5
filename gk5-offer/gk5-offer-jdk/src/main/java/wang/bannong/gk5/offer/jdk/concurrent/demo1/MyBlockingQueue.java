@@ -13,7 +13,7 @@ public class MyBlockingQueue<E> {
         this.queue = new ArrayDeque<>(limit);
     }
 
-    public synchronized void add(E element) throws InterruptedException {
+    public synchronized void put(E element) throws InterruptedException {
         while (limit == queue.size()) {
             wait();
         }
@@ -22,7 +22,7 @@ public class MyBlockingQueue<E> {
         notifyAll();
     }
 
-    public synchronized E poll() throws InterruptedException {
+    public synchronized E take() throws InterruptedException {
         while (queue.size() == 0) {
             wait();
         }

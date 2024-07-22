@@ -6,7 +6,7 @@ public class DCLDemo {
      * 值（可能是空值），此时DCL方法将通过在持有锁情况再次来避免这种风险。然后这样子情况会变得更加糟糕——线程
      * 可能看到引用的当前值，但对象的状态值却是无效的，这意味着线程可以看到对象处于无效或者错误的状态。
      */
-    private static Resource resource1;
+    private volatile static Resource resource1;
 
     public static Resource getResource1() {
         if (resource1 == null) {
