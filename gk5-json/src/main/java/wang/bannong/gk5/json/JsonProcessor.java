@@ -8,12 +8,10 @@ import java.util.Map;
  * JSON 接口定义
  * 声明直接参考
  * <p>
- * @see
  * @author <a href="mailto:bannongvipp@163.com">bn</a>
  * @date 2024/11/24
  */
 public interface JsonProcessor {
-    boolean isSupport();
 
     boolean isJson(String json);
 
