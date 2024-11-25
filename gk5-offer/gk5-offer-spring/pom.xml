@@ -7,12 +7,12 @@
   <parent>
     <groupId>wang.bannong</groupId>
     <artifactId>gk5-offer</artifactId>
-    <version>0.0.1-ov</version>
+    <version>1.0.0-SNAPSHOT</version>
   </parent>
 
   <groupId>wang.bannong</groupId>
   <artifactId>gk5-offer-spring</artifactId>
-  <version>0.0.1-ov</version>
+  <version>1.0.0-SNAPSHOT</version>
   <name>gk5-offer-spring</name>
   <url>http://maven.apache.org</url>
 

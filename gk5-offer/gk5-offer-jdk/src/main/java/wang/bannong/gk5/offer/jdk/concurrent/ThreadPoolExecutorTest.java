@@ -170,11 +170,13 @@ public class ThreadPoolExecutorTest {
     public static ExecutorService executor = TestThreadPool.getExecutor();
 
     public static void main(String[] args) {
-        executor.submit(() -> test("正常"));
-        executor.submit(() -> test("正常"));
-        executor.submit(() -> test("任务执行异常"));
-        executor.submit(() -> test("正常"));
+        executor.execute(() -> test("正常"));
+        executor.execute(() -> test("正常"));
+        //executor.execute(() -> test("任务执行异常"));
         executor.shutdown();
+        executor.shutdownNow();
+        //executor.execute(() -> test("正常"));
+        //executor.shutdown();
     }
 
     public static void test(String str) {

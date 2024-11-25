@@ -15,9 +15,12 @@ public class TestThreadPool {
     }
 
     private static ExecutorService initThreadPool() {
-        return new ThreadPoolExecutor(16, 16,
-            300, TimeUnit.SECONDS,
-            new ArrayBlockingQueue<>(10240),
+        int processorSize = Runtime.getRuntime().availableProcessors();
+
+        return new ThreadPoolExecutor(processorSize * 2,
+                processorSize * 25,
+            10, TimeUnit.MINUTES,
+            new ArrayBlockingQueue<>(100),
             Executors.defaultThreadFactory(),
             new ThreadPoolExecutor.AbortPolicy());
     }

@@ -2,10 +2,6 @@ package wang.bannong.gk5.administrative;
 
 import com.google.common.io.ByteStreams;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -16,13 +12,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import wang.bannong.gk5.administrative.model.Administrative;
-import wang.bannong.gk5.administrative.model.Area;
-import wang.bannong.gk5.administrative.model.City;
-import wang.bannong.gk5.administrative.model.Plate;
-import wang.bannong.gk5.administrative.model.Province;
-import wang.bannong.gk5.administrative.model.Street;
-
 /**
  * 政区工具类
  * Created by bn. on 2019/4/4 4:05 PM
@@ -32,13 +21,10 @@ public final class AdministrativeUtils {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(AdministrativeUtils.class);
 
-    private static JSONArray      provinceArray = null;
     private static List<Province> provinces = null;
 
-    private static JSONArray      cityArray = null;
     private static List<City>     cities = null;
 
-    private static JSONArray      areaArray = null;
     private static List<Area>     areas = null;
 
     private static Map<Integer, List<City>>     cityMapByProvinceCode   = new HashMap<>();
@@ -80,28 +66,6 @@ public final class AdministrativeUtils {
             List<Street> streets = JSON.parseArray(ss, Street.class);
             for (Street item : streets) {
                 administrativeMap.put(item.getCode(), item);
-            }
-
-            // 车牌信息
-            String pcp = new String(ByteStreams.toByteArray(cl.getResourceAsStream("pcplate.json")));
-            JSONArray array = JSON.parseArray(pcp);
-            int length = array.size();
-            for (int i = 0; i < length; i++) {
-                JSONObject province = array.getJSONObject(i);
-                int provinceCode = province.getIntValue("code");
-                if (provinceCode == 11 || provinceCode == 12 || provinceCode == 31 || provinceCode == 50) {
-                    plateAdministrativeMap.put(province.getString("plate"), cityMap.get(provinceCode * 100 + 1));
-                } else {
-                    List<Plate> plates = JSON.parseArray(province.getString("children"), Plate.class);
-                    for (Plate plate : plates) {
-                        if (plate.getPlate() != null && plate.getPlate().size() > 0) {
-                            List<String> items = plate.getPlate();
-                            for (String item : items) {
-                                plateAdministrativeMap.put(item, cityMap.get(plate.getCode()));
-                            }
-                        }
-                    }
-                }
             }
 
             areaMapByCityCode = areas.stream().sequential().collect(Collectors.groupingBy(Area::getCityCode));
