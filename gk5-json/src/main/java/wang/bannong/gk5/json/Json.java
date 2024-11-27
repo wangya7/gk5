@@ -3,6 +3,8 @@ package wang.bannong.gk5.json;
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
+import wang.bannong.gk5.json.processor.JsonProcessor;
+import wang.bannong.gk5.json.processor.JsonProcessorStrategy;
 
 /**
  * JSON Tools.
@@ -38,43 +40,53 @@ public final class Json {
         return processor.toJson(obj);
     }
 
-    public static List<?> getList(Map<String, ?> obj, String key) {
-        return processor.getList(obj, key);
+    /****************************************************/
+
+    public static String mapToJson(Map<String, Object> map) {
+        return processor.mapToJson(map);
     }
 
-    public static List<Map<String, ?>> getListOfObjects(Map<String, ?> obj, String key) {
-        return processor.getListOfObjects(obj, key);
+    /****************************************************/
+
+    public static String get(String json, String key) {
+        return processor.get(json, key);
     }
 
-    public static List<String> getListOfStrings(Map<String, ?> obj, String key) {
-        return processor.getListOfStrings(obj, key);
+    public static String getJsonStr(String json, String key) {
+        return processor.getJsonStr(json, key);
     }
 
-    public static Map<String, ?> getObject(Map<String, ?> obj, String key) {
-        return processor.getObject(obj, key);
+    public static int getInt(String json, String key) {
+        return processor.getInt(json, key);
     }
 
-    public static Double getNumberAsDouble(Map<String, ?> obj, String key) {
-        return processor.getNumberAsDouble(obj, key);
+    public static Integer getInteger(String json, String key) {
+        return processor.getInteger(json, key);
     }
 
-    public static Integer getNumberAsInteger(Map<String, ?> obj, String key) {
-        return processor.getNumberAsInteger(obj, key);
+    public static long getLong(String json, String key) {
+        return processor.getLong(json, key);
     }
 
-    public static Long getNumberAsLong(Map<String, ?> obj, String key) {
-        return processor.getNumberAsLong(obj, key);
+    public static Long getLongValue(String json, String key) {
+        return processor.getLongValue(json, key);
     }
 
-    public static String getString(Map<String, ?> obj, String key) {
-        return processor.getString(obj, key);
+    public static boolean getBoolean(String json, String key) {
+        return processor.getBoolean(json, key);
     }
 
-    public static List<Map<String, ?>> checkObjectList(List<?> rawList) {
-        return processor.checkObjectList(rawList);
+    public static Boolean getBooleanValue(String json, String key) {
+        return processor.getBooleanValue(json, key);
+
     }
 
-    public static List<String> checkStringList(List<?> rawList) {
-        return processor.checkStringList(rawList);
+    public static byte getByte(String json, String key) {
+        return processor.getByte(json, key);
     }
+
+    public static Byte getByteValue(String json, String key) {
+        return processor.getByteValue(json, key);
+    }
+
 }

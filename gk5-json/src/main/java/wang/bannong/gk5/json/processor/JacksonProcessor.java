@@ -1,4 +1,4 @@
-package wang.bannong.gk5.json;
+package wang.bannong.gk5.json.processor;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import wang.bannong.gk5.json.exception.IllegalJsonException;
 
 /**
  * Jackson implements Json.
@@ -76,5 +77,31 @@ public class JacksonProcessor extends AbstractJsonProcessor {
             }
         }
         return (JsonMapper) jacksonCache;
+    }
+
+    public JsonNode getJson(String json, String key) {
+        JsonNode jsonNode = null;
+        try {
+            jsonNode = objectMapper.readTree(json);
+        } catch (Throwable e) {
+            throw new IllegalJsonException("illegal json[" + json + "]");
+        }
+        if (null == jsonNode) {
+            throw new IllegalJsonException("json is null");
+        }
+        return jsonNode.get(key);
+    }
+
+
+    @Override
+    public String get(String json, String key) {
+        JsonNode jsonNode = getJson(json, key);
+        return jsonNode != null ? jsonNode.asText() : null;
+    }
+
+    @Override
+    public String getJsonStr(String json, String key) {
+        JsonNode jsonNode = getJson(json, key);
+        return jsonNode != null ? jsonNode.toString(): null;
     }
 }
