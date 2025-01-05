@@ -1,10 +1,10 @@
-package wang.bannong.gk5.json;
+package wang.bannong.gk5.util.json;
 
 import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
-import wang.bannong.gk5.json.processor.JsonProcessor;
-import wang.bannong.gk5.json.processor.JsonProcessorStrategy;
+import wang.bannong.gk5.util.json.processor.JsonProcessor;
+import wang.bannong.gk5.util.json.processor.JsonProcessorStrategy;
 
 /**
  * JSON Tools.

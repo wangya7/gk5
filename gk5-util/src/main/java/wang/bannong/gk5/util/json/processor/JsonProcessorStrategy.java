@@ -1,4 +1,4 @@
-package wang.bannong.gk5.json.processor;
+package wang.bannong.gk5.util.json.processor;
 
 public class JsonProcessorStrategy {
     public static JsonProcessor processor() {

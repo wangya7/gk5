@@ -1,4 +1,4 @@
-package wang.bannong.gk5.json.exception;
+package wang.bannong.gk5.util.json.exception;
 
 public class JsonParseException extends RuntimeException {
 

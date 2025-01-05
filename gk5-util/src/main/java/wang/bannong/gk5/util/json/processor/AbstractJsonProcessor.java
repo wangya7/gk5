@@ -1,7 +1,7 @@
-package wang.bannong.gk5.json.processor;
+package wang.bannong.gk5.util.json.processor;
 
 import java.util.Map;
-import wang.bannong.gk5.json.exception.JsonParseException;
+import wang.bannong.gk5.util.json.exception.JsonParseException;
 
 public abstract class AbstractJsonProcessor implements JsonProcessor {
 

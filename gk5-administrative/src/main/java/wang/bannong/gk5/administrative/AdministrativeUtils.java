@@ -2,6 +2,7 @@ package wang.bannong.gk5.administrative;
 
 import com.google.common.io.ByteStreams;
 
+import java.util.Objects;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -11,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import wang.bannong.gk5.util.json.Json;
 
 /**
  * 政区工具类
@@ -22,9 +24,7 @@ public final class AdministrativeUtils {
     private final static Logger LOGGER = LoggerFactory.getLogger(AdministrativeUtils.class);
 
     private static List<Province> provinces = null;
-
     private static List<City>     cities = null;
-
     private static List<Area>     areas = null;
 
     private static Map<Integer, List<City>>     cityMapByProvinceCode   = new HashMap<>();
@@ -38,37 +38,34 @@ public final class AdministrativeUtils {
         ClassLoader cl = AdministrativeUtils.class.getClassLoader();
         try {
             String ps = new String(ByteStreams.toByteArray(cl.getResourceAsStream("provinces.json")));
-            provinceArray = JSON.parseArray(ps);
-            provinces = JSON.parseArray(ps, Province.class);
+            provinces = Json.toJavaList(ps, Province.class);
             for (Province item : provinces) {
                 administrativeMap.put(item.getCode(), item);
             }
 
             String cs = new String(ByteStreams.toByteArray(cl.getResourceAsStream("cities.json")));
-            cityArray = JSON.parseArray(cs);
-            cities = JSON.parseArray(cs, City.class);
+            cities = Json.toJavaList(cs, City.class);
             Map<Integer, City> cityMap = new HashMap<>();
             for (City item : cities) {
                 administrativeMap.put(item.getCode(), item);
                 cityMap.put(item.getCode(), item);
             }
-            cityMapByProvinceCode = cities.stream().sequential().collect(Collectors.groupingBy(City::getProvinceCode));
+            cityMapByProvinceCode = cities.stream().collect(Collectors.groupingBy(i -> i.getProvince().getCode()));
 
             String as = new String(ByteStreams.toByteArray(cl.getResourceAsStream("areas.json")));
-            areaArray = JSON.parseArray(as);
-            areas = JSON.parseArray(as, Area.class);
+            areas = Json.toJavaList(as, Area.class);
             for (Area item : areas) {
                 administrativeMap.put(item.getCode(), item);
             }
 
             // NOTICE: pca-code.json 中的地区在 areas.json中可能不存在，比如"东莞市"下面没有区，直接是街道，需要再次补充街道信息
             String ss = new String(ByteStreams.toByteArray(cl.getResourceAsStream("streets.json")));
-            List<Street> streets = JSON.parseArray(ss, Street.class);
+            List<Street> streets = Json.toJavaList(ss, Street.class);
             for (Street item : streets) {
                 administrativeMap.put(item.getCode(), item);
             }
 
-            areaMapByCityCode = areas.stream().sequential().collect(Collectors.groupingBy(Area::getCityCode));
+            areaMapByCityCode = areas.stream().collect(Collectors.groupingBy(i -> i.getCity().getCode()));
 
             LOGGER.info("行政区：省级（省份直辖市自治区）、 地级（城市）、 县级（区县）加载完成 ");
         } catch (IOException e) {
@@ -82,7 +79,7 @@ public final class AdministrativeUtils {
      * @param code 政区code
      * @return
      */
-    public static Administrative of(int code) {
+    public static Administrative of(Integer code) {
         return administrativeMap.get(code);
     }
 
@@ -103,8 +100,8 @@ public final class AdministrativeUtils {
 
 
     /** 获取所有省级（省份直辖市自治区）JSON对象 */
-    public static JSONArray getProvinceArray() {
-        return provinceArray;
+    public static String getProvinceArray() {
+        return Json.toJson(provinces);
     }
 
     /** 获取所有省级（省份直辖市自治区）列表 */
@@ -113,23 +110,23 @@ public final class AdministrativeUtils {
     }
 
     /**
-     * 跟进城市code获取省
+     * 根据城市code获取省
      *
      * @param cityCode 城市code
      * @return
      */
-    public static Province getProvince(final int cityCode) {
-        return getProvinces().parallelStream()
-                .filter(ii -> getCities().parallelStream()
-                        .filter(i -> i.getCode() == cityCode)
-                        .findFirst()
-                        .get().getProvinceCode() == ii.getCode())
-                .findFirst().get();
+    public static Province getProvince(final Integer cityCode) {
+        Administrative administrative = administrativeMap.get(cityCode);
+        if (administrative != null && administrative instanceof City) {
+            City area = (City) administrative;
+            return area.getProvince();
+        }
+        return null;
     }
 
     /** 获取所有地级（城市）JSON对象 */
-    public static JSONArray getCityArray() {
-        return cityArray;
+    public static String getCityArray() {
+        return Json.toJson(cities);
     }
 
     /** 获取所有地级（城市）列表 */
@@ -143,7 +140,7 @@ public final class AdministrativeUtils {
      * @param provinceCode 省code
      * @return
      */
-    public static List<City> getCities(final int provinceCode) {
+    public static List<City> getCities(final Integer provinceCode) {
         return cityMapByProvinceCode.get(provinceCode);
     }
 
@@ -153,18 +150,18 @@ public final class AdministrativeUtils {
      * @param areaCode 区code
      * @return
      */
-    public static City getCity(final int areaCode) {
-        return getCities().parallelStream()
-                .filter(ii -> getAreas().parallelStream()
-                        .filter(i -> i.getCode() == areaCode)
-                        .findFirst()
-                        .get().getCityCode() == ii.getCode())
-                .findFirst().get();
+    public static City getCity(final Integer areaCode) {
+        Administrative administrative = administrativeMap.get(areaCode);
+        if (administrative != null && administrative instanceof Area) {
+            Area area = (Area) administrative;
+            return area.getCity();
+        }
+        return null;
     }
 
     /** 获取所有县级（区县）JSON对象 */
-    public static JSONArray getAreaArray() {
-        return areaArray;
+    public static String getAreaArray() {
+        return Json.toJson(areas);
     }
 
     /** 获取所有县级（区县）列表 */
@@ -178,7 +175,7 @@ public final class AdministrativeUtils {
      * @param cityCode 城市code
      * @return
      */
-    public static List<Area> getAreas(final int cityCode) {
+    public static List<Area> getAreas(final Integer cityCode) {
         return areaMapByCityCode.get(cityCode);
     }
 

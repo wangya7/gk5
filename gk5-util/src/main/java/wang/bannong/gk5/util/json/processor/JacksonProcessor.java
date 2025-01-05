@@ -1,4 +1,4 @@
-package wang.bannong.gk5.json.processor;
+package wang.bannong.gk5.util.json.processor;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import wang.bannong.gk5.json.exception.IllegalJsonException;
+import wang.bannong.gk5.util.json.exception.IllegalJsonException;
 
 /**
  * Jackson implements Json.
@@ -47,8 +47,8 @@ public class JacksonProcessor extends AbstractJsonProcessor {
     @Override
     public <T> List<T> toJavaList(String json, Class<T> clazz) {
         try {
-            return getJackson()
-                    .readValue(json, getJackson().getTypeFactory().constructCollectionType(List.class, clazz));
+            return getJackson().readValue(json,
+                getJackson().getTypeFactory().constructCollectionType(List.class, clazz));
         } catch (com.fasterxml.jackson.core.JsonProcessingException e) {
             throw new IllegalArgumentException(e);
         }
@@ -68,11 +68,11 @@ public class JacksonProcessor extends AbstractJsonProcessor {
             synchronized (this) {
                 if (jacksonCache == null || !(jacksonCache instanceof JsonMapper)) {
                     jacksonCache = JsonMapper.builder()
-                                             .configure(MapperFeature.PROPAGATE_TRANSIENT_MARKER, true)
-                                             .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
-                                             .serializationInclusion(JsonInclude.Include.NON_NULL)
-                                             .addModule(new JavaTimeModule())
-                                             .build();
+                        .configure(MapperFeature.PROPAGATE_TRANSIENT_MARKER, true)
+                        .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+                        .serializationInclusion(JsonInclude.Include.NON_NULL)
+                        .addModule(new JavaTimeModule())
+                        .build();
                 }
             }
         }

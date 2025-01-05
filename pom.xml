@@ -41,7 +41,6 @@
   <modules>
     <module>gk5-administrative</module>
     <module>gk5-util</module>
-    <module>gk5-json</module>
     <module>gk5-offer</module>
   </modules>
 
@@ -56,11 +55,14 @@
     <gk5.version>1.0.0-SNAPSHOT</gk5.version>
 
     <!-- third party start -->
-    <commons-lang3.version>3.5</commons-lang3.version>
-    <commons-collections.version>4.4</commons-collections.version>
-    <guava.version>28.0-jre</guava.version>
+    <commons-lang3.version>3.17.0</commons-lang3.version>
+    <commons-collections4.version>4.4</commons-collections4.version>
+    <guava.version>33.4.0-jre</guava.version>
+    <jackson.version>2.18.1</jackson.version>
     <jackson-dataformat.version>2.9.9</jackson-dataformat.version>
     <jackson-databind.version>2.9.9</jackson-databind.version>
+
+    <junit.version>4.13.2</junit.version>
   </properties>
 
 
@@ -79,17 +81,41 @@
       <dependency>
         <groupId>org.apache.commons</groupId>
         <artifactId>commons-collections4</artifactId>
-        <version>${commons-collections.version}</version>
+        <version>${commons-collections4.version}</version>
       </dependency>
+
       <dependency>
-        <groupId>com.fasterxml.jackson.dataformat</groupId>
-        <artifactId>jackson-dataformat-yaml</artifactId>
-        <version>${jackson-dataformat.version}</version>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-core</artifactId>
+        <version>${jackson.version}</version>
       </dependency>
       <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-databind</artifactId>
-        <version>${jackson-databind.version}</version>
+        <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <version>${jackson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.fasterxml.jackson.datatype</groupId>
+        <artifactId>jackson-datatype-jsr310</artifactId>
+        <version>${jackson.version}</version>
+        <exclusions>
+          <exclusion>
+            <artifactId>jackson-databind</artifactId>
+            <groupId>com.fasterxml.jackson.core</groupId>
+          </exclusion>
+        </exclusions>
+      </dependency>
+
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>
