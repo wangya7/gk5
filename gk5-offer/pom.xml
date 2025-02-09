@@ -1,6 +1,7 @@
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-        xmlns="http://maven.apache.org/POM/4.0.0"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>wang.bannong</groupId>
   <artifactId>gk5-offer</artifactId>
@@ -26,6 +27,9 @@
     <maven.compiler.compilerVersion>${java.version}</maven.compiler.compilerVersion>
     <lombok.version>1.18.20</lombok.version>
     <junit.version>4.12</junit.version>
+    <commons-lang3.version>3.17.0</commons-lang3.version>
+    <commons-collections4.version>4.4</commons-collections4.version>
+    <guava.version>33.4.0-jre</guava.version>
   </properties>
 
   <dependencies>
@@ -38,6 +42,22 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>${junit.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>${commons-lang3.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
+      <version>${guava.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-collections4</artifactId>
+      <version>${commons-collections4.version}</version>
     </dependency>
   </dependencies>
 </project>
